@@ -52,3 +52,9 @@ export const getDatabaseItems = async (
 
   return response.results;
 };
+
+export const getPageItem = async (pageId: string) => {
+  const pageItem = await notionClient.getPage(pageId);
+
+  return pageItem;
+};
