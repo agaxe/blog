@@ -5,11 +5,11 @@ export interface DatabaseQueryOption {
   tagName?: string;
 }
 
-export const propertyTable = {
-  isCompleted: 'isCompleted',
-  tags: 'tags',
-  createdAt: 'createdAt'
-};
+export const enum propertyTable {
+  IsCompleted = 'isCompleted',
+  Tags = 'tags',
+  CreatedAt = 'createdAt'
+}
 
 export const notionClient = new NotionAPI({
   activeUser: process.env.NOTION_ACTIVE_USER_ID,
@@ -29,13 +29,13 @@ export const getDatabaseItems = async (
     filter: {
       and: [
         {
-          property: propertyTable.isCompleted,
+          property: propertyTable.IsCompleted,
           checkbox: {
             equals: true
           }
         },
         {
-          property: propertyTable.tags,
+          property: propertyTable.Tags,
           multi_select: {
             contains: option?.tagName ?? ''
           }
@@ -44,10 +44,11 @@ export const getDatabaseItems = async (
     },
     sorts: [
       {
-        property: propertyTable.createdAt,
+        property: propertyTable.CreatedAt,
         direction: 'descending'
       }
     ]
   });
+
   return response.results;
 };
