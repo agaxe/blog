@@ -1,0 +1,8 @@
+export const formatDate = (dateInfo: Date | number, options = {}) => {
+  const date = new Date(dateInfo);
+
+  return new Intl.DateTimeFormat('ko-KR', {
+    dateStyle: 'long',
+    ...options
+  }).format(date);
+};
