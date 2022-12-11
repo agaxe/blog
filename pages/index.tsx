@@ -9,6 +9,7 @@ import {
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { Layout } from '@/components/layout/Layout';
+import { MainHeader } from '@/components/layout/MainHeader';
 
 interface HomeProps {
   data: ParseDatabaseItemsType[];
@@ -18,6 +19,7 @@ export default function Home({ data }: HomeProps) {
   return (
     <Layout>
       <HomePage>
+        <MainHeader />
         {data.length ? (
           <NotionPageList data={data} />
         ) : (
@@ -45,9 +47,12 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const HomePage = styled.section`
-  max-width: 1000px;
+const HomePage = styled.div`
+  max-width: var(--layout-inner-w);
   margin: 0 auto;
   height: 100%;
-  padding: 16px;
+  padding-left: var(--layouy-side-pd);
+  padding-right: var(--layouy-side-pd);
+  display: grid;
+  gap: 48px;
 `;
