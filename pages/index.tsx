@@ -1,12 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 import type { GetStaticProps } from 'next';
-import Link from 'next/link';
 import { getDatabaseItems } from '@/lib/notion';
 import {
   parseDatabaseItems,
   ParseDatabaseItemsType
 } from '@/utils/parseDatabaseItems';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
+import { NotionPageList } from '@/components/notion/NotionPageList';
+import { Layout } from '@/components/layout/Layout';
 
 interface HomeProps {
   data: ParseDatabaseItemsType[];
@@ -14,27 +16,15 @@ interface HomeProps {
 
 export default function Home({ data }: HomeProps) {
   return (
-    <>
-      <h2>메인 페이지</h2>
-      {data.length ? (
-        <ul>
-          {data.map((item: ParseDatabaseItemsType) => (
-            <li key={item.id}>
-              <Link href={`/post/${item.id}`}>
-                <h2>{item.title}</h2>
-                <ul>
-                  {item.tags.map((it) => (
-                    <li key={it.id}>{it.name}</li>
-                  ))}
-                </ul>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div>데이터가 존재하지 않습니다.</div>
-      )}
-    </>
+    <Layout>
+      <HomePage>
+        {data.length ? (
+          <NotionPageList data={data} />
+        ) : (
+          <div>데이터가 존재하지 않습니다.</div>
+        )}
+      </HomePage>
+    </Layout>
   );
 }
 
@@ -54,3 +44,10 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: ISR_REVALIDATE_TIME
   };
 };
+
+const HomePage = styled.section`
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 16px;
+`;
