@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import 'react-notion-x/src/styles.css';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'styles/notion.scss';
+import 'styles/index.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
