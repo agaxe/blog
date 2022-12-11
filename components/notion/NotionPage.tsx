@@ -6,6 +6,9 @@ import { ExtendedRecordMap } from 'notion-types';
 import { NotionRenderer } from 'react-notion-x';
 import { normalizeTitle } from 'notion-utils';
 import { formatDate } from '@/utils/formatDate';
+import { NotionTagItem } from '@/components/notion/NotionTagItem';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 const Code = dynamic(() =>
   import('react-notion-x/build/third-party/code').then((m) => m.Code)
@@ -26,8 +29,8 @@ const NotionPage = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
       minTableOfContentsItems={3}
       showCollectionViewDropdown={false}
       showTableOfContents={true}
-      header={<div>header</div>}
-      footer={<div>footer</div>}
+      header={<Header />}
+      footer={<Footer />}
       //isLinkCollectionToUrlProperty={false}
       //linkTableTitleProperties={false}
       components={{
@@ -42,16 +45,16 @@ const NotionPage = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
           return formatDate(dateProperty.block.last_edited_time);
         },
         propertySelectValue: (
-          { schema, value, key, pageHeader },
+          { schema, value, key, pageHeader, color },
           defaultFn: () => React.ReactNode
         ) => {
-          value = normalizeTitle(value);
-
           if (pageHeader && schema.type === 'multi_select' && value) {
             return (
-              <Link href={`/tag/${value}`} key={key}>
-                {defaultFn()}
-              </Link>
+              <NotionTagItem
+                key={key}
+                name={normalizeTitle(value)}
+                color={color}
+              />
             );
           }
 

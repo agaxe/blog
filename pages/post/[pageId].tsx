@@ -3,7 +3,7 @@ import { GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 import { ExtendedRecordMap } from 'notion-types';
 import { getPageTitle } from 'notion-utils';
-import NotionPage from '@/components/NotionPage';
+import NotionPage from '@/components/notion/NotionPage';
 import { getPageItem, getDatabaseItems } from '@/lib/notion';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 
