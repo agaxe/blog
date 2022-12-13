@@ -48,11 +48,6 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const HomePage = styled.div`
-  max-width: var(--layout-inner-w);
-  margin: 0 auto;
-  height: 100%;
-  padding-left: var(--layout-side-pd);
-  padding-right: var(--layout-side-pd);
   display: grid;
   gap: 48px;
 `;

@@ -16,4 +16,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 const Section = styled.section`
   padding-top: 32px;
   padding-bottom: 32px;
+  max-width: var(--layout-inner-w);
+  margin: 0 auto;
+  height: 100%;
+  padding-left: var(--layout-side-pd);
+  padding-right: var(--layout-side-pd);
 `;
