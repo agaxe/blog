@@ -18,8 +18,8 @@ export const Inner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: var(--layouy-side-pd);
-  padding-right: var(--layouy-side-pd);
+  padding-left: var(--layout-side-pd);
+  padding-right: var(--layout-side-pd);
 `;
 
 export const Logo = styled.div`
