@@ -80,7 +80,9 @@ jobs:
           NOTION_API_TOKEN: ${{ secrets.NOTION_API_TOKEN }}
           NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
           NOTION_PORTFOLIO_PAGE_ID: ${{ secrets.NOTION_PORTFOLIO_PAGE_ID }}
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build (ENV_ROOT_PAGE_ID-${{ secrets.NOTION_ROOT_PAGE_ID }})
+        run: |
+          ${{ steps.detect-package-manager.outputs.runner }} next build
+          echo ENV_ROOT_PAGE_ID-${{ secrets.NOTION_ROOT_PAGE_ID }}
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact
