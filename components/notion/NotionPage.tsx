@@ -4,7 +4,6 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { ExtendedRecordMap } from 'notion-types';
 import { NotionRenderer } from 'react-notion-x';
-import { normalizeTitle } from 'notion-utils';
 import { formatDate } from '@/utils/formatDate';
 import { NotionTagItem } from '@/components/notion/NotionTagItem';
 import { Header } from '@/components/layout/Header';
@@ -49,13 +48,7 @@ const NotionPage = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
           defaultFn: () => React.ReactNode
         ) => {
           if (pageHeader && schema.type === 'multi_select' && value) {
-            return (
-              <NotionTagItem
-                key={key}
-                name={normalizeTitle(value)}
-                color={color}
-              />
-            );
+            return <NotionTagItem key={key} name={value} color={color} />;
           }
 
           return defaultFn();
