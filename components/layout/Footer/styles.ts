@@ -13,5 +13,5 @@ export const Footer = styled.footer`
   justify-content: center;
   font-weight: 300;
   color: #aaa;
-  border-top: 1px solid var(--fg-color-0);
+  border-top: 1px solid var(--color-line-gray);
 `;
