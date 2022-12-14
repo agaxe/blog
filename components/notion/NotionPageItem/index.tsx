@@ -14,7 +14,7 @@ export const NotionPageItem = ({ data }: NotionPageItem) => {
 
   return (
     <S.Wrap>
-      <Link href={`/post/${id}`}>
+      <Link href={`/${id}`}>
         <S.PageTitle>{title}</S.PageTitle>
       </Link>
       <S.PageDate>{formatDate(createdAt)}</S.PageDate>
