@@ -57,7 +57,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const tagItems = await getDatabaseTagItems(databaseId);
   const paths = tagItems.map(({ name: tagName }: any) => ({
     params: {
-      tagName
+      tagName: tagName.toLowerCase()
     }
   }));
 
