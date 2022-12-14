@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './styles';
 
-export default function NotFound() {
+export const NotFound = () => {
   return (
     <S.Wrap>
       <S.ContentBox>
@@ -10,4 +10,4 @@ export default function NotFound() {
       </S.ContentBox>
     </S.Wrap>
   );
-}
+};
