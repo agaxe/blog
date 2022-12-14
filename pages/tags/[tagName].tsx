@@ -30,28 +30,31 @@ export default function tagName({ tagName, data }: TagNameProps) {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  if (!process.env.NOTION_DB_ID)
+  const databaseId = process.env.NOTION_DB_ID as string;
+  const tagName = context?.params?.tagName as string;
+
+  try {
+    const dbItems = await getDatabaseItems(databaseId, {
+      tagName
+    });
+    const data = parseDatabaseItems(dbItems);
+
+    return {
+      props: {
+        tagName,
+        data
+      }
+    };
+  } catch (error) {
     return {
       notFound: true
     };
-
-  const tagName = context?.params?.tagName as string;
-  const dbItems = await getDatabaseItems(process.env.NOTION_DB_ID, {
-    tagName
-  });
-  const data = parseDatabaseItems(dbItems);
-
-  return {
-    props: {
-      tagName,
-      data
-    }
-  };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const databaseId = process.env.NOTION_DB_ID;
-  const tagItems = await getDatabaseTagItems(databaseId as string);
+  const databaseId = process.env.NOTION_DB_ID as string;
+  const tagItems = await getDatabaseTagItems(databaseId);
   const paths = tagItems.map(({ name: tagName }: any) => ({
     params: {
       tagName
@@ -60,7 +63,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true
+    fallback: false
   };
 };
 

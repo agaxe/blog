@@ -31,20 +31,23 @@ export default function Home({ data }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  if (!process.env.NOTION_DB_ID)
+  const databaseId = process.env.NOTION_DB_ID as string;
+
+  try {
+    const dbItems = await getDatabaseItems(databaseId);
+    const data = parseDatabaseItems(dbItems);
+
+    return {
+      props: {
+        data
+      },
+      revalidate: ISR_REVALIDATE_TIME
+    };
+  } catch (error) {
     return {
       notFound: true
     };
-
-  const dbItems = await getDatabaseItems(process.env.NOTION_DB_ID);
-  const data = parseDatabaseItems(dbItems);
-
-  return {
-    props: {
-      data
-    },
-    revalidate: ISR_REVALIDATE_TIME
-  };
+  }
 };
 
 const HomePage = styled.div`

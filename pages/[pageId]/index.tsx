@@ -1,5 +1,5 @@
 import React from 'react';
-import { GetStaticPropsContext } from 'next';
+import { GetStaticPropsContext, GetStaticPaths } from 'next';
 import Head from 'next/head';
 import { ExtendedRecordMap } from 'notion-types';
 import { getPageTitle } from 'notion-utils';
@@ -25,27 +25,28 @@ export default function Post({ recordMap, pageTitle }: PostProps) {
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const pageId = context?.params?.pageId as string;
-  const recordMap = await getPageItem(pageId);
-  const pageTitle = getPageTitle(recordMap);
 
-  return {
-    props: {
-      recordMap,
-      pageTitle
-    },
-    revalidate: ISR_REVALIDATE_TIME
-  };
-};
+  try {
+    const recordMap = await getPageItem(pageId);
+    const pageTitle = getPageTitle(recordMap);
 
-export async function getStaticPaths() {
-  const databaseId = process.env.NOTION_DB_ID;
-  if (!databaseId)
+    return {
+      props: {
+        recordMap,
+        pageTitle
+      },
+      revalidate: ISR_REVALIDATE_TIME
+    };
+  } catch (error) {
     return {
       notFound: true
     };
+  }
+};
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const databaseId = process.env.NOTION_DB_ID as string;
   const databaseItems = await getDatabaseItems(databaseId);
-
   const paths = databaseItems.map(({ id: pageId }) => ({
     params: {
       pageId
@@ -54,6 +55,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: true
+    fallback: false
   };
-}
+};
