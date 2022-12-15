@@ -1,15 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
-import { NotionPageList } from '@/components/notion/NotionPageList';
+import styled from 'styled-components';
+import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { TagHeader } from '@/components/layout/TagHeader';
-import {
-  parseDatabaseItems,
-  ParseDatabaseItemsType
-} from '@/utils/parseDatabaseItems';
+import { NotionPageList } from '@/components/notion/NotionPageList';
+import { getDatabaseItems, getDatabaseTagItems } from '@/lib/notion';
 import { convertPascalCase } from '@/utils/convertPascalCase';
-import { getDatabaseTagItems, getDatabaseItems } from '@/lib/notion';
+import {
+  ParseDatabaseItemsType,
+  parseDatabaseItems
+} from '@/utils/parseDatabaseItems';
 
 interface TagNameProps {
   data: ParseDatabaseItemsType[];
@@ -18,12 +19,15 @@ interface TagNameProps {
 
 export default function tagName({ tagName, data }: TagNameProps) {
   return (
-    <Layout>
-      <TagNameWrap>
-        <TagHeader tagName={convertPascalCase(String(tagName))} />
-        <NotionPageList data={data} />
-      </TagNameWrap>
-    </Layout>
+    <>
+      <Seo title={`tag: ${tagName}`} />
+      <Layout>
+        <TagNameWrap>
+          <TagHeader tagName={convertPascalCase(String(tagName))} />
+          <NotionPageList data={data} />
+        </TagNameWrap>
+      </Layout>
+    </>
   );
 }
 
