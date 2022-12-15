@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { ExtendedRecordMap } from 'notion-types';
@@ -33,7 +32,6 @@ const NotionPage = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
       //isLinkCollectionToUrlProperty={false}
       //linkTableTitleProperties={false}
       components={{
-        nextImage: Image,
         nextLink: Link,
         Code,
         Collection,
