@@ -15,5 +15,17 @@
         "parser": "css"
       }
     }
-  ]
+  ],
+  "importOrder" : [
+    "^react$",
+    "^next(.*)$",
+    "^next/(.*)$", 
+    "<THIRD_PARTY_MODULES>",
+    "^@/components/(.*)",
+    "^@/(utils|context|hooks|lib|pages|routes|services|styles|ui)/?(.*)$",
+    "\\.(c|le|sc)ss$",
+    "^[./]"
+  ],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true
 }
