@@ -1,11 +1,11 @@
 import React from 'react';
-import * as S from './styles';
 import config from '@/config';
+import * as S from './styles';
 
 export const Footer = () => {
   return (
     <S.Footer>
-      <p>© ${config.name}</p>
+      <p>© {config.name}</p>
     </S.Footer>
   );
 };
