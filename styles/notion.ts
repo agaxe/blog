@@ -1,6 +1,13 @@
 import { css } from 'styled-components';
+import { device } from './device';
 
 export const notion = css`
+  .notion,
+  .notion-app {
+    background-color: inherit;
+    color: inherit;
+  }
+
   .notion-app {
     ul,
     li {
@@ -8,6 +15,10 @@ export const notion = css`
     }
   }
 
+  .notion-page {
+    padding-left: var(--layout-side-pd);
+    padding-right: var(--layout-side-pd);
+  }
   .notion-collection-page-properties {
     .notion-collection-column-title {
       display: none;
@@ -30,6 +41,9 @@ export const notion = css`
     }
     .notion-title {
       text-align: center;
+      ${device('md')} {
+        font-size: 2rem;
+      }
     }
   }
   .notion-collection-row-body {
@@ -38,5 +52,18 @@ export const notion = css`
 
   .notion-frame {
     padding: 0;
+  }
+
+  .notion-bookmark {
+    & > div:first-child {
+      color: inherit;
+    }
+    &-link-text {
+      color: inherit;
+    }
+  }
+
+  .notion-aside-table-of-contents {
+    background-color: inherit;
   }
 `;

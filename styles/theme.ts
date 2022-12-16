@@ -7,7 +7,7 @@ export const theme = css`
     }
     body {
       color: white;
-      background: black;
+      background: #2f3437;
     }
   }
 `;

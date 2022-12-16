@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { Header } from '@/components/layout/Header';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

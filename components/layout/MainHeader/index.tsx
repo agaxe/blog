@@ -1,8 +1,8 @@
 import React from 'react';
-import { Profile } from '@/components/common/Profile';
-import * as S from './styles';
 import config from '@/config';
+import { Profile } from '@/components/common/Profile';
 import { convertPascalCase } from '@/utils/convertPascalCase';
+import * as S from './styles';
 
 export const MainHeader = () => {
   return (

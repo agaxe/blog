@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+import { device } from '@/styles/device';
 
 export const reset = css`
   html,
@@ -9,6 +10,9 @@ export const reset = css`
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 16px;
     color: var(--color-black);
+    ${device('md')} {
+      font-size: 13px;
+    }
   }
 
   body {

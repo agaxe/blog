@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '@/styles/device';
 
 export const Header = styled.header`
   position: sticky;
@@ -20,6 +21,9 @@ export const Inner = styled.div`
   justify-content: space-between;
   padding-left: var(--layout-side-pd);
   padding-right: var(--layout-side-pd);
+  ${device('md')} {
+    width: 100%;
+  }
 `;
 
 export const Logo = styled.div`
