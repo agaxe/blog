@@ -1,8 +1,8 @@
 import Document, {
   DocumentContext,
   DocumentInitialProps,
-  Html,
   Head,
+  Html,
   Main,
   NextScript
 } from 'next/document';
@@ -40,7 +40,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel='shortcut icon' href='/blog/favicon.ico' />
+          <link rel='shortcut icon' href='/favicon.ico' />
         </Head>
         <body>
           <Main />
