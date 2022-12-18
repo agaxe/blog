@@ -5,7 +5,7 @@ import config from '@/config';
 export const Seo = ({
   title = config.site.title,
   description = config.description,
-  img_url = config.site.imgUrl
+  img_url = '/images/og_img.jpg'
 }) => {
   return (
     <div>
