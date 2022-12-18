@@ -10,6 +10,10 @@ export const Header = styled.header`
   min-height: var(--notion-header-height);
   background: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: blur(16px);
+
+  @media (prefers-color-scheme: dark) {
+    background: hsla(0, 0%, 100%, 0);
+  }
 `;
 
 export const Inner = styled.div`

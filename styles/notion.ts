@@ -55,6 +55,7 @@ export const notion = css`
   }
 
   .notion-bookmark {
+    border: 1px solid var(--color-line-bookmark);
     & > div:first-child {
       color: inherit;
     }
@@ -65,5 +66,9 @@ export const notion = css`
 
   .notion-aside-table-of-contents {
     background-color: inherit;
+  }
+
+  .notion-table-of-contents-item {
+    color: inherit;
   }
 `;

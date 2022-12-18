@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset} 
   ${variable}
   ${notion}
-  ${theme} 
+  ${theme}
 `;
 
 export default function App({ Component, pageProps }: AppProps) {

@@ -8,6 +8,13 @@ export const variable = css`
     --color-gray: #666;
     --color-white: #fff;
     --color-line-gray: #ededec;
+    --color-line-bookmark: #dfdfde;
+
+    @media (prefers-color-scheme: dark) {
+      --color-line-gray: #666;
+      --color-gray: #ededec;
+      --color-line-bookmark: #555;
+    }
 
     //* layout
     --layout-inner-w: 720px;
