@@ -1,1 +1,1 @@
-export const ISR_REVALIDATE_TIME = 24 * 60 * 60;
+export const ISR_REVALIDATE_TIME = 12 * 60 * 60;
