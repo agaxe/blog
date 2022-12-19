@@ -1,11 +1,11 @@
 import React from 'react';
-import { GetStaticPropsContext, GetStaticPaths } from 'next';
+import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import Head from 'next/head';
+import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { ExtendedRecordMap } from 'notion-types';
 import { getPageTitle } from 'notion-utils';
 import NotionPage from '@/components/notion/NotionPage';
-import { getPageItem, getDatabaseItems } from '@/lib/notion';
-import { ISR_REVALIDATE_TIME } from '@/shared/variable';
+import { getDatabaseItems, getPageItem } from '@/lib/notion';
 
 interface PostProps {
   recordMap: ExtendedRecordMap;
@@ -55,6 +55,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false
+    fallback: 'blocking'
   };
 };
