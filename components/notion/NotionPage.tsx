@@ -1,12 +1,13 @@
 import React from 'react';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import Link from 'next/link';
 import { ExtendedRecordMap } from 'notion-types';
 import { NotionRenderer } from 'react-notion-x';
-import { formatDate } from '@/utils/formatDate';
-import { NotionTagItem } from '@/components/notion/NotionTagItem';
-import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { Header } from '@/components/layout/Header';
+import { NotionTagItem } from '@/components/notion/NotionTagItem';
+import { formatDate } from '@/utils/formatDate';
 
 const Code = dynamic(() =>
   import('react-notion-x/build/third-party/code').then((m) => m.Code)
@@ -33,6 +34,7 @@ const NotionPage = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
       //linkTableTitleProperties={false}
       components={{
         nextLink: Link,
+        nextImage: Image,
         Code,
         Collection,
         propertyCreatedTimeValue: (dateProperty) => {
