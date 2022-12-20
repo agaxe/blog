@@ -1,11 +1,12 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import styled from 'styled-components';
 import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { TagHeader } from '@/components/layout/TagHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
-import { getDatabaseItems, getDatabaseTagItems } from '@/lib/notion';
+import { getDatabaseItems, getPathTagItems } from '@/lib/notion';
 import { convertPascalCase } from '@/utils/convertPascalCase';
 import {
   ParseDatabaseItemsType,
@@ -47,7 +48,8 @@ export const getStaticProps: GetStaticProps = async (
       props: {
         tagName,
         data
-      }
+      },
+      revalidate: ISR_REVALIDATE_TIME
     };
   } catch (error) {
     return {
@@ -57,13 +59,7 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const databaseId = process.env.NOTION_DB_ID as string;
-  const tagItems = await getDatabaseTagItems(databaseId);
-  const paths = tagItems.map(({ name: tagName }: any) => ({
-    params: {
-      tagName: tagName.toLowerCase()
-    }
-  }));
+  const paths = await getPathTagItems();
 
   return {
     paths,

@@ -1,5 +1,5 @@
-import { NotionAPI } from 'notion-client';
 import { Client } from '@notionhq/client';
+import { NotionAPI } from 'notion-client';
 import { convertPascalCase } from '@/utils/convertPascalCase';
 
 export interface DatabaseQueryOption {
@@ -74,4 +74,25 @@ export const getDatabaseTagItems = async (databaseId: string) => {
     .options;
 
   return tagItems;
+};
+
+//* getStaticPaths: path
+export const getPathPageItems = async () => {
+  const databaseId = process.env.NOTION_DB_ID as string;
+  const databaseItems = await getDatabaseItems(databaseId);
+  return databaseItems.map(({ id: pageId }) => ({
+    params: {
+      pageId
+    }
+  }));
+};
+
+export const getPathTagItems = async () => {
+  const databaseId = process.env.NOTION_DB_ID as string;
+  const tagItems = await getDatabaseTagItems(databaseId);
+  return tagItems.map(({ name: tagName }: any) => ({
+    params: {
+      tagName: tagName.toLowerCase()
+    }
+  }));
 };

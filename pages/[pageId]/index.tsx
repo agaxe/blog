@@ -5,7 +5,7 @@ import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { ExtendedRecordMap } from 'notion-types';
 import { getPageTitle } from 'notion-utils';
 import NotionPage from '@/components/notion/NotionPage';
-import { getDatabaseItems, getPageItem } from '@/lib/notion';
+import { getPageItem, getPathPageItems } from '@/lib/notion';
 
 interface PostProps {
   recordMap: ExtendedRecordMap;
@@ -45,13 +45,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const databaseId = process.env.NOTION_DB_ID as string;
-  const databaseItems = await getDatabaseItems(databaseId);
-  const paths = databaseItems.map(({ id: pageId }) => ({
-    params: {
-      pageId
-    }
-  }));
+  const paths = await getPathPageItems();
 
   return {
     paths,
