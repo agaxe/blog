@@ -13,6 +13,12 @@ export const notion = css`
     li {
       list-style: initial;
     }
+
+    li {
+      span {
+        word-break: break-word;
+      }
+    }
   }
 
   .notion-page {
