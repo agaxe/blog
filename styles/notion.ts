@@ -55,7 +55,7 @@ export const notion = css`
   }
 
   .notion-bookmark {
-    border: 1px solid var(--color-line-bookmark);
+    border: 1px solid ${({ theme }) => theme.border.bookmark};
     & > div:first-child {
       color: inherit;
     }

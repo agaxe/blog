@@ -21,6 +21,7 @@
     "notion-client": "^6.15.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-inlinesvg": "^3.0.1",
     "react-notion-x": "^6.15.7",
     "sharp": "^0.31.2",
     "styled-components": "^5.3.6",

@@ -5,7 +5,7 @@ export const wrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid var(--color-line-gray);
+  border-bottom: 1px solid ${({ theme }) => theme.border.gray};
 `;
 
 export const Title = styled.h2`

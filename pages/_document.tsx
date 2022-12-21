@@ -41,6 +41,15 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel='shortcut icon' href='/favicon.ico' />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              const theme = localStorage.getItem("theme");
+              const bgColor = theme === 'light' ? 'var(--color-theme-light-bg)' : 'var(--color-theme-dark-bg)'
+              document.documentElement.style.setProperty('background-color', bgColor);
+            `
+            }}
+          ></script>
         </Head>
         <body>
           <Main />

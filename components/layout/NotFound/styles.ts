@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrap = styled.div`
   width: 100%;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,5 +23,5 @@ export const Title = styled.h1`
 export const Desc = styled.p`
   font-weight: 300;
   font-size: 1.5rem;
-  color: var(--color-gray);
+  color: ${({ theme }) => theme.color.gray};
 `;

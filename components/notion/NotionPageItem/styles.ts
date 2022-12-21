@@ -9,5 +9,5 @@ export const PageTitle = styled.h3`
 
 export const PageDate = styled.p`
   margin-bottom: 16px;
-  color: var(--color-gray);
+  color: ${({ theme }) => theme.color.gray};
 `;

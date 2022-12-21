@@ -9,7 +9,8 @@ export const reset = css`
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 16px;
-    color: var(--color-black);
+    color: ${({ theme }) => theme.color.default};
+    background-color: ${({ theme }) => theme.bgColor.default};
     ${device('md')} {
       font-size: 13px;
     }
@@ -17,12 +18,6 @@ export const reset = css`
 
   body {
     overflow-x: hidden;
-  }
-
-  html,
-  body,
-  body > div {
-    height: 100%;
   }
 
   a {

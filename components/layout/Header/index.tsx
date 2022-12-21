@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Theme } from '@/components/Theme';
 import * as S from './styles';
 
 interface HeaderProps {
@@ -15,6 +16,7 @@ export const Header = ({ className = '' }: HeaderProps) => {
             <h2>Blog.</h2>
           </Link>
         </S.Logo>
+        <Theme />
       </S.Inner>
     </S.Header>
   );
