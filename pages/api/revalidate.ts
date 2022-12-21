@@ -15,12 +15,17 @@ export default async function handler(
 
     await res.revalidate('/');
 
-    for (const idx in tagParams) {
-      await res.revalidate(`/tags/${tagParams[idx].params.tagName}`);
-    }
-    for (const idx in pageParams) {
-      await res.revalidate(`/${pageParams[idx].params.pageId}`);
-    }
+    await Promise.all(
+      tagParams.map(async (item: any) => {
+        await res.revalidate(`/tags/${item.params.tagName}`);
+      })
+    );
+
+    await Promise.all(
+      pageParams.map(async (item: any) => {
+        await res.revalidate(`/${item.params.pageId}`);
+      })
+    );
 
     return res.json({ revalidated: true });
   } catch (err) {
