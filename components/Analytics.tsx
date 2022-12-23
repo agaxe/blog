@@ -35,7 +35,7 @@ export const Analytics = () => {
             gtag('js', new Date());
             gtag('config', '${gtag.GA_TRACKING_ID}', {
               page_path: window.location.pathname,
-              cookie_domain	: '${config.site.url}'
+              cookie_domain	: '${config.site.url.replace(/^https?:\/\//, '')}'
             });
           `
         }}
