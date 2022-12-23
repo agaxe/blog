@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { createGlobalStyle } from 'styled-components';
+import { Analytics } from '@/components/Analytics';
 import { Providers } from '@/components/Provider';
 import { Seo } from '@/components/common/Seo';
 import { notion } from '@/styles/notion';
@@ -22,10 +23,13 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <Providers>
-      <Seo />
-      <Component {...pageProps} />
-      <GlobalStyle />
-    </Providers>
+    <>
+      <Analytics />
+      <Providers>
+        <Seo />
+        <Component {...pageProps} />
+        <GlobalStyle />
+      </Providers>
+    </>
   );
 }
