@@ -77,4 +77,15 @@ export const notion = css`
   .notion-table-of-contents-item {
     color: inherit;
   }
+
+  .notion {
+    code[class*='language-'] {
+      display: block;
+      overflow: auto;
+      padding-bottom: calc(1rem / 2);
+    }
+    pre[class*='language-'] {
+      overflow: hidden;
+    }
+  }
 `;
