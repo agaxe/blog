@@ -13,7 +13,7 @@ export const Button = styled.button`
 `;
 
 const iconStyle = css`
-  width: 20px;
+  width: var(--size-header-icon-w);
 `;
 
 export const LightIcon = styled(Icon)`

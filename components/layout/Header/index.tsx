@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Search } from '@/components/Search';
 import { Theme } from '@/components/Theme';
 import * as S from './styles';
 
@@ -16,8 +17,12 @@ export const Header = ({ className = '' }: HeaderProps) => {
             <h2>Blog.</h2>
           </Link>
         </S.Logo>
-        <Theme />
+        <S.ButtonGroup>
+          <Theme />
+          <Search />
+        </S.ButtonGroup>
       </S.Inner>
+      <S.Bg />
     </S.Header>
   );
 };

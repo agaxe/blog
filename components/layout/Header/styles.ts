@@ -9,7 +9,16 @@ export const Header = styled.header`
   height: var(--notion-header-height);
   min-height: var(--notion-header-height);
   background: ${({ theme }) => theme.bgColor.header};
+`;
+
+export const Bg = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   backdrop-filter: blur(16px);
+  z-index: 1;
 `;
 
 export const Inner = styled.div`
@@ -21,6 +30,8 @@ export const Inner = styled.div`
   justify-content: space-between;
   padding-left: var(--layout-side-pd);
   padding-right: var(--layout-side-pd);
+  position: relative;
+  z-index: 5;
   ${device('md')} {
     width: 100%;
   }
@@ -28,4 +39,11 @@ export const Inner = styled.div`
 
 export const Logo = styled.div`
   user-select: none;
+`;
+
+export const ButtonGroup = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  gap: 16px;
+  align-items: center;
 `;

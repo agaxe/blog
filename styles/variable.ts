@@ -26,6 +26,9 @@ export const variable = css`
     --layout-side-pd: 16px;
     --layout-page-header-h: 184px;
 
+    //* size
+    --size-header-icon-w: 20px;
+
     ${device('md')} {
       --layout-side-pd: 8px;
     }
