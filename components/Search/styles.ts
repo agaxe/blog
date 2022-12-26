@@ -98,4 +98,8 @@ export const ResultLink = styled(Link)`
   display: block;
   padding: ${variables.padding};
   color: inherit;
+  transition: background-color, 0.2s;
+  &:hover {
+    background-color: ${({ theme }) => theme.border.gray};
+  }
 `;
