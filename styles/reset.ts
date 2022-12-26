@@ -1,5 +1,4 @@
 import { css } from 'styled-components';
-import { device } from '@/styles/device';
 
 export const reset = css`
   html,
@@ -8,16 +7,6 @@ export const reset = css`
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-size: 16px;
-    color: ${({ theme }) => theme.color.default};
-    background-color: ${({ theme }) => theme.bgColor.default};
-    ${device('md')} {
-      font-size: 13px;
-    }
-  }
-
-  body {
-    overflow-x: hidden;
   }
 
   a {

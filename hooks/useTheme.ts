@@ -5,16 +5,17 @@ type themeType = 'dark' | 'light';
 export const useTheme = () => {
   const [theme, setTheme] = useState('');
 
-  const changeTheme = useCallback((theme: themeType) => {
+  const changeTheme = useCallback((theme: themeType, isLocalTheme = false) => {
     setTheme(theme);
-    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+    !isLocalTheme && localStorage.setItem('theme', theme);
   }, []);
 
   useEffect(() => {
     const localTheme = localStorage.getItem('theme');
 
-    if (localTheme) {
-      setTheme(localTheme);
+    if (localTheme === 'dark' || localTheme === 'light') {
+      changeTheme(localTheme, true);
       return;
     }
 

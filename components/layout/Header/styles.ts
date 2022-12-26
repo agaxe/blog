@@ -8,7 +8,7 @@ export const Header = styled.header`
   z-index: 200;
   height: var(--notion-header-height);
   min-height: var(--notion-header-height);
-  background: ${({ theme }) => theme.bgColor.header};
+  background: var(--color-bg-header);
 `;
 
 export const Bg = styled.div`

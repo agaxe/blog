@@ -23,5 +23,5 @@ export const Title = styled.h1`
 export const Desc = styled.p`
   font-weight: 300;
   font-size: 1.5rem;
-  color: ${({ theme }) => theme.color.gray};
+  color: var(--color-gray);
 `;

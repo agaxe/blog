@@ -9,7 +9,7 @@ const variables = {
 
 const iconStyle = css`
   path {
-    fill: ${({ theme }) => theme.color.default};
+    fill: var(--color-default);
   }
 `;
 
@@ -43,11 +43,11 @@ export const ModalInner = styled.div`
     max-width: 80%;
   }
   margin: 0 auto;
-  background-color: ${({ theme }) => theme.bgColor.default};
+  background-color: var(--color-bg);
   transform: translate(0, 100px);
   border-radius: 8px;
   overflow: hidden;
-  color: ${({ theme }) => theme.color.default};
+  color: var(--color-default);
 `;
 
 export const SearchIcon = styled(Icon)`
@@ -77,7 +77,7 @@ export const Input = styled.input`
   line-height: 1;
   background-color: inherit;
   color: inherit;
-  caret-color: ${({ theme }) => theme.color.default};
+  caret-color: var(--color-default);
 `;
 
 export const ResultList = styled.ul`
@@ -91,7 +91,7 @@ export const ResultList = styled.ul`
 `;
 
 export const ResultItem = styled.li`
-  border-top: 1px solid ${({ theme }) => theme.border.gray};
+  border-top: 1px solid var(--color-line-gray);
 `;
 
 export const ResultLink = styled(Link)`
@@ -100,6 +100,6 @@ export const ResultLink = styled(Link)`
   color: inherit;
   transition: background-color, 0.2s;
   &:hover {
-    background-color: ${({ theme }) => theme.border.gray};
+    background-color: var(--color-line-gray);
   }
 `;

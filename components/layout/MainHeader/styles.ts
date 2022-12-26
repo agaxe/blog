@@ -26,7 +26,7 @@ export const Title = styled.h3`
 
 export const Description = styled.p`
   margin-bottom: 16px;
-  color: ${({ theme }) => theme.color.gray};
+  color: var(--color-gray);
 `;
 
 export const LinkList = styled.ul`

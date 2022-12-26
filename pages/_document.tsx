@@ -117,10 +117,10 @@ export default class MyDocument extends Document {
           <script
             dangerouslySetInnerHTML={{
               __html: `
-              const theme = localStorage.getItem("theme");
-              const bgColor = theme === 'light' ? 'var(--color-theme-light-bg)' : 'var(--color-theme-dark-bg)'
-              document.documentElement.style.setProperty('background-color', bgColor);
-            `
+              const localTheme = localStorage.getItem("theme");
+              const sysTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+              document.documentElement.setAttribute('data-theme', localTheme || sysTheme);
+              `
             }}
           ></script>
         </Head>

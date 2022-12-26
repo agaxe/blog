@@ -1,15 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 import type { GetStaticProps } from 'next';
-import { getDatabaseItems } from '@/lib/notion';
-import {
-  parseDatabaseItems,
-  ParseDatabaseItemsType
-} from '@/utils/parseDatabaseItems';
-import { ISR_REVALIDATE_TIME } from '@/shared/variable';
-import { NotionPageList } from '@/components/notion/NotionPageList';
+import styled from 'styled-components';
 import { Layout } from '@/components/layout/Layout';
 import { MainHeader } from '@/components/layout/MainHeader';
+import { NotionPageList } from '@/components/notion/NotionPageList';
+import { getDatabaseItems } from '@/lib/notion';
+import { ISR_REVALIDATE_TIME } from '@/shared/variable';
+import {
+  ParseDatabaseItemsType,
+  parseDatabaseItems
+} from '@/utils/parseDatabaseItems';
 
 interface HomeProps {
   data: ParseDatabaseItemsType[];

@@ -1,35 +1,22 @@
-import { DefaultTheme } from 'styled-components';
+import { css } from 'styled-components';
 
-export const light: DefaultTheme = {
-  bgColor: {
-    default: 'var(--color-theme-light-bg)',
-    header: 'var(--color-theme-light-bg-header)',
-    button: 'var(--color-black)'
-  },
-  color: {
-    default: 'var(--color-black)',
-    gray: 'var(--color-theme-light-gray)',
-    button: 'var(--color-white)'
-  },
-  border: {
-    gray: 'var(--color-theme-light-line-gray)',
-    bookmark: 'var(--color-theme-light-line-bookmark)'
+export const Theme = css`
+  :root {
+    &[data-theme='light'] {
+      --color-default: var(--color-black);
+      --color-bg: #fff;
+      --color-gray: #666;
+      --color-line-gray: #ededec;
+      --color-line-bookmark: #dfdfde;
+      --color-bg-header: hsla(0, 0%, 100%, 0.8);
+    }
+    &[data-theme='dark'] {
+      --color-default: var(--color-white);
+      --color-bg: #2f3437;
+      --color-gray: #ededec;
+      --color-line-gray: #666;
+      --color-line-bookmark: #555;
+      --color-bg-header: hsla(0, 0%, 100%, 0);
+    }
   }
-};
-
-export const dark: DefaultTheme = {
-  bgColor: {
-    default: 'var(--color-theme-dark-bg)',
-    header: '--color-theme-dark-bg-header',
-    button: 'var(--color-white)'
-  },
-  color: {
-    default: 'var(--color-white)',
-    gray: 'var(--color-theme-dark-gray)',
-    button: 'var(--color-black)'
-  },
-  border: {
-    gray: 'var(--color-theme-dark-line-gray)',
-    bookmark: 'var(--color-theme-dark-line-bookmark)'
-  }
-};
+`;

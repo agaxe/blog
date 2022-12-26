@@ -1,9 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Icon } from '@/components/common/Icon';
 
-export const Theme = styled.div`
-  border: 1px solid ${({ theme }) => theme.border};
-`;
+export const Theme = styled.div``;
 
 export const Button = styled.button`
   background: none;
@@ -14,13 +12,13 @@ export const Button = styled.button`
 
 const iconStyle = css`
   width: var(--size-header-icon-w);
+  path {
+    fill: var(--color-default);
+  }
 `;
 
 export const LightIcon = styled(Icon)`
   ${iconStyle}
-  path {
-    fill: var(--color-white);
-  }
 `;
 
 export const DarkIcon = styled(Icon)`
