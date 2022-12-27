@@ -14,9 +14,5 @@ export const variable = css`
 
     //* size
     --size-header-icon-w: 20px;
-
-    ${device('md')} {
-      --layout-side-pd: 8px;
-    }
   }
 `;
