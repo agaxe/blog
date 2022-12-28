@@ -83,9 +83,19 @@ export const notion = css`
       display: block;
       overflow: auto;
       padding-bottom: calc(1rem / 2);
+      tab-size: 2;
     }
     pre[class*='language-'] {
       overflow: hidden;
+    }
+  }
+
+  .notion-page {
+    .notion-hr {
+      border-color: var(--color-line-gray);
+    }
+    .notion-asset-caption {
+      color: var(--color-caption);
     }
   }
 `;
