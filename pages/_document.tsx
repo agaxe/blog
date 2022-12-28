@@ -6,6 +6,7 @@ import Document, {
   Main,
   NextScript
 } from 'next/document';
+import Script from 'next/script';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
@@ -114,7 +115,9 @@ export default class MyDocument extends Document {
           <meta name='msapplication-TileColor' content='#ffffff' />
           <meta name='msapplication-TileImage' content='/ms-icon-144x144.png' />
           <meta name='theme-color' content='#ffffff' />
-          <script
+          <Script
+            id='theme-init'
+            strategy='beforeInteractive'
             dangerouslySetInnerHTML={{
               __html: `
               const localTheme = localStorage.getItem("theme");
@@ -122,7 +125,7 @@ export default class MyDocument extends Document {
               document.documentElement.setAttribute('data-theme', localTheme || sysTheme);
               `
             }}
-          ></script>
+          />
         </Head>
         <body>
           <Main />
