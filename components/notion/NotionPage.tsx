@@ -10,7 +10,18 @@ import { NotionTagItem } from '@/components/notion/NotionTagItem';
 import { formatDate } from '@/utils/formatDate';
 
 const Code = dynamic(() =>
-  import('react-notion-x/build/third-party/code').then((m) => m.Code)
+  import('react-notion-x/build/third-party/code').then(async (m) => {
+    await Promise.all([
+      import('prismjs/components/prism-git'),
+      import('prismjs/components/prism-graphql.js'),
+      import('prismjs/components/prism-markdown.js'),
+      import('prismjs/components/prism-python.js'),
+      import('prismjs/components/prism-sass.js'),
+      import('prismjs/components/prism-scss.js'),
+      import('prismjs/components/prism-sql.js')
+    ]);
+    return m.Code;
+  })
 );
 const Collection = dynamic(() =>
   import('react-notion-x/build/third-party/collection').then(
