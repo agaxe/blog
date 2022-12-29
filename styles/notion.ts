@@ -98,4 +98,13 @@ export const notion = css`
       color: var(--color-caption);
     }
   }
+
+  .notion-list {
+    width: 100%;
+  }
+  .notion-list-disc {
+    ul.notion-list-disc {
+      padding-inline-start: 0;
+    }
+  }
 `;
