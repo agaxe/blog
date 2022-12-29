@@ -41,6 +41,10 @@ export const Logo = styled.div`
   user-select: none;
 `;
 
+export const LogoTitle = styled.h2`
+  font-size: 1.5rem;
+`;
+
 export const ButtonGroup = styled.div`
   display: grid;
   grid-auto-flow: column;

@@ -14,7 +14,7 @@ export const Header = ({ className = '' }: HeaderProps) => {
       <S.Inner>
         <S.Logo>
           <Link href='/'>
-            <h2>Blog.</h2>
+            <S.LogoTitle>Blog.</S.LogoTitle>
           </Link>
         </S.Logo>
         <S.ButtonGroup>
