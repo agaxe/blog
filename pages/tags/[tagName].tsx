@@ -5,27 +5,29 @@ import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { TagHeader } from '@/components/layout/TagHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
+import { usePageItems } from '@/hooks/usePageItems';
 import { getDatabaseItems, getPathTagItems } from '@/lib/notion';
+import { PageItemsReturnType } from '@/lib/notion';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { convertPascalCase } from '@/utils/convertPascalCase';
-import {
-  ParseDatabaseItemsType,
-  parseDatabaseItems
-} from '@/utils/parseDatabaseItems';
+import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
 interface TagNameProps {
-  data: ParseDatabaseItemsType[];
   tagName: string;
+  data: PageItemsReturnType;
 }
 
-export default function tagName({ tagName, data }: TagNameProps) {
+export default function TagName({ tagName, data }: TagNameProps) {
+  const { items, baseRef } = usePageItems(data, { tagName });
+
   return (
     <>
       <Seo title={`tag: ${tagName}`} />
       <Layout>
         <TagNameWrap>
           <TagHeader tagName={convertPascalCase(String(tagName))} />
-          <NotionPageList data={data} />
+          <NotionPageList data={items} />
+          <div ref={baseRef} />
         </TagNameWrap>
       </Layout>
     </>
@@ -42,12 +44,19 @@ export const getStaticProps: GetStaticProps = async (
     const dbItems = await getDatabaseItems(databaseId, {
       tagName
     });
-    const data = parseDatabaseItems(dbItems.results);
+
+    const { nextCursor, hasMore, results } = dbItems;
+
+    const data = parseDatabaseItems(results);
 
     return {
       props: {
         tagName,
-        data
+        data: {
+          nextCursor,
+          hasMore,
+          results: data
+        }
       },
       revalidate: ISR_REVALIDATE_TIME
     };

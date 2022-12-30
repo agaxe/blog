@@ -4,64 +4,30 @@ import styled from 'styled-components';
 import { Layout } from '@/components/layout/Layout';
 import { MainHeader } from '@/components/layout/MainHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
+import { usePageItems } from '@/hooks/usePageItems';
 import { getDatabaseItems } from '@/lib/notion';
+import { PageItemsReturnType } from '@/lib/notion';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
-import {
-  ParseDatabaseItemsType,
-  parseDatabaseItems
-} from '@/utils/parseDatabaseItems';
+import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
+import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
 
 interface HomeProps {
-  data: {
-    results: ParseDatabaseItemsType[];
-    startCursor: string;
-    hasMore: boolean;
-  };
+  data: PageItemsReturnType;
 }
 
 export default function Home({ data }: HomeProps) {
-  const { results, startCursor, hasMore } = data;
-  const [page, setPage] = useState(0);
-  const [pageItems, setPageItems] = useState<any>(results);
-  const [pagination, setPagination] = useState({
-    startCursor,
-    hasMore
-  });
-
-  useEffect(() => {
-    if (!page || (!pagination.hasMore && !pagination.startCursor)) return;
-
-    async function getPageItems() {
-      const response = await fetch(
-        `${`/api/pagination?start_cursor=${pagination.startCursor}&has_more=${
-          pagination.hasMore ? 1 : 0
-        }`}`
-      )
-        .then((res) => res.json())
-        .then((res) => res.data);
-
-      setPageItems((prev: any) => [...prev, ...response.results]);
-      setPagination((prev) => ({
-        ...prev,
-        startCursor: response.startCursor,
-        hasMore: response.hasMore
-      }));
-    }
-
-    getPageItems();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  const { items, baseRef } = usePageItems(data);
 
   return (
     <Layout>
       <HomePage>
-        <button onClick={() => setPage(page + 1)}>버튼</button>
         <MainHeader />
-        {pageItems.length ? (
-          <NotionPageList data={pageItems} />
+        {items.length ? (
+          <NotionPageList data={items} />
         ) : (
           <div>데이터가 존재하지 않습니다.</div>
         )}
+        <div ref={baseRef} />
       </HomePage>
     </Layout>
   );
@@ -72,14 +38,15 @@ export const getStaticProps: GetStaticProps = async () => {
 
   try {
     const dbItems = await getDatabaseItems(databaseId);
-    const data = parseDatabaseItems(dbItems.results);
 
-    const { startCursor, hasMore } = dbItems;
+    const { nextCursor, hasMore, results } = dbItems;
+
+    const data = parseDatabaseItems(results);
 
     return {
       props: {
         data: {
-          startCursor,
+          nextCursor,
           hasMore,
           results: data
         }

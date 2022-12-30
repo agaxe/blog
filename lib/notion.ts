@@ -2,13 +2,21 @@ import { Client } from '@notionhq/client';
 import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
 import { NotionAPI } from 'notion-client';
 import { convertPascalCase } from '@/utils/convertPascalCase';
+import {
+  ParseDatabaseItemsType,
+  parseDatabaseItems
+} from '@/utils/parseDatabaseItems';
 
 export interface DatabaseQueryOption {
   tagName?: string;
-  pagination?: {
-    startCursor?: string;
-    hasMore?: boolean;
-  };
+  startCursor?: string;
+  hasMore?: boolean;
+}
+
+export interface PageItemsReturnType {
+  results: ParseDatabaseItemsType[];
+  nextCursor: DatabaseQueryOption['startCursor'];
+  hasMore: DatabaseQueryOption['hasMore'];
 }
 
 export const enum propertyTable {
@@ -16,6 +24,39 @@ export const enum propertyTable {
   Tags = 'tags',
   CreatedAt = 'createdAt'
 }
+
+const databaseItemsParameter = (
+  databaseId: string,
+  tagName: DatabaseQueryOption['tagName']
+): QueryDatabaseParameters => {
+  const tag = tagName ? convertPascalCase(tagName) : '';
+  return {
+    database_id: databaseId,
+    filter: {
+      and: [
+        {
+          property: propertyTable.IsCompleted,
+          checkbox: {
+            equals: true
+          }
+        },
+        {
+          property: propertyTable.Tags,
+          multi_select: {
+            contains: tag
+          }
+        }
+      ]
+    },
+    sorts: [
+      {
+        property: propertyTable.CreatedAt,
+        direction: 'descending'
+      }
+    ],
+    page_size: 3 //! 10
+  };
+};
 
 export const notionClient = new NotionAPI({
   activeUser: process.env.NOTION_ACTIVE_USER_ID,
@@ -33,63 +74,53 @@ export const getDatabaseItem = async (databaseId: string) => {
   return response;
 };
 
+export const getDatabasePaginationItems = async (
+  databaseId: string,
+  option?: DatabaseQueryOption
+) => {
+  const tagName = option?.tagName ? convertPascalCase(option?.tagName) : '';
+  const request = databaseItemsParameter(databaseId, tagName);
+
+  if (!option?.hasMore) {
+    return {
+      results: [],
+      nextCursor: '',
+      hasMore: false
+    };
+  }
+
+  const responseWithPagination = await notionHqClient.databases.query({
+    ...request,
+    start_cursor: option?.startCursor
+  });
+
+  const {
+    results,
+    next_cursor: nextCursor,
+    has_more: hasMore
+  } = responseWithPagination;
+
+  return {
+    results,
+    nextCursor,
+    hasMore
+  };
+};
+
 export const getDatabaseItems = async (
   databaseId: string,
   option?: DatabaseQueryOption
 ) => {
   const tagName = option?.tagName ? convertPascalCase(option?.tagName) : '';
-  const request: QueryDatabaseParameters = {
-    database_id: databaseId,
-    filter: {
-      and: [
-        {
-          property: propertyTable.IsCompleted,
-          checkbox: {
-            equals: true
-          }
-        },
-        {
-          property: propertyTable.Tags,
-          multi_select: {
-            contains: tagName
-          }
-        }
-      ]
-    },
-    sorts: [
-      {
-        property: propertyTable.CreatedAt,
-        direction: 'descending'
-      }
-    ],
-    page_size: 3 //! 10
-  };
+  const request = databaseItemsParameter(databaseId, tagName);
 
-  if (option?.pagination?.hasMore) {
-    const responseWithPagination = await notionHqClient.databases.query({
-      ...request,
-      start_cursor: option?.pagination?.startCursor
-    });
-
-    const {
-      results,
-      next_cursor: startCursor,
-      has_more: hasMore
-    } = responseWithPagination;
-
-    return {
-      results,
-      startCursor,
-      hasMore
-    };
-  }
   const response = await notionHqClient.databases.query(request);
 
-  const { results, next_cursor: startCursor, has_more: hasMore } = response;
+  const { results, next_cursor: nextCursor, has_more: hasMore } = response;
 
   return {
     results,
-    startCursor,
+    nextCursor,
     hasMore
   };
 };
