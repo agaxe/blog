@@ -1,6 +1,17 @@
 import styled from 'styled-components';
 
-export const Wrap = styled.div``;
+const variable = {
+  gap: 32
+};
+
+export const Wrap = styled.li`
+  padding-top: ${variable.gap}px;
+  padding-bottom: ${variable.gap}px;
+  border-bottom: 1px solid var(--color-line-gray);
+  &:last-of-type {
+    border-bottom: 0;
+  }
+`;
 
 export const PageTitle = styled.h3`
   margin-bottom: 24px;
