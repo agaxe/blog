@@ -1,12 +1,12 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
-import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import styled from 'styled-components';
 import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { TagHeader } from '@/components/layout/TagHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getDatabaseItems, getPathTagItems } from '@/lib/notion';
+import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { convertPascalCase } from '@/utils/convertPascalCase';
 import {
   ParseDatabaseItemsType,
@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async (
     const dbItems = await getDatabaseItems(databaseId, {
       tagName
     });
-    const data = parseDatabaseItems(dbItems);
+    const data = parseDatabaseItems(dbItems.results);
 
     return {
       props: {

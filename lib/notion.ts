@@ -1,9 +1,14 @@
 import { Client } from '@notionhq/client';
+import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
 import { NotionAPI } from 'notion-client';
 import { convertPascalCase } from '@/utils/convertPascalCase';
 
 export interface DatabaseQueryOption {
   tagName?: string;
+  pagination?: {
+    startCursor?: string;
+    hasMore?: boolean;
+  };
 }
 
 export const enum propertyTable {
@@ -33,7 +38,7 @@ export const getDatabaseItems = async (
   option?: DatabaseQueryOption
 ) => {
   const tagName = option?.tagName ? convertPascalCase(option?.tagName) : '';
-  const response = await notionHqClient.databases.query({
+  const request: QueryDatabaseParameters = {
     database_id: databaseId,
     filter: {
       and: [
@@ -56,10 +61,37 @@ export const getDatabaseItems = async (
         property: propertyTable.CreatedAt,
         direction: 'descending'
       }
-    ]
-  });
+    ],
+    page_size: 3 //! 10
+  };
 
-  return response.results;
+  if (option?.pagination?.hasMore) {
+    const responseWithPagination = await notionHqClient.databases.query({
+      ...request,
+      start_cursor: option?.pagination?.startCursor
+    });
+
+    const {
+      results,
+      next_cursor: startCursor,
+      has_more: hasMore
+    } = responseWithPagination;
+
+    return {
+      results,
+      startCursor,
+      hasMore
+    };
+  }
+  const response = await notionHqClient.databases.query(request);
+
+  const { results, next_cursor: startCursor, has_more: hasMore } = response;
+
+  return {
+    results,
+    startCursor,
+    hasMore
+  };
 };
 
 export const getPageItem = async (pageId: string) => {
@@ -80,7 +112,7 @@ export const getDatabaseTagItems = async (databaseId: string) => {
 export const getPathPageItems = async () => {
   const databaseId = process.env.NOTION_DB_ID as string;
   const databaseItems = await getDatabaseItems(databaseId);
-  return databaseItems.map(({ id: pageId }) => ({
+  return databaseItems.results.map(({ id: pageId }) => ({
     params: {
       pageId
     }
