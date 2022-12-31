@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import type { GetStaticProps } from 'next';
 import styled from 'styled-components';
 import { Layout } from '@/components/layout/Layout';
 import { MainHeader } from '@/components/layout/MainHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { usePageItems } from '@/hooks/usePageItems';
-import { getDatabaseItems } from '@/lib/notion';
-import { PageItemsReturnType } from '@/lib/notion';
+import { PageItemsReturnType, getDatabaseItems } from '@/lib/notion/pages';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
-import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
 
 interface HomeProps {
   data: PageItemsReturnType;

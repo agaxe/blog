@@ -1,11 +1,12 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import Head from 'next/head';
-import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { ExtendedRecordMap } from 'notion-types';
 import { getPageTitle } from 'notion-utils';
 import NotionPage from '@/components/notion/NotionPage';
-import { getPageItem, getPathPageItems } from '@/lib/notion';
+import { getPageItem } from '@/lib/notion/page';
+import { getPathPageItems } from '@/lib/notion/pages';
+import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 
 interface PostProps {
   recordMap: ExtendedRecordMap;

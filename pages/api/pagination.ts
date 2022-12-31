@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getDatabasePaginationItems } from '@/lib/notion';
+import { getDatabasePaginationItems } from '@/lib/notion/pages';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
 export default async function handler(

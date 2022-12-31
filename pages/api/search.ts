@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getSearchResult } from '@/lib/notion';
+import { getSearchResult } from '@/lib/notion/search';
 
 export default async function handler(
   req: NextApiRequest,

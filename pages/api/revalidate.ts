@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getPathPageItems, getPathTagItems } from '@/lib/notion';
+import { getPathPageItems } from '@/lib/notion/pages';
+import { getPathTagItems } from '@/lib/notion/tags';
 
 export default async function handler(
   req: NextApiRequest,

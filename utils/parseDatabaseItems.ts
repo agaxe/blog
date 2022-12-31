@@ -1,5 +1,5 @@
 import { MultiSelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import { getDatabaseItems } from '@/lib/notion';
+import { getDatabaseItems } from '@/lib/notion/pages';
 
 export interface ParseDatabaseItemsType {
   id: string;

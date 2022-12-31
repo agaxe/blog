@@ -1,11 +1,7 @@
-import { Client } from '@notionhq/client';
 import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
-import { NotionAPI } from 'notion-client';
+import { notionHqClient } from '@/lib/notion/config';
 import { convertPascalCase } from '@/utils/convertPascalCase';
-import {
-  ParseDatabaseItemsType,
-  parseDatabaseItems
-} from '@/utils/parseDatabaseItems';
+import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
 
 export interface DatabaseQueryOption {
   tagName?: string;
@@ -57,15 +53,6 @@ const databaseItemsParameter = (
     page_size: 3 //! 10
   };
 };
-
-export const notionClient = new NotionAPI({
-  activeUser: process.env.NOTION_ACTIVE_USER_ID,
-  authToken: process.env.NOTION_AUTH_TOKEN
-});
-
-export const notionHqClient = new Client({
-  auth: process.env.NOTION_API_TOKEN
-});
 
 export const getDatabaseItem = async (databaseId: string) => {
   const response = await notionHqClient.databases.retrieve({
@@ -125,21 +112,6 @@ export const getDatabaseItems = async (
   };
 };
 
-export const getPageItem = async (pageId: string) => {
-  const pageItem = await notionClient.getPage(pageId);
-
-  return pageItem;
-};
-
-export const getDatabaseTagItems = async (databaseId: string) => {
-  const database = await getDatabaseItem(databaseId);
-  const tagItems = (database.properties[propertyTable.Tags] as any).multi_select
-    .options;
-
-  return tagItems;
-};
-
-//* getStaticPaths: path
 export const getPathPageItems = async () => {
   const databaseId = process.env.NOTION_DB_ID as string;
   const databaseItems = await getDatabaseItems(databaseId);
@@ -149,30 +121,3 @@ export const getPathPageItems = async () => {
     }
   }));
 };
-
-export const getPathTagItems = async () => {
-  const databaseId = process.env.NOTION_DB_ID as string;
-  const tagItems = await getDatabaseTagItems(databaseId);
-  return tagItems.map(({ name: tagName }: any) => ({
-    params: {
-      tagName: tagName.toLowerCase()
-    }
-  }));
-};
-
-//* search
-export async function getSearchResult(query: string) {
-  const result = await notionHqClient.search({
-    query,
-    sort: {
-      timestamp: 'last_edited_time',
-      direction: 'descending'
-    },
-    filter: {
-      property: 'object',
-      value: 'page'
-    }
-  });
-
-  return query ? result.results : [];
-}

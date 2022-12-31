@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { DatabaseQueryOption, PageItemsReturnType } from '@/lib/notion';
+import { DatabaseQueryOption, PageItemsReturnType } from '@/lib/notion/pages';
 import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
 
 type usePageItemsOptions = Pick<DatabaseQueryOption, 'tagName'>;
