@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const Wrap = styled.div``;
+export const Wrap = styled.div`
+  padding-top: 32px;
+  padding-bottom: 32px;
+`;
 
 export const PageTitle = styled.h3`
   margin-bottom: 24px;

@@ -1,6 +1,7 @@
 import React from 'react';
-import { NotionPageItem } from '../NotionPageItem';
+import { NotionPageItem } from '@/components/notion/NotionPageItem';
 import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
+import { NotionPageListSkeleton } from './Skeleton';
 import * as S from './styles';
 
 interface NotionPageListProps {
@@ -10,12 +11,15 @@ interface NotionPageListProps {
 export const NotionPageList = ({ data = [] }: NotionPageListProps) => {
   return (
     <S.Wrap>
-      {data.map((item, idx) => (
-        <li key={item.id}>
-          <NotionPageItem data={item} />
-          {idx !== data.length - 1 && <S.Line />}
-        </li>
-      ))}
+      {data.length ? (
+        data.map((item, idx) => (
+          <S.Item key={item.id}>
+            <NotionPageItem data={item} />
+          </S.Item>
+        ))
+      ) : (
+        <NotionPageListSkeleton />
+      )}
     </S.Wrap>
   );
 };

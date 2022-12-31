@@ -20,7 +20,7 @@ export default function Home({ data }: HomeProps) {
     <Layout>
       <HomePage>
         <MainHeader />
-        {items.length ? (
+        {data.results.length ? (
           <NotionPageList data={items} />
         ) : (
           <div>데이터가 존재하지 않습니다.</div>

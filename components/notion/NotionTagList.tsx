@@ -1,5 +1,6 @@
 import React from 'react';
 import { MultiSelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import styled from 'styled-components';
 import { NotionTagItem } from './NotionTagItem';
 
 interface NotionTagListProps {
@@ -8,14 +9,19 @@ interface NotionTagListProps {
 
 export const NotionTagList = ({ tags }: NotionTagListProps) => {
   return (
-    <ul>
-      <li>
-        <span className='notion-property notion-property-multi_select'>
-          {tags.map((item) => (
-            <NotionTagItem key={item.id} name={item.name} color={item.color} />
-          ))}
-        </span>
-      </li>
-    </ul>
+    <NotionTagListWrap>
+      {tags.map((item) => (
+        <li key={item.id}>
+          <span>
+            <NotionTagItem name={item.name} color={item.color} />
+          </span>
+        </li>
+      ))}
+    </NotionTagListWrap>
   );
 };
+
+const NotionTagListWrap = styled.ul`
+  display: flex;
+  gap: 6px;
+`;
