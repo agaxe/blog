@@ -51,14 +51,11 @@ export const usePageItems = (
       }));
     }
 
-    //console.log('page', page + 1);
+    //console.log('page', page);
     getPageItems();
 
-    return () => {
-      setPage(0);
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, options?.tagName]);
+  }, [page]);
 
   useEffect(() => {
     if (baseRef.current) {
@@ -82,5 +79,5 @@ export const usePageItems = (
     }
   }, [baseRef, results]);
 
-  return { items, baseRef };
+  return { items, baseRef, pagination };
 };

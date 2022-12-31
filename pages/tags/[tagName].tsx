@@ -18,7 +18,7 @@ interface TagNameProps {
 }
 
 export default function TagName({ tagName, data }: TagNameProps) {
-  const { items, baseRef } = usePageItems(data, { tagName });
+  const { items, baseRef, pagination } = usePageItems(data, { tagName });
 
   return (
     <>
@@ -27,7 +27,12 @@ export default function TagName({ tagName, data }: TagNameProps) {
         <TagNameWrap>
           <TagHeader tagName={convertPascalCase(String(tagName))} />
           <NotionPageList data={items} />
-          <div ref={baseRef} />
+          <div
+            ref={baseRef}
+            style={{
+              display: items.length && pagination.hasMore ? 'block' : 'none'
+            }}
+          />
         </TagNameWrap>
       </Layout>
     </>

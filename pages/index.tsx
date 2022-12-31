@@ -16,7 +16,7 @@ interface HomeProps {
 }
 
 export default function Home({ data }: HomeProps) {
-  const { items, baseRef } = usePageItems(data);
+  const { items, baseRef, pagination } = usePageItems(data);
 
   return (
     <Layout>
@@ -27,7 +27,12 @@ export default function Home({ data }: HomeProps) {
         ) : (
           <div>데이터가 존재하지 않습니다.</div>
         )}
-        <div ref={baseRef} />
+        <div
+          ref={baseRef}
+          style={{
+            display: items.length && pagination.hasMore ? 'block' : 'none'
+          }}
+        />
       </HomePage>
     </Layout>
   );
