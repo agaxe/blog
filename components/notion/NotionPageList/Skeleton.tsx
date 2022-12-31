@@ -4,7 +4,7 @@ import { NotionPageItemSkeleton } from '@/components/notion/NotionPageItem/Skele
 export const NotionPageListSkeleton = () => {
   return (
     <>
-      {[...Array(5)].map((item, idx) => (
+      {[...Array(3)].map((item, idx) => (
         <div key={idx}>
           <NotionPageItemSkeleton />
         </div>
