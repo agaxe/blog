@@ -50,7 +50,7 @@ const databaseItemsParameter = (
         direction: 'descending'
       }
     ],
-    page_size: 3 //! 10
+    page_size: 10
   };
 };
 
