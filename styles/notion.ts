@@ -19,26 +19,25 @@ export const notion = css`
         word-break: break-word;
       }
     }
-  }
 
-  .notion-page {
-    padding-left: var(--layout-side-pd);
-    padding-right: var(--layout-side-pd);
-  }
-  .notion-collection-page-properties {
-    .notion-collection-column-title {
-      display: none;
+    .notion-page {
+      padding-left: var(--layout-side-pd);
+      padding-right: var(--layout-side-pd);
     }
-  }
 
-  .notion-collection-row-property {
-    .notion-property {
-      display: flex;
-      justify-content: center;
+    .notion-collection-page-properties {
+      .notion-collection-column-title {
+        display: none;
+      }
     }
-  }
 
-  .notion-page {
+    .notion-collection-row-property {
+      .notion-property {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
     .notion-table-of-contents.notion-gray {
       display: none;
       & + .notion-hr {
@@ -51,34 +50,33 @@ export const notion = css`
         font-size: 2rem;
       }
     }
-  }
-  .notion-collection-row-body {
-    gap: 4px;
-  }
 
-  .notion-frame {
-    padding: 0;
-  }
+    .notion-collection-row-body {
+      gap: 4px;
+    }
 
-  .notion-bookmark {
-    border: 1px solid var(--color-line-bookmark);
-    & > div:first-child {
+    .notion-frame {
+      padding: 0;
+    }
+
+    .notion-bookmark {
+      border: 1px solid var(--color-line-bookmark);
+      & > div:first-child {
+        color: inherit;
+      }
+      &-link-text {
+        color: inherit;
+      }
+    }
+
+    .notion-aside-table-of-contents {
+      background-color: inherit;
+    }
+
+    .notion-table-of-contents-item {
       color: inherit;
     }
-    &-link-text {
-      color: inherit;
-    }
-  }
 
-  .notion-aside-table-of-contents {
-    background-color: inherit;
-  }
-
-  .notion-table-of-contents-item {
-    color: inherit;
-  }
-
-  .notion {
     code[class*='language-'] {
       display: block;
       overflow: auto;
@@ -88,23 +86,21 @@ export const notion = css`
     pre[class*='language-'] {
       overflow: hidden;
     }
-  }
 
-  .notion-page {
     .notion-hr {
       border-color: var(--color-line-gray);
     }
     .notion-asset-caption {
       color: var(--color-caption);
     }
-  }
 
-  .notion-list {
-    width: 100%;
-  }
-  .notion-list-disc {
-    ul.notion-list-disc {
-      padding-inline-start: 0;
+    .notion-list {
+      width: 100%;
     }
-  }
+    .notion-list-disc {
+      ul.notion-list-disc {
+        padding-inline-start: 0;
+      }
+    }
+  } // notion app
 `;
