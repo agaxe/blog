@@ -1,30 +1,14 @@
-import React, { useState } from 'react';
-import { useDebounce } from '@/hooks/useDebounce';
-import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
+import React from 'react';
+import { useSearch } from './hooks/useSearch';
 import * as S from './styles';
 
-type resultType = ReturnType<typeof parseDatabaseItems>;
-
 export const Search = () => {
-  const debounce = useDebounce();
-  const [inputValue, setInputValue] = useState('');
-  const [result, setResult] = useState<resultType>([]);
-  const [isShowModal, setIsShowModal] = useState(false);
-
-  function handleChangeQuery(e: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = e.target;
-
-    setInputValue(value);
-
-    debounce(async () => {
-      const result = await fetch(`/api/search?query=${value}`)
-        .then((data) => data.json())
-        .then((res) => res.data)
-        .catch((err) => console.error(err));
-
-      setResult(parseDatabaseItems(result));
-    }, 300);
-  }
+  const {
+    results,
+    handleChangeQuery,
+    inputValue,
+    modal: { isShowModal, setIsShowModal }
+  } = useSearch();
 
   return (
     <div>
@@ -45,7 +29,7 @@ export const Search = () => {
               />
             </S.InputWrap>
             <S.ResultList>
-              {result.map((item: any) => (
+              {results.map((item: any) => (
                 <S.ResultItem key={item.id}>
                   <S.ResultLink href={`/${item.id}`}>{item.title}</S.ResultLink>
                 </S.ResultItem>
