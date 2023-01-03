@@ -10,7 +10,7 @@ export const MainHeader = () => {
       <Profile />
       <S.IntroduceWrap>
         <S.Title>{convertPascalCase(config.name)}</S.Title>
-        <S.Description>{config.description}</S.Description>
+        <S.Description>{config.site.description}</S.Description>
         <S.LinkList>
           {config.social.map(({ name, url }) => (
             <S.LinkItem key={name}>
