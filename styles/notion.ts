@@ -23,6 +23,7 @@ export const notion = css`
     .notion-page {
       padding-left: var(--layout-side-pd);
       padding-right: var(--layout-side-pd);
+      padding-top: var(--layout-padding-top);
     }
 
     .notion-collection-page-properties {

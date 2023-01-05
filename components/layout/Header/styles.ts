@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 import { device } from '@/styles/device';
 
-export const Header = styled.header`
-  position: sticky;
+export const Header = styled.header<{ isSticky: boolean }>`
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 200;
-  height: var(--notion-header-height);
-  min-height: var(--notion-header-height);
+  width: 100%;
+  height: var(--layout-header-h);
+  min-height: var(--layout-header-h);
   background: var(--color-bg-header);
+  margin-top: ${({ isSticky }) =>
+    isSticky ? 0 : `calc(var(--layout-header-h) * -1)`};
+  transition: margin-top 0.4s;
 `;
 
 export const Bg = styled.div`

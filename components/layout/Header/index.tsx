@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Search } from '@/components/Search';
 import { Theme } from '@/components/Theme';
+import { useStickyHeader } from './hooks/useStickyHeader';
 import * as S from './styles';
 
 interface HeaderProps {
@@ -9,8 +10,10 @@ interface HeaderProps {
 }
 
 export const Header = ({ className = '' }: HeaderProps) => {
+  const { isSticky } = useStickyHeader();
+
   return (
-    <S.Header className={className}>
+    <S.Header className={className} isSticky={isSticky}>
       <S.Inner>
         <S.Logo>
           <Link href='/'>

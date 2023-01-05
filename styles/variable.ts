@@ -1,5 +1,4 @@
 import { css } from 'styled-components';
-import { device } from './device';
 
 export const variable = css`
   :root {
@@ -10,7 +9,9 @@ export const variable = css`
     //* layout
     --layout-inner-w: 720px;
     --layout-side-pd: 16px;
+    --layout-header-h: var(--notion-header-height);
     --layout-page-header-h: 184px;
+    --layout-padding-top: 32px;
 
     //* size
     --size-header-icon-w: 20px;
