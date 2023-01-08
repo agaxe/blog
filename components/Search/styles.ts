@@ -63,10 +63,31 @@ export const InputWrap = styled.div`
   padding: ${variables.padding};
 `;
 
-export const InputSearchIcon = styled(Icon)`
+export const SearchBtnArea = styled.div`
   width: var(--size-header-icon-w);
+  height: var(--size-header-icon-w);
   margin-right: 16px;
+`;
+
+export const InputSearchIcon = styled(Icon)`
+  width: 100%;
+  height: 100%;
   ${iconStyle}
+`;
+
+export const SearchLoading = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--color-line-gray);
+  border-top-color: var(--color-gray);
+  box-sizing: border-box;
+  border-radius: 50%;
+  @keyframes spinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  animation: spinner 0.8s linear infinite;
 `;
 
 export const Input = styled.input`

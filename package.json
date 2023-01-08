@@ -25,6 +25,7 @@
     "react-notion-x": "^6.15.7",
     "sharp": "^0.31.2",
     "styled-components": "^5.3.6",
+    "swr": "^2.0.0",
     "typescript": "4.9.4"
   },
   "devDependencies": {

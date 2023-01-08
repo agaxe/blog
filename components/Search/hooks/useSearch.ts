@@ -1,21 +1,25 @@
 import React, { useCallback, useState } from 'react';
+import useSWR from 'swr';
 import { useDebounce } from '@/hooks/useDebounce';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
-type resultType = ReturnType<typeof parseDatabaseItems>;
+const fetcher = async (url: string) => {
+  return await fetch(url)
+    .then((res) => res.json())
+    .then((res) => res.data)
+    .catch((err) => console.error(err));
+};
 
 export const useSearch = () => {
   const debounce = useDebounce();
   const [inputValue, setInputValue] = useState('');
-  const [results, setResults] = useState<resultType>([]);
-  const [isShowModal, setIsShowModal] = useState(false);
-
-  const fetcher = useCallback(async (value: string) => {
-    return await fetch(`/api/search?query=${value}`)
-      .then((res) => res.json())
-      .then((res) => res.data)
-      .catch((err) => console.error(err));
-  }, []);
+  const [isShowModal, setIsShowModal] = useState(true);
+  const [query, setQuery] = useState('');
+  const { data, isLoading, error } = useSWR(
+    query ? `/api/search?query=${query}` : null,
+    fetcher,
+    { fallbackData: [] }
+  );
 
   const handleChangeQuery = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,21 +27,20 @@ export const useSearch = () => {
 
       setInputValue(value);
 
-      if (!value) {
-        setResults([]);
-        return;
-      }
+      debounce(() => {
+        if (!value) {
+          setQuery('');
+          return;
+        }
 
-      debounce(async () => {
-        const resResults = await fetcher(value);
-        setResults(parseDatabaseItems(resResults));
+        setQuery(value);
       }, 800);
     },
-    [debounce, fetcher]
+    [debounce]
   );
 
   return {
-    results,
+    response: { data: parseDatabaseItems(data), isLoading, error },
     handleChangeQuery,
     inputValue,
     modal: { isShowModal, setIsShowModal }

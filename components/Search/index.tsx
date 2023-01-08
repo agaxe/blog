@@ -4,7 +4,7 @@ import * as S from './styles';
 
 export const Search = () => {
   const {
-    results,
+    response: { data: results, isLoading },
     handleChangeQuery,
     inputValue,
     modal: { isShowModal, setIsShowModal }
@@ -20,7 +20,13 @@ export const Search = () => {
           <S.ModalBg onClick={() => setIsShowModal(false)} />
           <S.ModalInner>
             <S.InputWrap>
-              <S.InputSearchIcon name='search' />
+              <S.SearchBtnArea>
+                {isLoading ? (
+                  <S.SearchLoading />
+                ) : (
+                  <S.InputSearchIcon name='search' />
+                )}
+              </S.SearchBtnArea>
               <S.Input
                 type='text'
                 value={inputValue}
