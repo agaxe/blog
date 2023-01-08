@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { NotionTagList } from '@/components/notion/NotionTagList';
-import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
 import { formatDate } from '@/utils/formatDate';
+import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
 import * as S from './styles';
 
 interface NotionPageItem {
@@ -10,8 +10,7 @@ interface NotionPageItem {
 }
 
 export const NotionPageItem = ({ data }: NotionPageItem) => {
-  const { id, title, tags, createdAt } = data;
-
+  const { id, title, tags, createdAt, isCompleted } = data;
   return (
     <S.Wrap>
       <Link href={`/${id}`}>
@@ -19,6 +18,7 @@ export const NotionPageItem = ({ data }: NotionPageItem) => {
       </Link>
       <S.PageDate>{formatDate(createdAt)}</S.PageDate>
       <NotionTagList tags={tags} />
+      {!isCompleted ? <S.CompletedBox /> : null}
     </S.Wrap>
   );
 };

@@ -1,5 +1,6 @@
 import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
 import { notionHqClient } from '@/lib/notion/config';
+import { isDev } from '@/shared/variable';
 import { convertPascalCase } from '@/utils/convertPascalCase';
 import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
 
@@ -26,24 +27,31 @@ const databaseItemsParameter = (
   tagName: DatabaseQueryOption['tagName']
 ): QueryDatabaseParameters => {
   const tag = tagName ? convertPascalCase(tagName) : '';
+
+  const optionFilter = isDev
+    ? {}
+    : {
+        filter: {
+          and: [
+            {
+              property: propertyTable.IsCompleted,
+              checkbox: {
+                equals: true
+              }
+            },
+            {
+              property: propertyTable.Tags,
+              multi_select: {
+                contains: tag
+              }
+            }
+          ]
+        }
+      };
+
   return {
     database_id: databaseId,
-    filter: {
-      and: [
-        {
-          property: propertyTable.IsCompleted,
-          checkbox: {
-            equals: true
-          }
-        },
-        {
-          property: propertyTable.Tags,
-          multi_select: {
-            contains: tag
-          }
-        }
-      ]
-    },
+    ...optionFilter,
     sorts: [
       {
         property: propertyTable.CreatedAt,

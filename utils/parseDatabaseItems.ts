@@ -1,28 +1,32 @@
 import { MultiSelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import { getDatabaseItems } from '@/lib/notion/pages';
+import { isDev } from '@/shared/variable';
 
 export interface ParseDatabaseItemsType {
   id: string;
   title: string;
   tags: MultiSelectPropertyItemObjectResponse['multi_select'];
   createdAt: string;
+  isCompleted: boolean;
 }
 
 export const parseDatabaseItems = (
   databaseItems: Awaited<ReturnType<typeof getDatabaseItems>>['results']
 ) => {
   return databaseItems
-    .filter((it: any) => it.properties['isCompleted'].checkbox)
+    .filter((it: any) => (!isDev ? it.properties['isCompleted'].checkbox : it))
     .map((item) => {
       if (!('properties' in item)) return item;
 
-      const { name, tags } = item.properties;
+      const { name, tags, isCompleted } = item.properties;
 
       return {
         id: item.id,
         title: name.type === 'title' ? name.title[0].plain_text : '',
         tags: tags.type === 'multi_select' ? tags.multi_select : [],
-        createdAt: item.created_time ? item.created_time : ''
+        createdAt: item.created_time ? item.created_time : '',
+        isCompleted:
+          isCompleted.type === 'checkbox' ? isCompleted.checkbox : false
       };
     });
 };
