@@ -13,7 +13,7 @@ const fetcher = async (url: string) => {
 export const useSearch = () => {
   const debounce = useDebounce();
   const [inputValue, setInputValue] = useState('');
-  const [isShowModal, setIsShowModal] = useState(true);
+  const [isShowModal, setIsShowModal] = useState(false);
   const [query, setQuery] = useState('');
   const { data, isLoading, error } = useSWR(
     query ? `/api/search?query=${query}` : null,
