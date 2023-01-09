@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useThrottle } from '@/hooks/useThrottle';
 
 export const useStickyHeader = () => {
+  const throttle = useThrottle();
   const [isSticky, setIsSticky] = useState(true);
   const [prevScrollY, setPrevScrollY] = useState(0);
 
@@ -12,12 +14,14 @@ export const useStickyHeader = () => {
     );
 
     function handleScroll() {
-      const scrollY = window.scrollY;
+      throttle(() => {
+        const scrollY = window.scrollY;
 
-      if (scrollY >= headerHeight) {
-        setIsSticky(prevScrollY > scrollY);
-        setPrevScrollY(scrollY);
-      }
+        if (scrollY >= headerHeight) {
+          setIsSticky(prevScrollY > scrollY);
+          setPrevScrollY(scrollY);
+        }
+      }, 200);
     }
 
     window.addEventListener('scroll', handleScroll);
@@ -25,7 +29,7 @@ export const useStickyHeader = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [prevScrollY]);
+  }, [prevScrollY, throttle]);
 
   return { isSticky };
 };
