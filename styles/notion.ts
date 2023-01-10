@@ -103,5 +103,12 @@ export const notion = css`
         padding-inline-start: 0;
       }
     }
+
+    .notion-aside-table-of-contents-header {
+      display: none;
+    }
+    .notion-table-of-contents-active-item {
+      color: var(--color-primary) !important;
+    }
   } // notion app
 `;

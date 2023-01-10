@@ -2,6 +2,8 @@ import { css } from 'styled-components';
 
 export const Theme = css`
   :root {
+    --color-primary: #f59f00;
+
     &[data-theme='light'] {
       --color-default: var(--color-black);
       --color-bg: #fff;
