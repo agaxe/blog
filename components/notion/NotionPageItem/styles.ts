@@ -24,3 +24,10 @@ export const CompletedBox = styled.div`
   transform: translate(0, -50%);
   background-color: #fab005;
 `;
+
+export const Link = styled.a`
+  transition: color 0.3s;
+  &:hover {
+    color: var(--color-gray-hover);
+  }
+`;
