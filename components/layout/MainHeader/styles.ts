@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Icon } from '@/components/common/Icon';
 import { device } from '@/styles/device';
 
 export const MainHeader = styled.div`
@@ -31,14 +32,30 @@ export const Description = styled.p`
 
 export const LinkList = styled.ul`
   display: flex;
+  align-items: center;
   ${device('md')} {
     justify-content: center;
   }
 `;
 
 export const LinkItem = styled.li`
-  margin-right: 8px;
+  margin-right: 12px;
   &:last-child {
     margin-right: 0;
+  }
+`;
+
+export const SnsLink = styled.a``;
+
+export const SnsIcon = styled(Icon)`
+  width: var(--size-header-icon-w);
+  path {
+    transition: fill 0.4s;
+    fill: var(--color-default);
+  }
+  &:hover {
+    path {
+      fill: var(--color-gray-hover);
+    }
   }
 `;
