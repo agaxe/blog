@@ -67,6 +67,7 @@ export const SearchBtnArea = styled.div`
   width: var(--size-header-icon-w);
   height: var(--size-header-icon-w);
   margin-right: 16px;
+  flex: 0 0 auto;
 `;
 
 export const InputSearchIcon = styled(Icon)`
