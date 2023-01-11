@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export const Wrap = styled.div`
@@ -25,7 +26,8 @@ export const CompletedBox = styled.div`
   background-color: #fab005;
 `;
 
-export const Link = styled.a`
+export const ItemLink = styled(Link)`
+  display: block;
   transition: color 0.3s;
   &:hover {
     color: var(--color-gray-hover);
