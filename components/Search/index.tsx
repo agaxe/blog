@@ -7,6 +7,7 @@ export const Search = () => {
     response: { data: results, isLoading },
     handleChangeQuery,
     inputValue,
+    hasSearchData,
     modal: { isShowModal, setIsShowModal }
   } = useSearch();
 
@@ -34,13 +35,21 @@ export const Search = () => {
                 placeholder='Search'
               />
             </S.InputWrap>
-            <S.ResultList>
-              {results.map((item: any) => (
-                <S.ResultItem key={item.id}>
-                  <S.ResultLink href={`/${item.id}`}>{item.title}</S.ResultLink>
-                </S.ResultItem>
-              ))}
-            </S.ResultList>
+            {hasSearchData ? (
+              <S.ResultList>
+                {results.map((item: any) => (
+                  <S.ResultItem key={item.id}>
+                    <S.ResultLink href={`/${item.id}`}>
+                      {item.title}
+                    </S.ResultLink>
+                  </S.ResultItem>
+                ))}
+              </S.ResultList>
+            ) : (
+              <S.NotSearchResult>
+                <p>검색 결과가 없습니다 :(</p>
+              </S.NotSearchResult>
+            )}
           </S.ModalInner>
         </S.Modal>
       )}

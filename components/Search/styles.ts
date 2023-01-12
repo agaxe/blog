@@ -125,3 +125,13 @@ export const ResultLink = styled(Link)`
     background-color: var(--color-line-gray);
   }
 `;
+
+export const NotSearchResult = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--color-line-gray);
+  color: var(--color-caption);
+  user-select: none;
+`;

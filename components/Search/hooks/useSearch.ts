@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import useSWR from 'swr';
 import { useDebounce } from '@/hooks/useDebounce';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
@@ -19,6 +19,11 @@ export const useSearch = () => {
     query ? `/api/search?query=${query}` : null,
     fetcher,
     { fallbackData: [] }
+  );
+
+  const hasSearchData = useMemo(
+    () => !Boolean(query && !data.length && !isLoading),
+    [data.length, isLoading, query]
   );
 
   const handleChangeQuery = useCallback(
@@ -43,6 +48,7 @@ export const useSearch = () => {
     response: { data: parseDatabaseItems(data), isLoading, error },
     handleChangeQuery,
     inputValue,
+    hasSearchData,
     modal: { isShowModal, setIsShowModal }
   } as const;
 };
