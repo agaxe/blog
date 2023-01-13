@@ -10,16 +10,20 @@ interface NotionPageListProps {
 
 export const NotionPageList = ({ data = [] }: NotionPageListProps) => {
   return (
-    <S.Wrap>
+    <>
       {data.length ? (
-        data.map((item, idx) => (
-          <S.Item key={item.id}>
-            <NotionPageItem data={item} />
-          </S.Item>
-        ))
+        <S.Wrap>
+          {data.map((item, idx) => (
+            <S.Item key={item.id}>
+              <NotionPageItem data={item} />
+            </S.Item>
+          ))}
+        </S.Wrap>
       ) : (
-        <NotionPageListSkeleton />
+        <div>
+          <NotionPageListSkeleton />
+        </div>
       )}
-    </S.Wrap>
+    </>
   );
 };
