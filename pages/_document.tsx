@@ -39,7 +39,7 @@ export default class MyDocument extends Document {
   }
   render() {
     return (
-      <Html>
+      <Html lang='ko'>
         <Head>
           <link rel='shortcut icon' href='/favicon/favicon.ico' />
           <link
