@@ -29,20 +29,31 @@ const databaseItemsParameter = (
   const tag = tagName ? convertPascalCase(tagName) : '';
 
   const optionFilter = isDev
-    ? {}
-    : {
+    ? {
         filter: {
           and: [
-            {
-              property: propertyTable.IsCompleted,
-              checkbox: {
-                equals: true
-              }
-            },
             {
               property: propertyTable.Tags,
               multi_select: {
                 contains: tag
+              }
+            }
+          ]
+        }
+      }
+    : {
+        filter: {
+          and: [
+            {
+              property: propertyTable.Tags,
+              multi_select: {
+                contains: tag
+              }
+            },
+            {
+              property: propertyTable.IsCompleted,
+              checkbox: {
+                equals: true
               }
             }
           ]
