@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import { Icon } from '@/components/common/Icon';
 import { device } from '@/styles/device';
+import { loadingSpinnerStyle } from '@/styles/mixin';
 
 const variables = {
   padding: '16px'
@@ -77,18 +78,11 @@ export const InputSearchIcon = styled(Icon)`
 `;
 
 export const SearchLoading = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 3px solid var(--color-line-gray);
-  border-top-color: var(--color-gray);
-  box-sizing: border-box;
-  border-radius: 50%;
-  @keyframes spinner {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  animation: spinner 0.8s linear infinite;
+  ${loadingSpinnerStyle({
+    size: '100%',
+    color: 'var(--color-gray)',
+    bgColor: 'var(--color-line-gray)'
+  })}
 `;
 
 export const Input = styled.input`
