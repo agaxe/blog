@@ -1,8 +1,10 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
-import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { ExtendedRecordMap } from 'notion-types';
 import { getPageTitle } from 'notion-utils';
+import { Loading } from '@/components/common/Loading';
+import { Seo } from '@/components/common/Seo';
 import NotionPage from '@/components/notion/NotionPage';
 import { getPageItem } from '@/lib/notion/page';
 import { getPathPageItems } from '@/lib/notion/pages';
@@ -14,12 +16,13 @@ interface PostProps {
 }
 
 export default function Post({ recordMap, pageTitle }: PostProps) {
+  const { isFallback } = useRouter();
+
   return (
     <>
-      <Head>
-        <title>{pageTitle}</title>
-      </Head>
-      <NotionPage recordMap={recordMap} />
+      <Seo title={pageTitle} />
+      <Loading isShow={isFallback} />
+      {!isFallback && <NotionPage recordMap={recordMap} />}
     </>
   );
 }
@@ -50,6 +53,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking'
+    fallback: true
   };
 };

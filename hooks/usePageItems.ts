@@ -8,7 +8,10 @@ export const usePageItems = (
   data: PageItemsReturnType,
   options?: usePageItemsOptions
 ) => {
-  const { results, nextCursor = '', hasMore = false } = data;
+  const results = data?.results;
+  const nextCursor = data?.nextCursor || '';
+  const hasMore = data?.hasMore || false;
+
   const baseRef = useRef<null | HTMLDivElement>(null);
   const [page, setPage] = useState(0);
   const [items, setItems] = useState<ParseDatabaseItemsType[]>([]);

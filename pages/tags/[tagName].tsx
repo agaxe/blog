@@ -1,6 +1,8 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { Loading } from '@/components/common/Loading';
 import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { TagHeader } from '@/components/layout/TagHeader';
@@ -18,28 +20,32 @@ interface TagNameProps {
   data: PageItemsReturnType;
 }
 
-export default function TagName({ tagName, data }: TagNameProps) {
+export default function TagName({ tagName = '', data }: TagNameProps) {
+  const { isFallback } = useRouter();
   const { items, baseRef, pagination } = usePageItems(data, { tagName });
 
   return (
     <>
-      <Seo title={`tag: ${tagName}`} />
-      <Layout>
-        <TagNameWrap>
-          <TagHeader tagName={convertPascalCase(String(tagName))} />
-          <div>
-            <NotionPageList data={items} />
-            <div
-              ref={baseRef}
-              style={{
-                display: items.length && pagination.hasMore ? 'block' : 'none'
-              }}
-            >
-              <NotionPageListSkeleton />
+      <Seo title={tagName ? `tag: ${tagName}` : undefined} />
+      <Loading isShow={isFallback} />
+      {!isFallback && (
+        <Layout>
+          <TagNameWrap>
+            <TagHeader tagName={convertPascalCase(String(tagName))} />
+            <div>
+              <NotionPageList data={items} />
+              <div
+                ref={baseRef}
+                style={{
+                  display: items.length && pagination.hasMore ? 'block' : 'none'
+                }}
+              >
+                <NotionPageListSkeleton />
+              </div>
             </div>
-          </div>
-        </TagNameWrap>
-      </Layout>
+          </TagNameWrap>
+        </Layout>
+      )}
     </>
   );
 }
@@ -78,11 +84,11 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getPathTagItems();
+  //const paths = await getPathTagItems();
 
   return {
-    paths,
-    fallback: 'blocking'
+    paths: [],
+    fallback: true
   };
 };
 
