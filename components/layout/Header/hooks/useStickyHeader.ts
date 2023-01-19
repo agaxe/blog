@@ -14,14 +14,18 @@ export const useStickyHeader = () => {
     );
 
     function handleScroll() {
-      throttle(() => {
-        const scrollY = window.scrollY;
+      const scrollY = window.scrollY;
 
-        if (scrollY >= headerHeight) {
+      throttle(() => {
+        if (window.scrollY >= headerHeight) {
           setIsSticky(prevScrollY > scrollY);
           setPrevScrollY(scrollY);
         }
       }, 200);
+
+      if (scrollY <= headerHeight) {
+        setIsSticky(true);
+      }
     }
 
     window.addEventListener('scroll', handleScroll);
