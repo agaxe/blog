@@ -14,11 +14,13 @@ export const parseDatabaseItems = (
   databaseItems: Awaited<ReturnType<typeof getDatabaseItems>>['results']
 ) => {
   return databaseItems
-    .filter((it: any) => (!isDev ? it.properties['isCompleted'].checkbox : it))
+    .filter((it: any) =>
+      !isDev ? it.properties['status'].status.name === 'complete' : it
+    )
     .map((item) => {
       if (!('properties' in item)) return item;
 
-      const { name, tags, isCompleted } = item.properties;
+      const { name, tags, status } = item.properties;
 
       return {
         id: item.id,
@@ -26,7 +28,7 @@ export const parseDatabaseItems = (
         tags: tags.type === 'multi_select' ? tags.multi_select : [],
         createdAt: item.created_time ? item.created_time : '',
         isCompleted:
-          isCompleted.type === 'checkbox' ? isCompleted.checkbox : false
+          status.type === 'status' && status?.status?.name === 'complete'
       };
     });
 };

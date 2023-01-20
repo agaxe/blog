@@ -16,8 +16,15 @@ export interface PageItemsReturnType {
   hasMore: DatabaseQueryOption['hasMore'];
 }
 
+const enum propertyStatus {
+  Wait = 'wait',
+  Progress = 'progress',
+  Complete = 'complete'
+}
+
 export const enum propertyTable {
   IsCompleted = 'isCompleted',
+  Status = 'status',
   Tags = 'tags',
   CreatedAt = 'createdAt'
 }
@@ -51,9 +58,9 @@ const databaseItemsParameter = (
               }
             },
             {
-              property: propertyTable.IsCompleted,
-              checkbox: {
-                equals: true
+              property: propertyTable.Status,
+              status: {
+                equals: propertyStatus.Complete
               }
             }
           ]
