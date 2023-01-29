@@ -110,5 +110,9 @@ export const notion = css`
     .notion-table-of-contents-active-item {
       color: var(--color-primary) !important;
     }
+
+    .notion-simple-table td {
+      border: 1px solid var(--color-line-gray);
+    }
   } // notion app
 `;
