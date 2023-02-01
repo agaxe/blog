@@ -1,6 +1,7 @@
 import { MultiSelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import { getDatabaseItems } from '@/lib/notion/pages';
 import { isDev } from '@/shared/variable';
+import { normalizeTitleKo } from '@/utils//normalizeTitleKo';
 
 export interface ParseDatabaseItemsType {
   id: string;
@@ -21,10 +22,13 @@ export const parseDatabaseItems = (
       if (!('properties' in item)) return item;
 
       const { name, tags, status } = item.properties;
+      const title = name.type === 'title' ? name.title[0].plain_text : '';
+      const koId = normalizeTitleKo(title) + '-' + item.id.replace(/-/gi, '');
 
       return {
+        koId,
         id: item.id,
-        title: name.type === 'title' ? name.title[0].plain_text : '',
+        title,
         tags: tags.type === 'multi_select' ? tags.multi_select : [],
         createdAt: item.created_time ? item.created_time : '',
         isCompleted:
