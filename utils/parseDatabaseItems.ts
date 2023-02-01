@@ -23,11 +23,12 @@ export const parseDatabaseItems = (
 
       const { name, tags, status } = item.properties;
       const title = name.type === 'title' ? name.title[0].plain_text : '';
-      const koId = normalizeTitleKo(title) + '-' + item.id.replace(/-/gi, '');
+      const id = item.id.replace(/-/gi, '');
+      const koId = normalizeTitleKo(title) + '-' + id;
 
       return {
         koId,
-        id: item.id,
+        id,
         title,
         tags: tags.type === 'multi_select' ? tags.multi_select : [],
         createdAt: item.created_time ? item.created_time : '',
