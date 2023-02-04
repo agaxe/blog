@@ -17,8 +17,10 @@
     "@types/react-dom": "18.0.9",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
+    "lqip-modern": "^2.0.0",
     "next": "13.0.6",
     "notion-client": "^6.15.6",
+    "p-memoize": "^7.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-inlinesvg": "^3.0.1",
@@ -31,6 +33,7 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/gtag.js": "^0.0.12",
+    "@types/lqip-modern": "^1.1.2",
     "@types/styled-components": "^5.1.26",
     "babel-plugin-styled-components": "^2.0.7",
     "prettier": "^2.8.1"

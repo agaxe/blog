@@ -1,6 +1,6 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { ExtendedRecordMap } from 'notion-types';
 import { NotionRenderer } from 'react-notion-x';
@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { NotionTagItem } from '@/components/notion/NotionTagItem';
 import { formatDate } from '@/utils/formatDate';
+import { mapImageUrl } from '@/utils/notion/mapImageUrl';
 
 const Code = dynamic(() =>
   import('react-notion-x/build/third-party/code').then(async (m) => {
@@ -41,6 +42,8 @@ const NotionPage = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
       showTableOfContents={true}
       header={<Header />}
       footer={<Footer />}
+      previewImages={!!recordMap.preview_images}
+      mapImageUrl={mapImageUrl}
       //isLinkCollectionToUrlProperty={false}
       //linkTableTitleProperties={false}
       components={{
