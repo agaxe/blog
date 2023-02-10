@@ -114,5 +114,10 @@ export const notion = css`
     .notion-simple-table td {
       border: 1px solid var(--color-line-gray);
     }
+
+    // 외부 링크 이미지 사이즈 기본값 적용
+    .notion-asset-wrapper-image > div {
+      width: initial !important;
+    }
   } // notion app
 `;
