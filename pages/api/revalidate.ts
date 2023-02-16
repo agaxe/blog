@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getPathPageItems } from '@/lib/notion/pages';
-import { getPathTagItems } from '@/lib/notion/tags';
+//import { getPathTagItems } from '@/lib/notion/tags';
+import { setPostsWithJson } from '@/utils/setPostsWithJson';
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,27 +12,30 @@ export default async function handler(
   }
 
   try {
-    const tagParams = await getPathTagItems();
-    const pageParams = await getPathPageItems();
-
-    await res.revalidate('/');
-
-    await Promise.all(
-      tagParams.map(async (item: any) => {
-        await res.revalidate(`/tags/${item.params.tagName}`);
-      })
-    );
-
     //* post
     if (req.query.postId) {
       await res.revalidate(`/${req.query.postId}`);
     } else {
+      const data = await setPostsWithJson();
+
       await Promise.all(
-        pageParams.map(async (item: any) => {
+        data.map(async (item: any) => {
           await res.revalidate(`/${item.params.pageId}`);
         })
       );
     }
+
+    //* main
+    // await res.revalidate('/');
+
+    //* tag
+    //const tagParams = await getPathTagItems();
+
+    // await Promise.all(
+    //   tagParams.map(async (item: any) => {
+    //     await res.revalidate(`/tags/${item.params.tagName}`);
+    //   })
+    // );
 
     return res.json({ revalidated: true });
   } catch (err) {

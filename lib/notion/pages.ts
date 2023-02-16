@@ -2,7 +2,9 @@ import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoint
 import { notionHqClient } from '@/lib/notion/config';
 import { isDev } from '@/shared/variable';
 import { convertPascalCase } from '@/utils/convertPascalCase';
+import { getPostsWithJson } from '@/utils/getPostsWithJson';
 import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
+import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
 export interface DatabaseQueryOption {
   tagName?: string;
@@ -75,8 +77,8 @@ const databaseItemsParameter = (
         property: propertyTable.CreatedAt,
         direction: 'descending'
       }
-    ],
-    page_size: 10
+    ]
+    //page_size: 10
   };
 };
 
@@ -138,10 +140,10 @@ export const getDatabaseItems = async (
   };
 };
 
-export const getPathPageItems = async () => {
-  const databaseId = process.env.NOTION_DB_ID as string;
-  const databaseItems = await getDatabaseItems(databaseId);
-  return databaseItems.results.map(({ id: pageId }) => ({
+export const getPathPageItems = async (
+  items: ReturnType<typeof parseDatabaseItems>
+) => {
+  return items.map(({ id: pageId }) => ({
     params: {
       pageId
     }

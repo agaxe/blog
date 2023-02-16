@@ -9,6 +9,7 @@ import NotionPage from '@/components/notion/NotionPage';
 import { getPageItem } from '@/lib/notion/page';
 import { getPathPageItems } from '@/lib/notion/pages';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
+import { setPostsWithJson } from '@/utils/setPostsWithJson';
 
 interface PostProps {
   recordMap: ExtendedRecordMap;
@@ -49,7 +50,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getPathPageItems();
+  const data = await setPostsWithJson();
+  const paths = await getPathPageItems(data);
 
   return {
     paths,
