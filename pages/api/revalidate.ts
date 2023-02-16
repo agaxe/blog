@@ -22,11 +22,16 @@ export default async function handler(
       })
     );
 
-    await Promise.all(
-      pageParams.map(async (item: any) => {
-        await res.revalidate(`/${item.params.pageId}`);
-      })
-    );
+    //* post
+    if (req.query.postId) {
+      await res.revalidate(`/${req.query.postId}`);
+    } else {
+      await Promise.all(
+        pageParams.map(async (item: any) => {
+          await res.revalidate(`/${item.params.pageId}`);
+        })
+      );
+    }
 
     return res.json({ revalidated: true });
   } catch (err) {
