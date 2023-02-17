@@ -4,6 +4,7 @@ import * as S from './styles';
 
 export const Navigation = ({ options }: NavigationProps) => {
   const pagePath = options?.pagePath || '';
+
   return (
     <S.Navigation>
       {!options?.pageNum ? (
