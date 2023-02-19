@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Icon } from '@/components/common/Icon';
 
 export const Navigation = styled.div`
@@ -23,12 +23,19 @@ export const ViewPagesLink = styled(Link)`
   }
 `;
 
+const arrowCommonStyle = css`
+  min-width: 24px;
+  min-height: 24px;
+`;
+
 export const PrevArrowLink = styled(Link)`
   margin-right: auto;
+  ${arrowCommonStyle}
 `;
 
 export const NextArrowLink = styled(Link)`
   margin-left: auto;
+  ${arrowCommonStyle}
 `;
 
 export const ArrowIcon = styled(Icon)`
