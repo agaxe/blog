@@ -41,6 +41,7 @@ export const NextArrowLink = styled(Link)`
 export const ArrowIcon = styled(Icon)`
   path {
     transition: fill 0.3s;
+    fill: var(--color-default);
   }
   &:hover {
     path {
