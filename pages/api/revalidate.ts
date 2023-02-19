@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getPathPageItems } from '@/lib/notion/pages';
+import { getPageParams } from '@/lib/notion/page';
 import { getPathTagItems } from '@/lib/notion/tags';
 
 export default async function handler(
@@ -12,7 +12,7 @@ export default async function handler(
 
   try {
     const tagParams = await getPathTagItems();
-    const pageParams = await getPathPageItems();
+    const pageParams = await getPageParams();
 
     await res.revalidate('/');
 

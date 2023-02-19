@@ -4,37 +4,28 @@ import styled from 'styled-components';
 import { Layout } from '@/components/layout/Layout';
 import { MainHeader } from '@/components/layout/MainHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
-import { NotionPageListSkeleton } from '@/components/notion/NotionPageList/Skeleton';
-import { usePageItems } from '@/hooks/usePageItems';
-import { PageItemsReturnType, getDatabaseItems } from '@/lib/notion/pages';
+import { getDatabaseItems } from '@/lib/notion/pages';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
-import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
+import {
+  ParseDatabaseItemsType,
+  parseDatabaseItems
+} from '@/utils/parseDatabaseItems';
 
 interface HomeProps {
-  data: PageItemsReturnType;
+  items: ParseDatabaseItemsType[];
 }
 
-export default function Home({ data }: HomeProps) {
-  const { items, baseRef, pagination } = usePageItems(data);
-
+export default function Home({ items = [] }: HomeProps) {
   return (
     <Layout>
       <HomePage>
         <MainHeader />
         <div>
-          {data.results.length ? (
+          {items.length ? (
             <NotionPageList data={items} />
           ) : (
             <div>데이터가 존재하지 않습니다.</div>
           )}
-          <div
-            ref={baseRef}
-            style={{
-              display: items.length && pagination.hasMore ? 'block' : 'none'
-            }}
-          >
-            <NotionPageListSkeleton />
-          </div>
         </div>
       </HomePage>
     </Layout>
@@ -42,22 +33,15 @@ export default function Home({ data }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const databaseId = process.env.NOTION_DB_ID as string;
-
   try {
-    const dbItems = await getDatabaseItems(databaseId);
-
-    const { nextCursor, hasMore, results } = dbItems;
-
-    const data = parseDatabaseItems(results);
+    const data = await getDatabaseItems({
+      pageSize: 5
+    });
+    const items = parseDatabaseItems(data);
 
     return {
       props: {
-        data: {
-          nextCursor,
-          hasMore,
-          results: data
-        }
+        items
       },
       revalidate: ISR_REVALIDATE_TIME
     };

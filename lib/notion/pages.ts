@@ -2,19 +2,6 @@ import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoint
 import { notionHqClient } from '@/lib/notion/config';
 import { isDev } from '@/shared/variable';
 import { convertPascalCase } from '@/utils/convertPascalCase';
-import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
-
-export interface DatabaseQueryOption {
-  tagName?: string;
-  startCursor?: string;
-  hasMore?: boolean;
-}
-
-export interface PageItemsReturnType {
-  results: ParseDatabaseItemsType[];
-  nextCursor: DatabaseQueryOption['startCursor'];
-  hasMore: DatabaseQueryOption['hasMore'];
-}
 
 const enum propertyStatus {
   Wait = 'wait',
@@ -29,121 +16,61 @@ export const enum propertyTable {
   CreatedAt = 'createdAt'
 }
 
-const databaseItemsParameter = (
-  databaseId: string,
-  tagName: DatabaseQueryOption['tagName']
-): QueryDatabaseParameters => {
-  const tag = tagName ? convertPascalCase(tagName) : '';
-
-  const optionFilter = isDev
-    ? {
-        filter: {
-          and: [
-            {
-              property: propertyTable.Tags,
-              multi_select: {
-                contains: tag
-              }
-            }
-          ]
-        }
-      }
-    : {
-        filter: {
-          and: [
-            {
-              property: propertyTable.Tags,
-              multi_select: {
-                contains: tag
-              }
-            },
-            {
-              property: propertyTable.Status,
-              status: {
-                equals: propertyStatus.Complete
-              }
-            }
-          ]
-        }
-      };
-
-  return {
-    database_id: databaseId,
-    ...optionFilter,
-    sorts: [
-      {
-        property: propertyTable.CreatedAt,
-        direction: 'descending'
-      }
-    ],
-    page_size: 10
-  };
-};
-
-export const getDatabaseItem = async (databaseId: string) => {
+/**
+ * - 데이터 베이스 정보
+ */
+export const getDatabaseInfo = async (databaseId: string) => {
   const response = await notionHqClient.databases.retrieve({
     database_id: databaseId
   });
   return response;
 };
 
-export const getDatabasePaginationItems = async (
-  databaseId: string,
-  option?: DatabaseQueryOption
-) => {
-  const tagName = option?.tagName ? convertPascalCase(option?.tagName) : '';
-  const request = databaseItemsParameter(databaseId, tagName);
+/**
+ * - 데이터 베이스의 페이지(포스트) 리스트 정보
+ */
+export const getDatabaseItems = async (options?: {
+  tagName?: string;
+  pageSize?: number;
+}) => {
+  const databaseId = process.env.NOTION_DB_ID as string;
+  const tagName = options?.tagName ? convertPascalCase(options?.tagName) : '';
+  const pageSizeNum = options?.pageSize;
 
-  if (!option?.hasMore) {
-    return {
-      results: [],
-      nextCursor: '',
-      hasMore: false
-    };
+  //* options
+  const filterAnd = [
+    {
+      property: propertyTable.Tags,
+      multi_select: {
+        contains: tagName
+      }
+    }
+  ];
+
+  if (!isDev) {
+    filterAnd.push({
+      property: propertyTable.Status,
+      status: {
+        equals: propertyStatus.Complete
+      }
+    } as any);
   }
 
-  const responseWithPagination = await notionHqClient.databases.query({
-    ...request,
-    start_cursor: option?.startCursor
-  });
-
-  const {
-    results,
-    next_cursor: nextCursor,
-    has_more: hasMore
-  } = responseWithPagination;
-
-  return {
-    results,
-    nextCursor,
-    hasMore
+  const request: QueryDatabaseParameters = {
+    database_id: databaseId,
+    filter: {
+      and: filterAnd
+    },
+    sorts: [
+      {
+        property: propertyTable.CreatedAt,
+        direction: 'descending'
+      }
+    ],
+    page_size: pageSizeNum
   };
-};
-
-export const getDatabaseItems = async (
-  databaseId: string,
-  option?: DatabaseQueryOption
-) => {
-  const tagName = option?.tagName ? convertPascalCase(option?.tagName) : '';
-  const request = databaseItemsParameter(databaseId, tagName);
 
   const response = await notionHqClient.databases.query(request);
 
-  const { results, next_cursor: nextCursor, has_more: hasMore } = response;
-
-  return {
-    results,
-    nextCursor,
-    hasMore
-  };
-};
-
-export const getPathPageItems = async () => {
-  const databaseId = process.env.NOTION_DB_ID as string;
-  const databaseItems = await getDatabaseItems(databaseId);
-  return databaseItems.results.map(({ id: pageId }) => ({
-    params: {
-      pageId
-    }
-  }));
+  return response.results;
 };

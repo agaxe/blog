@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Wrap = styled.ul``;
+export const Wrap = styled.div``;
+
+export const List = styled.ul``;
 
 export const Item = styled.li`
   border-bottom: 1px solid var(--color-line-gray);

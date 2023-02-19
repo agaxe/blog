@@ -7,7 +7,7 @@ import { Loading } from '@/components/common/Loading';
 import { Seo } from '@/components/common/Seo';
 import NotionPage from '@/components/notion/NotionPage';
 import { getPageItem } from '@/lib/notion/page';
-import { getPathPageItems } from '@/lib/notion/pages';
+import { getPageParams } from '@/lib/notion/page';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 
 interface PostProps {
@@ -49,7 +49,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getPathPageItems();
+  const paths = await getPageParams();
 
   return {
     paths,

@@ -28,7 +28,7 @@ export const NotionTagItem = ({
   return (
     <>
       {isLink ? (
-        <Link href={`/tags/${lowerName}`}>
+        <Link href={`/tags/${lowerName}/pages/1`}>
           <Tag />
         </Link>
       ) : (

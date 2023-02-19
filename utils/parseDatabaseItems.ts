@@ -12,7 +12,7 @@ export interface ParseDatabaseItemsType {
 }
 
 export const parseDatabaseItems = (
-  databaseItems: Awaited<ReturnType<typeof getDatabaseItems>>['results']
+  databaseItems: Awaited<ReturnType<typeof getDatabaseItems>>
 ) => {
   return databaseItems
     .filter((it: any) =>
