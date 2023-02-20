@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import styled from 'styled-components';
+import { Button } from '@/components/common/Button';
 
 export const Wrap = styled.div`
   width: 100%;
@@ -24,4 +26,14 @@ export const Desc = styled.p`
   font-weight: 300;
   font-size: 1.5rem;
   color: var(--color-gray);
+`;
+
+export const HomeBtn = styled(Button)`
+  padding: 0;
+`;
+export const HomeBtnLink = styled(Link)`
+  padding: 8px;
+  display: block;
+  width: 100%;
+  height: 100%;
 `;
