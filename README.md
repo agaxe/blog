@@ -12,3 +12,7 @@
 - [styled components](https://styled-components.com/)
 - [notion API](https://developers.notion.com/)
 - [react-notion-x](https://github.com/NotionX/react-notion-x)
+
+## 디자인 시안
+
+[Figma](https://www.figma.com/file/noQPAMLKpSUlXsRc0PeaLw/%EB%B8%94%EB%A1%9C%EA%B7%B8?node-id=208%3A3&t=VohbRM47YQJRS5j4-1) 에서 확인 가능합니다.
