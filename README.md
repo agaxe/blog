@@ -12,6 +12,7 @@
 - [styled components](https://styled-components.com/)
 - [notion API](https://developers.notion.com/)
 - [react-notion-x](https://github.com/NotionX/react-notion-x)
+- [swr](https://swr.vercel.app/)
 
 ## 디자인 시안
 
