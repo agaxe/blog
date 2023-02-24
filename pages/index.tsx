@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import type { GetStaticProps } from 'next';
-import styled from 'styled-components';
 import { Layout } from '@/components/layout/Layout';
 import { MainHeader } from '@/components/layout/MainHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
@@ -18,16 +17,14 @@ interface HomeProps {
 export default function Home({ items = [] }: HomeProps) {
   return (
     <Layout>
-      <HomePage>
-        <MainHeader />
-        <div>
-          {items.length ? (
-            <NotionPageList data={items} />
-          ) : (
-            <div>데이터가 존재하지 않습니다.</div>
-          )}
-        </div>
-      </HomePage>
+      <MainHeader />
+      <>
+        {items.length ? (
+          <NotionPageList data={items} />
+        ) : (
+          <div>데이터가 존재하지 않습니다.</div>
+        )}
+      </>
     </Layout>
   );
 }
@@ -51,8 +48,3 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   }
 };
-
-const HomePage = styled.div`
-  display: grid;
-  gap: 48px;
-`;

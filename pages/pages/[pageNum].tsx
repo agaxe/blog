@@ -27,14 +27,13 @@ export default function Page({ items = [], fallback }: PageProps) {
   return (
     <SWRConfig value={{ fallback }}>
       <Layout>
-        <MainHeader />
-        <div>
+        <>
           {items.length ? (
             <NotionPageList data={items} />
           ) : (
             <div>데이터가 존재하지 않습니다.</div>
           )}
-        </div>
+        </>
       </Layout>
     </SWRConfig>
   );

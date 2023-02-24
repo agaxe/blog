@@ -16,15 +16,17 @@ export const NotionPageList = ({ data = [] }: NotionPageListProps) => {
   return (
     <S.Wrap>
       {data.length ? (
-        <S.List>
-          {data.map((item, idx) => (
-            <S.Item key={item.id}>
-              <NotionPageItem data={item} />
-            </S.Item>
-          ))}
-          <Navigation options={pageOptions} />
-        </S.List>
+        <>
+          <S.List>
+            {data.map((item, idx) => (
+              <S.Item key={item.id}>
+                <NotionPageItem data={item} />
+              </S.Item>
+            ))}
+          </S.List>
+        </>
       ) : null}
+      <Navigation options={pageOptions} />
     </S.Wrap>
   );
 };

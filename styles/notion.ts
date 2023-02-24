@@ -21,9 +21,26 @@ export const notion = css`
     }
 
     .notion-page {
-      padding-left: var(--layout-side-pd);
-      padding-right: var(--layout-side-pd);
-      padding-top: var(--layout-padding-top);
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .notion-page-no-cover {
+      margin-top: 0 !important;
+    }
+
+    .notion-collection-row {
+      padding: 0;
+    }
+
+    .notion-collection-row-body {
+      display: grid;
+      gap: 16px !important;
+      margin-bottom: 40px;
+    }
+
+    .notion-collection-row-value {
+      padding: 0;
     }
 
     .notion-collection-page-properties {
@@ -47,6 +64,8 @@ export const notion = css`
     }
     .notion-title {
       text-align: center;
+      margin-bottom: 16px;
+      margin-top: 40px;
       ${device('md')} {
         font-size: 2rem;
       }

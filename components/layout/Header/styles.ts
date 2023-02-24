@@ -32,8 +32,6 @@ export const Inner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: var(--layout-side-pd);
-  padding-right: var(--layout-side-pd);
   position: relative;
   z-index: 5;
   ${device('md')} {

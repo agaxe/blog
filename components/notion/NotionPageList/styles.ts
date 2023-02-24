@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const Wrap = styled.div``;
+export const Wrap = styled.div`
+  display: grid;
+  gap: 32px;
+`;
 
 export const List = styled.ul``;
 

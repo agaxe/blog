@@ -5,7 +5,6 @@ import type {
   GetStaticPropsContext
 } from 'next';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import { SWRConfig } from 'swr';
 import { Loading } from '@/components/common/Loading';
 import { Seo } from '@/components/common/Seo';
@@ -45,16 +44,14 @@ export default function TagPage({
       <Loading isShow={isFallback} />
       {!isFallback && (
         <Layout>
-          <TagNameWrap>
-            <TagHeader tagName={convertPascalCase(String(tagName))} />
-            <div>
-              {items.length ? (
-                <NotionPageList data={items} />
-              ) : (
-                <div>데이터가 존재하지 않습니다.</div>
-              )}
-            </div>
-          </TagNameWrap>
+          <TagHeader tagName={convertPascalCase(String(tagName))} />
+          <div>
+            {items.length ? (
+              <NotionPageList data={items} />
+            ) : (
+              <div>데이터가 존재하지 않습니다.</div>
+            )}
+          </div>
         </Layout>
       )}
     </SWRConfig>
@@ -120,8 +117,3 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false
   };
 };
-
-const TagNameWrap = styled.div`
-  display: grid;
-  gap: 48px;
-`;
