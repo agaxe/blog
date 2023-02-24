@@ -8,4 +8,5 @@ export const Section = styled.section`
   height: 100%;
   display: grid;
   gap: 48px;
+  min-height: 100vh;
 `;
