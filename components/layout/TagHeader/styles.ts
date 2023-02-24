@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const wrap = styled.div`
-  min-height: var(--layout-page-header-h);
+  height: var(--layout-page-header-h);
   display: flex;
   align-items: center;
   justify-content: center;

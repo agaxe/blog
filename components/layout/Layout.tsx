@@ -17,5 +17,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 export const Wrap = styled.div`
   display: grid;
   gap: 32px;
+  grid-template-columns: 100%;
   width: 100%;
 `;

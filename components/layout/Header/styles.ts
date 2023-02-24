@@ -13,6 +13,9 @@ export const Header = styled.header<{ isSticky: boolean }>`
   margin-top: ${({ isSticky }) =>
     isSticky ? 0 : `calc(var(--layout-header-h) * -1)`};
   transition: margin-top 0.4s;
+  ${device('md')} {
+    padding: 0 var(--layout-side-pd);
+  }
 `;
 
 export const Bg = styled.div`
