@@ -131,7 +131,7 @@ export const notion = css`
     }
 
     .notion-simple-table td {
-      border: 1px solid var(--color-line-gray);
+      border: 1px solid var(--color-line-bookmark);
     }
 
     // 외부 링크 이미지 사이즈 기본값 적용
