@@ -138,5 +138,10 @@ export const notion = css`
     .notion-asset-wrapper-image > div {
       width: initial !important;
     }
+
+    // 콜아웃
+    .notion-callout {
+      background-color: var(--color-bg-callout);
+    }
   } // notion app
 `;

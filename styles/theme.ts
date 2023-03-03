@@ -17,6 +17,7 @@ export const Theme = css`
       --color-line-gray: #ededec;
       --color-line-bookmark: #dfdfde;
       --color-bg-header: hsla(0, 0%, 100%, 0.8);
+      --color-bg-callout: var(--notion-gray_background_co);
     }
     &[data-theme='dark'] {
       --color-default: var(--color-white);
@@ -29,6 +30,7 @@ export const Theme = css`
       --color-line-gray: #666;
       --color-line-bookmark: #555;
       --color-bg-header: hsla(0, 0%, 100%, 0);
+      --color-bg-callout: #303030;
     }
   }
 `;
