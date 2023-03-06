@@ -29,6 +29,10 @@ export const Seo = ({
         />
         {img_url && <meta property='og:image' content={img_url} />}
         <meta name='format-detection' content='telephone=no' />
+        <meta
+          name='google-site-verification'
+          content='faIvdZv6LG61u9emvAOXbaQInoKsR0ejsmhb5dtM8Sc'
+        />
       </Head>
     </div>
   );
