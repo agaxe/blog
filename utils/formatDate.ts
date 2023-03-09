@@ -1,8 +1,9 @@
-export const formatDate = (dateInfo: Date | number | string, options = {}) => {
-  const date = new Date(dateInfo);
+import { format } from 'date-fns';
 
-  return new Intl.DateTimeFormat('ko-KR', {
-    dateStyle: 'long',
-    ...options
-  }).format(date);
+export const formatDate = (
+  dateInfo: Date | number | string,
+  formatString = 'yyyy년 M월 d일'
+) => {
+  const date = new Date(dateInfo);
+  return format(date, formatString);
 };
