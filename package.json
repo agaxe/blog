@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap --config sitemap.config.js",
     "start": "next start",
     "start:local": "next build && next start",
     "lint": "next lint",
@@ -36,6 +37,7 @@
     "@types/gtag.js": "^0.0.12",
     "@types/lqip-modern": "^1.1.2",
     "@types/styled-components": "^5.1.26",
+    "next-sitemap": "^4.0.5",
     "prettier": "^2.8.1"
   }
 }
