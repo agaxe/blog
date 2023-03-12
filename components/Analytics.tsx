@@ -8,7 +8,7 @@ export const Analytics = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const handleRouteChange = (url: any) => {
+    const handleRouteChange = (url: URL) => {
       gtag.pageview(url);
     };
     router.events.on('routeChangeComplete', handleRouteChange);

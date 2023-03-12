@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { device } from '@/styles/device';
 
-const variables: any = {
+const variables = {
   size: {
     md: '112px',
     sm: '72px'
