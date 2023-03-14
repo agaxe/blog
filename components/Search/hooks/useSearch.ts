@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { useDebounce } from '@/hooks/useDebounce';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
@@ -11,6 +12,7 @@ const fetcher = async (url: string) => {
 };
 
 export const useSearch = () => {
+  const router = useRouter();
   const debounce = useDebounce();
   const [inputValue, setInputValue] = useState('');
   const [isShowModal, setIsShowModal] = useState(false);
@@ -25,6 +27,10 @@ export const useSearch = () => {
     () => !Boolean(query && !data.length && !isLoading),
     [data.length, isLoading, query]
   );
+
+  useEffect(() => {
+    setIsShowModal(false);
+  }, [router]);
 
   const handleChangeQuery = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
