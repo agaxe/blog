@@ -19,4 +19,11 @@ export const Wrap = styled.div`
   gap: 32px;
   grid-template-columns: 100%;
   width: 100%;
+  grid-template-rows: auto var(--layout-footer-h);
+  min-height: 100vh;
+
+  // 모바일 환경 min-height 적용
+  @supports (-webkit-touch-callout: none) {
+    min-height: fill-available;
+  }
 `;

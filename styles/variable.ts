@@ -10,6 +10,7 @@ export const variable = css`
     --layout-inner-w: 720px;
     --layout-side-pd: 16px;
     --layout-header-h: var(--notion-header-height);
+    --layout-footer-h: 100px;
     --layout-page-header-h: 184px;
     --layout-padding-top: 32px;
 

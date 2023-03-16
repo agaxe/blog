@@ -9,8 +9,8 @@ export const Section = styled.div`
   height: 100%;
   display: grid;
   gap: 48px;
-  min-height: 100vh;
   grid-template-columns: 100%;
+  grid-template-rows: max-content;
 
   ${device('md')} {
     padding-left: var(--layout-side-pd);

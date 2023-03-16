@@ -14,4 +14,5 @@ export const Footer = styled.footer`
   font-weight: 300;
   color: #aaa;
   border-top: 1px solid var(--color-line-gray);
+  height: var(--layout-footer-h);
 `;
