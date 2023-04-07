@@ -13,6 +13,10 @@ const iconStyle = css`
     fill: var(--color-default);
   }
 `;
+export const Search = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 export const Button = styled.button`
   outline: none;

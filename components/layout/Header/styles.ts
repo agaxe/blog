@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { device } from '@/styles/device';
 
 export const Header = styled.header<{ isSticky: boolean }>`
@@ -48,6 +48,33 @@ export const Logo = styled.div`
 
 export const LogoTitle = styled.h2`
   font-size: 1.5rem;
+`;
+
+export const Nav = styled.nav`
+  display: flex;
+  gap: 24px;
+  align-items: center;
+`;
+
+export const NavList = styled.ul``;
+
+export const NavItem = styled.li<{ isActive: boolean }>`
+  position: relative;
+  font-weight: 300;
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      &:after {
+        position: absolute;
+        display: block;
+        content: ' ';
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-primary);
+        bottom: -4px;
+        left: 0;
+      }
+    `}
 `;
 
 export const ButtonGroup = styled.div`

@@ -1,7 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Icon } from '@/components/common/Icon';
 
-export const Theme = styled.div``;
+export const Theme = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 export const Button = styled.button`
   background: none;

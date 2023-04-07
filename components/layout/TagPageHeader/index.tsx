@@ -1,11 +1,11 @@
 import React from 'react';
 import * as S from './styles';
 
-interface TagHeaderProps {
+interface TagPageHeaderProps {
   tagName: string;
 }
 
-export const TagHeader = ({ tagName }: TagHeaderProps) => {
+export const TagPageHeader = ({ tagName }: TagPageHeaderProps) => {
   return (
     <S.wrap>
       <S.Title>{tagName}</S.Title>

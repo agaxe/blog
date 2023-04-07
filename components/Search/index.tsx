@@ -12,7 +12,7 @@ export const Search = () => {
   } = useSearch();
 
   return (
-    <div>
+    <S.Search>
       <S.Button onClick={() => setIsShowModal(true)}>
         <S.SearchIcon name='search' />
       </S.Button>
@@ -53,6 +53,6 @@ export const Search = () => {
           </S.ModalInner>
         </S.Modal>
       )}
-    </div>
+    </S.Search>
   );
 };

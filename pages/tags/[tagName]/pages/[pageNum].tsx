@@ -9,7 +9,7 @@ import { SWRConfig } from 'swr';
 import { Loading } from '@/components/common/Loading';
 import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
-import { TagHeader } from '@/components/layout/TagHeader';
+import { TagPageHeader } from '@/components/layout/TagPageHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getDatabaseItems } from '@/lib/notion/pages';
 import { getPathTagItems } from '@/lib/notion/tags';
@@ -27,7 +27,7 @@ interface PageProps {
   fallback: NavPageOptionsFallbackType;
 }
 
-export default function TagPage({
+export default function TagDetailPage({
   tagName = '',
   items = [],
   fallback
@@ -44,7 +44,7 @@ export default function TagPage({
       <Loading isShow={isFallback} />
       {!isFallback && (
         <Layout>
-          <TagHeader tagName={convertPascalCase(String(tagName))} />
+          <TagPageHeader tagName={convertPascalCase(String(tagName))} />
           <div>
             {items.length ? (
               <NotionPageList data={items} />

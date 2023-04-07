@@ -1,24 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
+import { NotionTagItemProps } from './interface';
 import * as S from './styles';
 
-export interface NotionTagItemProps {
-  id?: string;
-  name: string;
-  color: string;
-  isLink?: boolean;
-}
-
 export const NotionTagItem = ({
+  className = '',
   name = '',
   color = 'default',
-  isLink = true
+  isLink = true,
+  size
 }: NotionTagItemProps) => {
   const lowerName = name.toLowerCase();
+
   function Tag() {
     return (
       <S.Tag
-        className={`notion-property-multi_select-item notion-item-${color}`}
+        className={`${className} notion-property-multi_select-item notion-item-${color}`}
+        size={size}
       >
         {lowerName}
       </S.Tag>
