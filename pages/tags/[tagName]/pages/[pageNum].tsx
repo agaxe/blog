@@ -12,7 +12,7 @@ import { Layout } from '@/components/layout/Layout';
 import { TagPageHeader } from '@/components/layout/TagPageHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getDatabaseItems } from '@/lib/notion/pages';
-import { getPathTagItems } from '@/lib/notion/tags';
+import { getPathTagPages } from '@/lib/notion/tags';
 import { NavPageOptionsFallbackType } from '@/shared/types';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { convertPascalCase } from '@/utils/convertPascalCase';
@@ -93,7 +93,7 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getPathTagItems();
+  const paths = await getPathTagPages();
 
   return {
     paths,

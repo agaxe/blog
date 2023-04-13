@@ -6,9 +6,8 @@ import type {
 } from 'next';
 import { SWRConfig } from 'swr';
 import { Layout } from '@/components/layout/Layout';
-import { MainHeader } from '@/components/layout/MainHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
-import { getDatabaseItems } from '@/lib/notion/pages';
+import { getDatabaseItems, getPathPages } from '@/lib/notion/pages';
 import { NavPageOptionsFallbackType } from '@/shared/types';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { getPaginationItems } from '@/utils/getPaginationItems';
@@ -71,16 +70,10 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await getDatabaseItems();
-  const items = parseDatabaseItems(data);
-  const pageLength = getPaginationLength(items);
-
-  const params = [...Array(pageLength)].map((v, i) => ({
-    params: { pageNum: String(i + 1) }
-  }));
+  const paths = await getPathPages();
 
   return {
-    paths: params,
+    paths,
     fallback: false
   };
 };

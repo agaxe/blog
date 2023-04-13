@@ -12,7 +12,7 @@ export const getPageItem = async (pageId: string) => {
   return pageItem;
 };
 
-export const getPageParams = async () => {
+export const getPathPage = async () => {
   const data = await getDatabaseItems();
   const items = parseDatabaseItems(data);
 

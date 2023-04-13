@@ -15,7 +15,7 @@ export const getDatabaseTagItems = async () => {
   return tagItems;
 };
 
-export const getPathTagItems = async () => {
+export const getPathTagPages = async () => {
   const tagItems = await getDatabaseTagItems();
 
   const params = await Promise.all(
