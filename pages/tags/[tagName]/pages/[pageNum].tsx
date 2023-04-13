@@ -93,24 +93,7 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const tags = await getPathTagItems();
-
-  const params = await Promise.all(
-    tags.map(async (v: any, i: number) => {
-      const tagName = v.params.tagName;
-      const data = await getDatabaseItems({
-        tagName
-      });
-      const items = parseDatabaseItems(data);
-      const pageLength = getPaginationLength(items);
-
-      return [...Array(pageLength)].map((item, idx) => ({
-        params: { tagName, pageNum: String(idx + 1) }
-      }));
-    })
-  );
-
-  const paths = [].concat(...params);
+  const paths = await getPathTagItems();
 
   return {
     paths,

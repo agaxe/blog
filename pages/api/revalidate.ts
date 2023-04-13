@@ -17,8 +17,8 @@ export default async function handler(
     await res.revalidate('/');
 
     await Promise.all(
-      tagParams.map(async (item: any) => {
-        await res.revalidate(`/tags/${item.params.tagName}`);
+      tagParams.map(async ({ params: { tagName, pageNum } }: any) => {
+        await res.revalidate(`/tags/${tagName}/pages/${pageNum}`);
       })
     );
 

@@ -1,4 +1,10 @@
-import { getDatabaseInfo, propertyTable } from '@/lib/notion/pages';
+import {
+  getDatabaseInfo,
+  getDatabaseItems,
+  propertyTable
+} from '@/lib/notion/pages';
+import { getPaginationLength } from '@/utils/getPaginationLength';
+import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
 export const getDatabaseTagItems = async () => {
   const databaseId = process.env.NOTION_DB_ID as string;
@@ -10,11 +16,22 @@ export const getDatabaseTagItems = async () => {
 };
 
 export const getPathTagItems = async () => {
-  const databaseId = process.env.NOTION_DB_ID as string;
   const tagItems = await getDatabaseTagItems();
-  return tagItems.map(({ name: tagName }: any) => ({
-    params: {
-      tagName: tagName.toLowerCase()
-    }
-  }));
+
+  const params = await Promise.all(
+    tagItems.map(async (v: any) => {
+      const tagName = String(v.name).toLowerCase();
+      const data = await getDatabaseItems({
+        tagName
+      });
+      const items = parseDatabaseItems(data);
+      const pageLength = getPaginationLength(items);
+
+      return [...Array(pageLength)].map((_, idx) => ({
+        params: { tagName, pageNum: String(idx + 1) }
+      }));
+    })
+  );
+
+  return [...[].concat(...params)];
 };
