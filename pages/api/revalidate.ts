@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getPathPage } from '@/lib/notion/page';
+import { getPathPages } from '@/lib/notion/pages';
 import { getPathTagPages } from '@/lib/notion/tags';
 
 export default async function handler(
@@ -10,30 +11,55 @@ export default async function handler(
     return res.status(401).json({ message: 'Invalid token' });
   }
 
-  try {
-    const tagParams = await getPathTagPages();
-    const pageParams = await getPathPage();
+  const revalidateTagPages = async () => {
+    const tagPaths = await getPathTagPages();
 
-    await res.revalidate('/');
+    return tagPaths.map(({ params: { tagName, pageNum } }) => {
+      const path = `/tags/${tagName}/pages/${pageNum}`;
 
-    await Promise.all(
-      tagParams.map(async ({ params: { tagName, pageNum } }: any) => {
-        await res.revalidate(`/tags/${tagName}/pages/${pageNum}`);
-      })
-    );
+      res.revalidate(path);
+      return path;
+    });
+  };
 
-    //* post
-    if (req.query.postId) {
-      await res.revalidate(`/${req.query.postId}`);
-    } else {
-      await Promise.all(
-        pageParams.map(async (item: any) => {
-          await res.revalidate(`/${item.params.pageId}`);
-        })
-      );
+  const revalidatePosts = async () => {
+    if (!req.query.postId) {
+      const pagePaths = await getPathPage();
+
+      return pagePaths.map((item: any) => {
+        const path = `/${item.params.pageId}`;
+        res.revalidate(path);
+
+        return path;
+      });
     }
 
-    return res.json({ revalidated: true });
+    const path = `/${req.query.postId}`;
+    res.revalidate(path);
+
+    return [path];
+  };
+
+  const revalidatePages = async () => {
+    const pagesPaths = await getPathPages();
+
+    return pagesPaths.map(({ params: { pageNum } }) => {
+      const path = `/pages/${pageNum}`;
+
+      res.revalidate(path);
+      return path;
+    });
+  };
+
+  try {
+    await res.revalidate('/');
+    const result = await Promise.all([
+      revalidateTagPages(),
+      revalidatePages(),
+      revalidatePosts()
+    ]);
+
+    return res.json({ revalidated: true, result });
   } catch (err) {
     return res.status(500).send('Error revalidating');
   }
