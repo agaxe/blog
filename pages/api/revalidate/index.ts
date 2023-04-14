@@ -12,12 +12,11 @@ export default async function handler(
   }
 
   try {
-    await res.revalidate('/');
-
     const result = await Promise.all([
-      revalidateTagPages(res),
+      res.revalidate('/').then(() => '/'),
+      revalidatePosts(req, res),
       revalidatePages(res),
-      revalidatePosts(req, res)
+      revalidateTagPages(res)
     ]);
 
     return res.json({ revalidated: true, result });

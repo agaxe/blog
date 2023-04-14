@@ -19,5 +19,5 @@ export const revalidatePosts = async (
   const path = `/${req.query.postId}`;
   res.revalidate(path);
 
-  return [path];
+  return path;
 };
