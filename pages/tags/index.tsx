@@ -4,12 +4,13 @@ import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { TagList } from '@/components/layout/TagList';
 import { TagPageHeader } from '@/components/layout/TagPageHeader';
-import type { NotionTagListProps } from '@/components/notion/NotionTagList';
 import { getDatabaseTagItems } from '@/lib/notion/tags';
+import type { TagsWithCnt } from '@/shared/types';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
+import { getTagsWithPostCnt } from '@/utils/getTagsWithPostCnt';
 
 interface PageProps {
-  tags: NotionTagListProps['tags'];
+  tags: TagsWithCnt;
 }
 
 export default function TagPage({ tags = [] }: PageProps) {
@@ -29,9 +30,15 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   try {
     const tags = await getDatabaseTagItems();
+    const tagsMap = await getTagsWithPostCnt();
 
     return {
-      props: { tags },
+      props: {
+        tags: tags.map((tag) => ({
+          ...tag,
+          cnt: tagsMap.get(tag.name.toLowerCase())
+        }))
+      },
       revalidate: ISR_REVALIDATE_TIME
     };
   } catch (error) {

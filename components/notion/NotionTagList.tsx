@@ -3,7 +3,7 @@ import { MultiSelectPropertyItemObjectResponse } from '@notionhq/client/build/sr
 import styled from 'styled-components';
 import { NotionTagItem } from './NotionTagItem';
 
-export interface NotionTagListProps {
+interface NotionTagListProps {
   tags: MultiSelectPropertyItemObjectResponse['multi_select'];
 }
 

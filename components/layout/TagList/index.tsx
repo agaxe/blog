@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NotionTagItem } from '@/components/notion/NotionTagItem';
-import type { NotionTagListProps } from '@/components/notion/NotionTagList';
+import type { TagsWithCnt } from '@/shared/types';
 
 interface TagListProps {
-  tags: NotionTagListProps['tags'];
+  tags: TagsWithCnt;
 }
 
 export const TagList = ({ tags = [] }: TagListProps) => {
   return (
     <Wrap>
-      {tags.map(({ id, name, color }) => (
+      {tags.map(({ id, name, color, cnt }) => (
         <TagItem key={id}>
-          <Tag name={name} color={color} size='large' />
+          <Tag name={name} color={color} size='large' count={cnt} />
         </TagItem>
       ))}
     </Wrap>

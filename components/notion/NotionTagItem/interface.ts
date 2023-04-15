@@ -6,4 +6,5 @@ export interface NotionTagItemProps extends HtmlHTMLAttributes<HTMLDivElement> {
   color: string;
   isLink?: boolean;
   size?: 'large';
+  count?: number;
 }

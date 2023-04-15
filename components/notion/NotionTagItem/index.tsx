@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { convertPascalCase } from '@/utils/convertPascalCase';
 import { NotionTagItemProps } from './interface';
 import * as S from './styles';
 
@@ -8,17 +9,17 @@ export const NotionTagItem = ({
   name = '',
   color = 'default',
   isLink = true,
-  size
+  size,
+  count = 0
 }: NotionTagItemProps) => {
-  const lowerName = name.toLowerCase();
-
   function Tag() {
     return (
       <S.Tag
         className={`${className} notion-property-multi_select-item notion-item-${color}`}
         size={size}
       >
-        {lowerName}
+        <S.Name>{convertPascalCase(name)}</S.Name>
+        {count !== 0 && <S.Count>({count})</S.Count>}
       </S.Tag>
     );
   }
@@ -26,7 +27,7 @@ export const NotionTagItem = ({
   return (
     <>
       {isLink ? (
-        <Link href={`/tags/${lowerName}/pages/1`}>
+        <Link href={`/tags/${name.toLowerCase()}/pages/1`}>
           <Tag />
         </Link>
       ) : (
