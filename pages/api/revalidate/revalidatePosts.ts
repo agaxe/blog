@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getPathPage } from '@/lib/notion/page';
+import { getPathPage } from '@/lib/notion/page/getPathPage';
 
 export const revalidatePosts = async (
   req: NextApiRequest,

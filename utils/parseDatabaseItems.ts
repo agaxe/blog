@@ -1,10 +1,11 @@
 import { MultiSelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import { getDatabaseItems } from '@/lib/notion/pages';
+import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { isDev } from '@/shared/variable';
 import { normalizeTitleKo } from '@/utils/normalizeTitleKo';
 import { convertUuidToPostId } from './convertUuidToPostId';
 
 export interface ParseDatabaseItemsType {
+  koId: string;
   id: string;
   title: string;
   tags: MultiSelectPropertyItemObjectResponse['multi_select'];
@@ -13,13 +14,13 @@ export interface ParseDatabaseItemsType {
 }
 
 export const parseDatabaseItems = (
-  databaseItems: Awaited<ReturnType<typeof getDatabaseItems>>
-) => {
+  databaseItems: Awaited<ReturnType<typeof getPageItems>>
+): ParseDatabaseItemsType[] => {
   return databaseItems
     .filter((it: any) =>
       !isDev ? it.properties['status'].status.name === 'complete' : it
     )
-    .map((item) => {
+    .map((item: any) => {
       if (!('properties' in item)) return item;
 
       const { name, tags, status } = item.properties;

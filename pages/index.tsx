@@ -4,7 +4,7 @@ import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { MainHeader } from '@/components/layout/MainHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
-import { getDatabaseItems } from '@/lib/notion/pages';
+import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import {
   ParseDatabaseItemsType,
@@ -33,7 +33,7 @@ export default function Home({ items = [] }: HomeProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const data = await getDatabaseItems({
+    const data = await getPageItems({
       pageSize: 5
     });
     const items = parseDatabaseItems(data);

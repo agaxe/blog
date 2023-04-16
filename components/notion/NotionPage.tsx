@@ -6,8 +6,8 @@ import { ExtendedRecordMap } from 'notion-types';
 import { NotionRenderer } from 'react-notion-x';
 import { Layout } from '@/components/layout/Layout';
 import { NotionTagItem } from '@/components/notion/NotionTagItem';
+import { mapImageUrl } from '@/lib/notion/utils/mapImageUrl';
 import { formatDate } from '@/utils/formatDate';
-import { mapImageUrl } from '@/utils/notion/mapImageUrl';
 
 const Code = dynamic(() =>
   import('react-notion-x/build/third-party/code').then(async (m) => {

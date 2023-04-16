@@ -8,7 +8,8 @@ import { SWRConfig } from 'swr';
 import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { NotionPageList } from '@/components/notion/NotionPageList';
-import { getDatabaseItems, getPathPages } from '@/lib/notion/pages';
+import { getPageItems } from '@/lib/notion/pages/getPageItems';
+import { getPathPages } from '@/lib/notion/pages/getPathPages';
 import { NavPageOptionsFallbackType } from '@/shared/types';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { getPaginationItems } from '@/utils/getPaginationItems';
@@ -47,7 +48,7 @@ export const getStaticProps: GetStaticProps = async (
   const pageNum = Number(params?.pageNum) || 0;
 
   try {
-    const data = await getDatabaseItems();
+    const data = await getPageItems();
     const parseItems = parseDatabaseItems(data);
     const items = getPaginationItems(parseItems, pageNum);
     const pageLength = getPaginationLength(parseItems);

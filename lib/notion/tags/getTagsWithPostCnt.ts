@@ -1,11 +1,11 @@
-import { getDatabaseItems } from '@/lib/notion/pages';
+import { getPageItems } from '@/lib/notion/pages/getPageItems';
 
 export type TagsMap = Map<string, number>;
 export type TagsObj = Record<string, number>;
 
 export const getTagsWithPostCnt = async (): Promise<TagsMap> => {
   const tagsMap = new Map();
-  const pages = await getDatabaseItems();
+  const pages = await getPageItems();
 
   pages.forEach((page) => {
     //@ts-ignore

@@ -1,9 +1,5 @@
-import type { MultiSelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import {
-  getDatabaseInfo,
-  getDatabaseItems,
-  propertyTable
-} from '@/lib/notion/pages';
+import { getPageItems } from '@/lib/notion/pages/getPageItems';
+import { getTagItems } from '@/lib/notion/tags/getTagItems';
 import { getPaginationLength } from '@/utils/getPaginationLength';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
@@ -14,24 +10,13 @@ export type PathTagPages = {
   };
 }[];
 
-export const getDatabaseTagItems = async (): Promise<
-  MultiSelectPropertyItemObjectResponse['multi_select']
-> => {
-  const databaseId = process.env.NOTION_DB_ID as string;
-  const database = await getDatabaseInfo(databaseId);
-  const tagItems = (database.properties[propertyTable.Tags] as any).multi_select
-    .options;
-
-  return tagItems;
-};
-
 export const getPathTagPages = async () => {
-  const tagItems = await getDatabaseTagItems();
+  const tagItems = await getTagItems();
 
   const params = await Promise.all([
     ...tagItems.map(async (v: any) => {
       const tagName = String(v.name).toLowerCase();
-      const data = await getDatabaseItems({
+      const data = await getPageItems({
         tagName
       });
       const items = parseDatabaseItems(data);

@@ -1,6 +1,5 @@
 import { notionHqClient } from '@/lib/notion/config';
 
-//* search
 export async function getSearchResult(query: string) {
   const result = await notionHqClient.search({
     query,

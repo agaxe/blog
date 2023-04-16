@@ -4,7 +4,7 @@ import { ExtendedRecordMap, PreviewImage, PreviewImageMap } from 'notion-types';
 import { getPageImageUrls, normalizeUrl } from 'notion-utils';
 import pMap from 'p-map';
 import pMemoize from 'p-memoize';
-import { mapImageUrl } from '@/utils/notion/mapImageUrl';
+import { mapImageUrl } from '@/lib/notion/utils/mapImageUrl';
 
 export async function getPreviewImageMap(
   recordMap: ExtendedRecordMap

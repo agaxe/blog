@@ -4,10 +4,10 @@ import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { TagList } from '@/components/layout/TagList';
 import { TagPageHeader } from '@/components/layout/TagPageHeader';
-import { getDatabaseTagItems } from '@/lib/notion/tags';
+import { getTagItems } from '@/lib/notion/tags/getTagItems';
+import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
 import type { TagsWithCnt } from '@/shared/types';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
-import { getTagsWithPostCnt } from '@/utils/getTagsWithPostCnt';
 
 interface PageProps {
   tags: TagsWithCnt;
@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   try {
-    const tags = await getDatabaseTagItems();
+    const tags = await getTagItems();
     const tagsMap = await getTagsWithPostCnt();
 
     return {

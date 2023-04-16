@@ -2,8 +2,6 @@ import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoint
 import { notionHqClient } from '@/lib/notion/config';
 import { isDev } from '@/shared/variable';
 import { convertPascalCase } from '@/utils/convertPascalCase';
-import { getPaginationLength } from '@/utils/getPaginationLength';
-import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
 const enum propertyStatus {
   Wait = 'wait',
@@ -19,19 +17,9 @@ export const enum propertyTable {
 }
 
 /**
- * - 데이터 베이스 정보
- */
-export const getDatabaseInfo = async (databaseId: string) => {
-  const response = await notionHqClient.databases.retrieve({
-    database_id: databaseId
-  });
-  return response;
-};
-
-/**
  * - 데이터 베이스의 페이지(포스트) 리스트 정보
  */
-export const getDatabaseItems = async (options?: {
+export const getPageItems = async (options?: {
   tagName?: string;
   pageSize?: number;
 }) => {
@@ -75,14 +63,4 @@ export const getDatabaseItems = async (options?: {
   const response = await notionHqClient.databases.query(request);
 
   return response.results;
-};
-
-export const getPathPages = async () => {
-  const data = await getDatabaseItems();
-  const items = parseDatabaseItems(data);
-  const pageLength = getPaginationLength(items);
-
-  return [...Array(pageLength)].map((v, i) => ({
-    params: { pageNum: String(i + 1) }
-  }));
 };

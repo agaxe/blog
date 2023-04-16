@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next';
 import { getServerSideSitemapLegacy } from 'next-sitemap';
 import config from '@/config';
-import { getDatabaseItems } from '@/lib/notion/pages';
+import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { convertUuidToPostId } from '@/utils/convertUuidToPostId';
 import { formatDate } from '@/utils/formatDate';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const posts = await getDatabaseItems();
+  const posts = await getPageItems();
 
   const fields: Parameters<typeof getServerSideSitemapLegacy>[1] = posts.map(
     (item) => {

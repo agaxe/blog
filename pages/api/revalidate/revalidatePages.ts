@@ -1,6 +1,5 @@
-import type {  NextApiResponse } from 'next';
-import { getPathPages } from '@/lib/notion/pages';
-
+import type { NextApiResponse } from 'next';
+import { getPathPages } from '@/lib/notion/pages/getPathPages';
 
 export const revalidatePages = async (res: NextApiResponse) => {
   const pagesPaths = await getPathPages();

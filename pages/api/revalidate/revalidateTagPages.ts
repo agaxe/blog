@@ -1,6 +1,8 @@
 import type { NextApiResponse } from 'next';
-import { getPathTagPages } from '@/lib/notion/tags';
-import type { PathTagPages } from '@/lib/notion/tags';
+import {
+  PathTagPages,
+  getPathTagPages
+} from '@/lib/notion/tags/getPathTagPages';
 
 export const revalidateTagPages = async (res: NextApiResponse) => {
   const revalidate = (arr: PathTagPages = []) => {

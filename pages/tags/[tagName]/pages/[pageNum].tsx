@@ -11,8 +11,8 @@ import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { TagPageHeader } from '@/components/layout/TagPageHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
-import { getDatabaseItems } from '@/lib/notion/pages';
-import { getPathTagPages } from '@/lib/notion/tags';
+import { getPageItems } from '@/lib/notion/pages/getPageItems';
+import { getPathTagPages } from '@/lib/notion/tags/getPathTagPages';
 import { NavPageOptionsFallbackType } from '@/shared/types';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { convertPascalCase } from '@/utils/convertPascalCase';
@@ -69,10 +69,10 @@ export const getStaticProps: GetStaticProps = async (
   const tagName = params?.tagName as string;
 
   try {
-    const data = await getDatabaseItems({ tagName });
+    const data = await getPageItems({ tagName });
     const parseItem = parseDatabaseItems(data);
     const items = getPaginationItems(parseItem, pageNum);
-    const pageLength = getPaginationLength(data);
+    const pageLength = getPaginationLength(items);
 
     return {
       props: {
