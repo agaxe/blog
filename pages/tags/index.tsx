@@ -16,7 +16,7 @@ interface PageProps {
 export default function TagPage({ tags = [] }: PageProps) {
   return (
     <>
-      <Seo title={'tags'} />
+      <Seo title='Tags' />
       <Layout>
         <TagPageHeader tagName={'Tags'} />
         <TagList tags={tags} />

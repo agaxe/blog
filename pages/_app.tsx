@@ -27,7 +27,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Seo />
       <Analytics />
       <Component {...pageProps} />
       <GlobalStyle />

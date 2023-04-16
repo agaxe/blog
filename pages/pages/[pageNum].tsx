@@ -5,6 +5,7 @@ import type {
   GetStaticPropsContext
 } from 'next';
 import { SWRConfig } from 'swr';
+import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getDatabaseItems, getPathPages } from '@/lib/notion/pages';
@@ -25,6 +26,7 @@ interface PageProps {
 export default function Page({ items = [], fallback }: PageProps) {
   return (
     <SWRConfig value={{ fallback }}>
+      <Seo />
       <Layout>
         <>
           {items.length ? (

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { GetStaticProps } from 'next';
+import { Seo } from '@/components/common/Seo';
 import { Layout } from '@/components/layout/Layout';
 import { MainHeader } from '@/components/layout/MainHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
@@ -17,6 +18,7 @@ interface HomeProps {
 export default function Home({ items = [] }: HomeProps) {
   return (
     <Layout>
+      <Seo />
       <MainHeader />
       <>
         {items.length ? (

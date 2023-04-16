@@ -25,14 +25,17 @@ interface PageProps {
   tagName: string;
   items: ParseDatabaseItemsType[];
   fallback: NavPageOptionsFallbackType;
+  postCnt: number;
 }
 
 export default function TagDetailPage({
   tagName = '',
   items = [],
-  fallback
+  fallback,
+  postCnt = 0
 }: PageProps) {
   const { isFallback } = useRouter();
+  const pascalTagName = convertPascalCase(tagName);
 
   return (
     <SWRConfig
@@ -40,11 +43,11 @@ export default function TagDetailPage({
         fallback
       }}
     >
-      <Seo title={tagName ? `tag: ${tagName}` : undefined} />
+      <Seo title={tagName ? `${pascalTagName} (${postCnt})` : undefined} />
       <Loading isShow={isFallback} />
       {!isFallback && (
         <Layout>
-          <TagPageHeader tagName={convertPascalCase(String(tagName))} />
+          <TagPageHeader tagName={pascalTagName} />
           <div>
             {items.length ? (
               <NotionPageList data={items} />
@@ -74,7 +77,8 @@ export const getStaticProps: GetStaticProps = async (
     return {
       props: {
         items,
-        tagName,
+        tagName: convertPascalCase(tagName),
+        postCnt: data.length,
         fallback: {
           'page-options': {
             pageLength,
