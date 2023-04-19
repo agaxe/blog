@@ -16,11 +16,13 @@ export default async function handler(
       res.revalidate('/').then(() => '/'),
       revalidatePosts(req, res),
       revalidatePages(res),
-      revalidateTagPages(res)
+      revalidateTagPages(req, res)
     ]);
 
     return res.json({ revalidated: true, result });
-  } catch (err) {
-    return res.status(500).send('Error revalidating');
+  } catch (error: unknown) {
+    if (!(error instanceof Error)) return;
+
+    return res.status(500).send({ error: error.message });
   }
 }
