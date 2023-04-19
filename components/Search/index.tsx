@@ -8,7 +8,8 @@ export const Search = () => {
     handleChangeQuery,
     inputValue,
     hasSearchData,
-    modal: { isShowModal, setIsShowModal }
+    modal: { isShowModal, setIsShowModal },
+    searchInputRef
   } = useSearch();
 
   return (
@@ -33,6 +34,7 @@ export const Search = () => {
                 value={inputValue}
                 onChange={handleChangeQuery}
                 placeholder='Search'
+                ref={searchInputRef}
               />
             </S.InputWrap>
             {hasSearchData ? (
