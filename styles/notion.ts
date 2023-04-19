@@ -117,8 +117,10 @@ export const notion = css`
     .notion-list {
       width: 100%;
     }
-    .notion-list-disc {
-      ul.notion-list-disc {
+
+    // 리스트 마크다운 형식 사용 시, 하위 컨텐츠에 따른 padding-left 제거
+    .notion-list {
+      &:has(> .notion-row, > figure, > .notion-code) {
         padding-inline-start: 0;
       }
     }
@@ -136,7 +138,8 @@ export const notion = css`
 
     // 외부 링크 이미지 사이즈 기본값 적용
     .notion-asset-wrapper-image > div {
-      width: initial !important;
+      //width: initial !important;
+      align-self: center !important;
     }
 
     // 콜아웃
