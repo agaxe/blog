@@ -88,7 +88,10 @@
   │       │   ├── index.tsx
   │       │   ├── interface.ts
   │       │   └── styles.ts
-  │       └── NotionTagList.tsx
+  │       ├── NotionTagList.tsx
+  │       └── NotionTagSideList
+  │           ├── index.tsx
+  │           └── styles.ts
   ├── config.ts
   ├── hooks
   │   ├── useDebounce.ts
@@ -140,7 +143,13 @@
   │       └── index.tsx
   ├── public
   ├── shared
-  │   ├── types.ts
+  │   ├── enums
+  │   │   └── SwrFallbackKeys.ts
+  │   ├── types
+  │   │   ├── NavPageOptions.ts
+  │   │   ├── NavPageOptionsFallback.ts
+  │   │   ├── TagsWithCnt.ts
+  │   │   └── TagsWithCntFallback.ts
   │   └── variable.ts
   ├── sitemap.config.js
   ├── styles
