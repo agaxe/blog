@@ -1,6 +1,6 @@
 import { HtmlHTMLAttributes } from 'react';
-import { NavPageOptionsType } from '@/shared/types';
+import { NavPageOptions } from '@/shared/types/NavPageOptions';
 
 export interface NavigationProps extends HtmlHTMLAttributes<HTMLDivElement> {
-  options?: NavPageOptionsType;
+  options?: NavPageOptions;
 }

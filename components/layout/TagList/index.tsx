@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NotionTagItem } from '@/components/notion/NotionTagItem';
-import type { TagsWithCnt } from '@/shared/types';
+import type { TagsWithCnt } from '@/shared/types/TagsWithCnt';
 
 interface TagListProps {
   tags: TagsWithCnt;

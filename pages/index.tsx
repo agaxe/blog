@@ -7,8 +7,8 @@ import { MainHeader } from '@/components/layout/MainHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
-import { SwrFallbackKeys } from '@/shared/SwrFallbackKeys';
-import type { TagsWithCntFallback } from '@/shared/types';
+import { SwrFallbackKeys } from '@/shared/enums/SwrFallbackKeys';
+import type { TagsWithCntFallback } from '@/shared/types/TagsWithCntFallback';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import {
   ParseDatabaseItemsType,

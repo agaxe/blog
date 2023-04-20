@@ -14,8 +14,8 @@ import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getPathTagPages } from '@/lib/notion/tags/getPathTagPages';
 import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
-import { SwrFallbackKeys } from '@/shared/SwrFallbackKeys';
-import { NavPageOptionsFallbackType } from '@/shared/types';
+import { SwrFallbackKeys } from '@/shared/enums/SwrFallbackKeys';
+import { NavPageOptionsFallback } from '@/shared/types/NavPageOptionsFallback';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { convertPascalCase } from '@/utils/convertPascalCase';
 import { getPaginationItems } from '@/utils/getPaginationItems';
@@ -26,7 +26,7 @@ import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 interface PageProps {
   tagName: string;
   items: ParseDatabaseItemsType[];
-  fallback: NavPageOptionsFallbackType;
+  fallback: NavPageOptionsFallback;
   postCnt: number;
 }
 

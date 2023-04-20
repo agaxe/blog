@@ -6,7 +6,7 @@ import { TagList } from '@/components/layout/TagList';
 import { TagPageHeader } from '@/components/layout/TagPageHeader';
 import { getTagItems } from '@/lib/notion/tags/getTagItems';
 import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
-import type { TagsWithCnt } from '@/shared/types';
+import type { TagsWithCnt } from '@/shared/types/TagsWithCnt';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 
 interface PageProps {

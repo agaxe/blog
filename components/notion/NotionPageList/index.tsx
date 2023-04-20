@@ -4,8 +4,8 @@ import { Navigation } from '@/components/layout/Navigation';
 import { NotionPageItem } from '@/components/notion/NotionPageItem';
 import { NotionTagSideList } from '@/components/notion/NotionTagSideList';
 import type { TagsObj } from '@/lib/notion/tags/getTagsWithPostCnt';
-import { SwrFallbackKeys } from '@/shared/SwrFallbackKeys';
-import { NavPageOptionsType } from '@/shared/types';
+import { SwrFallbackKeys } from '@/shared/enums/SwrFallbackKeys';
+import { NavPageOptions } from '@/shared/types/NavPageOptions';
 import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
 import * as S from './styles';
 
@@ -14,7 +14,7 @@ interface NotionPageListProps {
 }
 
 export const NotionPageList = ({ data = [] }: NotionPageListProps) => {
-  const { data: pageOptions } = useSWR<NavPageOptionsType>('page-options');
+  const { data: pageOptions } = useSWR<NavPageOptions>('page-options');
   const { data: tags } = useSWR<TagsObj>(SwrFallbackKeys.TAGS_WITH_CNT);
 
   return (
