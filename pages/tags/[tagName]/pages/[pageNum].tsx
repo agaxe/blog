@@ -78,7 +78,7 @@ export const getStaticProps: GetStaticProps = async (
 
     const parseItem = parseDatabaseItems(data);
     const items = getPaginationItems(parseItem, pageNum);
-    const pageLength = getPaginationLength(items);
+    const pageLength = getPaginationLength(parseItem);
 
     return {
       props: {
@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps = async (
         tagName: convertPascalCase(tagName),
         postCnt: data.length,
         fallback: {
-          'page-options': {
+          [SwrFallbackKeys.PAGE_OPTIONS]: {
             pageLength,
             pageNum,
             pagePath: `/tags/${tagName}`

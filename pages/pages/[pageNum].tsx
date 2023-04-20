@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps = async (
       props: {
         items,
         fallback: {
-          'page-options': {
+          [SwrFallbackKeys.PAGE_OPTIONS]: {
             pageLength,
             pageNum
           },
