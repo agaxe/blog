@@ -14,7 +14,9 @@ interface NotionPageListProps {
 }
 
 export const NotionPageList = ({ data = [] }: NotionPageListProps) => {
-  const { data: pageOptions } = useSWR<NavPageOptions>('page-options');
+  const { data: pageOptions } = useSWR<NavPageOptions>(
+    SwrFallbackKeys.PAGE_OPTIONS
+  );
   const { data: tags } = useSWR<TagsObj>(SwrFallbackKeys.TAGS_WITH_CNT);
 
   return (

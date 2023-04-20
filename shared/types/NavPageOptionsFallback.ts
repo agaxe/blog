@@ -1,5 +1,6 @@
+import { SwrFallbackKeys } from '@/shared/enums/SwrFallbackKeys';
 import { NavPageOptions } from '@/shared/types/NavPageOptions';
 
 export interface NavPageOptionsFallback {
-  'page-options': NavPageOptions;
+  [SwrFallbackKeys.PAGE_OPTIONS]: NavPageOptions;
 }
