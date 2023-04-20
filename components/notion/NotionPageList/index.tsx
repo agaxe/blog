@@ -2,6 +2,9 @@ import React from 'react';
 import useSWR from 'swr';
 import { Navigation } from '@/components/layout/Navigation';
 import { NotionPageItem } from '@/components/notion/NotionPageItem';
+import { NotionTagSideList } from '@/components/notion/NotionTagSideList';
+import type { TagsObj } from '@/lib/notion/tags/getTagsWithPostCnt';
+import { SwrFallbackKeys } from '@/shared/SwrFallbackKeys';
 import { NavPageOptionsType } from '@/shared/types';
 import { ParseDatabaseItemsType } from '@/utils/parseDatabaseItems';
 import * as S from './styles';
@@ -12,11 +15,15 @@ interface NotionPageListProps {
 
 export const NotionPageList = ({ data = [] }: NotionPageListProps) => {
   const { data: pageOptions } = useSWR<NavPageOptionsType>('page-options');
+  const { data: tags } = useSWR<TagsObj>(SwrFallbackKeys.TAGS_WITH_CNT);
 
   return (
     <S.Wrap>
       {data.length ? (
         <>
+          {tags && Object.entries(tags || {}).length ? (
+            <NotionTagSideList data={tags} />
+          ) : null}
           <S.List>
             {data.map((item, idx) => (
               <S.Item key={item.id}>

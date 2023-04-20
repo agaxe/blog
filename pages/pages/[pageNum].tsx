@@ -10,6 +10,8 @@ import { Layout } from '@/components/layout/Layout';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getPathPages } from '@/lib/notion/pages/getPathPages';
+import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
+import { SwrFallbackKeys } from '@/shared/SwrFallbackKeys';
 import { NavPageOptionsFallbackType } from '@/shared/types';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { getPaginationItems } from '@/utils/getPaginationItems';
@@ -48,7 +50,11 @@ export const getStaticProps: GetStaticProps = async (
   const pageNum = Number(params?.pageNum) || 0;
 
   try {
-    const data = await getPageItems();
+    const [data, tags] = await Promise.all([
+      await getPageItems(),
+      await getTagsWithPostCnt()
+    ]);
+
     const parseItems = parseDatabaseItems(data);
     const items = getPaginationItems(parseItems, pageNum);
     const pageLength = getPaginationLength(parseItems);
@@ -60,12 +66,15 @@ export const getStaticProps: GetStaticProps = async (
           'page-options': {
             pageLength,
             pageNum
-          }
+          },
+          [SwrFallbackKeys.TAGS_WITH_CNT]: Object.fromEntries(tags)
         }
       },
       revalidate: ISR_REVALIDATE_TIME
     };
   } catch (error) {
+    console.error(error);
+
     return {
       notFound: true
     };

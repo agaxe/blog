@@ -13,6 +13,8 @@ import { TagPageHeader } from '@/components/layout/TagPageHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getPathTagPages } from '@/lib/notion/tags/getPathTagPages';
+import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
+import { SwrFallbackKeys } from '@/shared/SwrFallbackKeys';
 import { NavPageOptionsFallbackType } from '@/shared/types';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 import { convertPascalCase } from '@/utils/convertPascalCase';
@@ -69,7 +71,11 @@ export const getStaticProps: GetStaticProps = async (
   const tagName = params?.tagName as string;
 
   try {
-    const data = await getPageItems({ tagName });
+    const [data, tags] = await Promise.all([
+      await getPageItems({ tagName }),
+      await getTagsWithPostCnt()
+    ]);
+
     const parseItem = parseDatabaseItems(data);
     const items = getPaginationItems(parseItem, pageNum);
     const pageLength = getPaginationLength(items);
@@ -84,12 +90,15 @@ export const getStaticProps: GetStaticProps = async (
             pageLength,
             pageNum,
             pagePath: `/tags/${tagName}`
-          }
+          },
+          [SwrFallbackKeys.TAGS_WITH_CNT]: Object.fromEntries(tags)
         }
       },
       revalidate: ISR_REVALIDATE_TIME
     };
   } catch (error) {
+    console.error(error);
+
     return {
       notFound: true
     };
