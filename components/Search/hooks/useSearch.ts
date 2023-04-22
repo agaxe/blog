@@ -8,6 +8,7 @@ import React, {
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { useDebounce } from '@/hooks/useDebounce';
+import { useRefCurrent } from '@/hooks/useRefCurrent';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
 const fetcher = async (url: string) => {
@@ -18,7 +19,6 @@ const fetcher = async (url: string) => {
 };
 
 export const useSearch = () => {
-  const searchInputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
   const debounce = useDebounce();
   const [inputValue, setInputValue] = useState('');
@@ -58,11 +58,9 @@ export const useSearch = () => {
   );
 
   // modal 활성화 시 searchInput 활성화
-  useEffect(() => {
-    if (isShowModal && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [isShowModal]);
+  const { ref: searchInputRef } = useRefCurrent<HTMLInputElement>((current) => {
+    current.focus();
+  }, isShowModal);
 
   return {
     response: { data: parseDatabaseItems(data), isLoading, error },
