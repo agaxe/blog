@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '@/styles/device';
 
 export const Wrap = styled.div`
   display: grid;
@@ -13,8 +14,13 @@ export const Item = styled.li`
   }
 `;
 
-export const List = styled.ul`
+export const List = styled.ul<{ height: number }>`
+  min-height: ${({ height }) => height}px;
   ${Item}:first-child > div {
     padding-top: 0;
+  }
+
+  ${device('lg')} {
+    min-height: auto;
   }
 `;
