@@ -16,15 +16,14 @@ export const Tag = styled.div<Pick<NotionTagItemProps, 'size'>>`
   align-items: center;
   justify-content: center;
   gap: 4px;
+  height: auto;
   &:hover {
     opacity: 0.7;
   }
   ${({ size }) => size && sizes[size]}
 `;
 
-export const Name = styled.p`
-  font-size: 16px;
-`;
+export const Name = styled.p``;
 
 export const Count = styled.p`
   font-size: 14px;

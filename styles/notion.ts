@@ -146,5 +146,10 @@ export const notion = css`
     .notion-callout {
       background-color: var(--color-bg-callout);
     }
+
+    // 인용구
+    .notion-quote {
+      font-size: 1em;
+    }
   } // notion app
 `;
