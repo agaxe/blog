@@ -57,6 +57,10 @@ const NotionPage = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
           propertyLastEditedTimeValue: (dateProperty) => {
             return formatDate(dateProperty.block.last_edited_time);
           },
+          // 텍스트 속성 return null
+          propertyTextValue: () => {
+            return null;
+          },
           propertySelectValue: (
             { schema, value, key, pageHeader, color },
             defaultFn: () => React.ReactNode
