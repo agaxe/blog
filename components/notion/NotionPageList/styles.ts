@@ -24,3 +24,13 @@ export const List = styled.ul<{ height: number }>`
     min-height: auto;
   }
 `;
+
+export const IntersectionRef = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  ${device('lg')} {
+    display: none;
+  }
+`;

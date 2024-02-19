@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import { Navigation } from '@/components/layout/Navigation';
 import { NotionPageItem } from '@/components/notion/NotionPageItem';
 import { NotionTagSideList } from '@/components/notion/NotionTagSideList';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { useRefCurrent } from '@/hooks/useRefCurrent';
 import type { TagsObj } from '@/lib/notion/tags/getTagsWithPostCnt';
 import { SwrFallbackKeys } from '@/shared/enums/SwrFallbackKeys';
@@ -23,13 +24,19 @@ export const NotionPageList = ({ data = [] }: NotionPageListProps) => {
   const { ref: tagSideListRef } = useRefCurrent<HTMLUListElement>((current) => {
     setTagSideListHeight(current.clientHeight);
   });
+  const { baseRef, isIntersecting } = useIntersectionObserver<HTMLDivElement>();
 
   return (
     <S.Wrap>
+      <S.IntersectionRef ref={baseRef} />
       {data.length ? (
         <>
           {tags && Object.entries(tags || {}).length ? (
-            <NotionTagSideList data={tags} ref={tagSideListRef} />
+            <NotionTagSideList
+              data={tags}
+              ref={tagSideListRef}
+              isFixed={!isIntersecting}
+            />
           ) : null}
           <S.List height={tagSideListHeight}>
             {data.map((item) => (

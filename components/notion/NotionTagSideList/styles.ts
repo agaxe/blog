@@ -1,15 +1,30 @@
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { device } from '@/styles/device';
+import { NotionTagSideListProps } from './interface';
 
-export const List = styled.ul`
+const state = {
+  default: css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(calc(-100% - 72px), 0);
+  `,
+  fixed: css`
+    position: fixed;
+    left: 50%;
+    top: calc(var(--layout-header-h) + 4px);
+    transform: translateX(
+      calc(calc(var(--layout-inner-w) * -1 / 2) - 100% - 72px)
+    );
+  `
+};
+export const List = styled.ul<Pick<NotionTagSideListProps, 'isFixed'>>`
+  ${({ isFixed }) => (isFixed ? state.fixed : state.default)};
   display: flex;
   flex-direction: column;
   gap: 16px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(calc(-100% - 72px), 0);
+
   ${device('lg')} {
     display: none;
   }
