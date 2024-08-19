@@ -24,4 +24,8 @@ export const NotionTagList = ({ tags }: NotionTagListProps) => {
 const NotionTagListWrap = styled.ul`
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
+  width: fit-content;
+  position: relative;
+  z-index: 2;
 `;

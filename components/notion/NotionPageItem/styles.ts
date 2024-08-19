@@ -1,11 +1,16 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const Wrap = styled.div``;
-
 export const PageTitle = styled.h3`
   font-size: 1.8rem;
   transition: color 0.3s;
+`;
+
+export const Wrap = styled.div`
+  position: relative;
+  display: block;
+  padding-top: 32px;
+  padding-bottom: 32px;
 `;
 
 export const PageDate = styled.p`
@@ -24,13 +29,14 @@ export const CompletedBox = styled.div`
 `;
 
 export const ItemLink = styled(Link)`
-  display: block;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 
   &:hover {
-    ${PageTitle} {
+    & ~ ${PageTitle} {
       color: var(--color-gray-hover);
     }
   }

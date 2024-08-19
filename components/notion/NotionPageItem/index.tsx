@@ -12,12 +12,11 @@ export const NotionPageItem = ({ data }: NotionPageItem) => {
   const { id, title, tags, createdAt, isCompleted } = data;
   return (
     <S.Wrap>
-      <S.ItemLink href={`/${id}`}>
-        <S.PageTitle>{title}</S.PageTitle>
-        <S.PageDate>{formatDate(createdAt)}</S.PageDate>
-        <NotionTagList tags={tags} />
-        {!isCompleted ? <S.CompletedBox /> : null}
-      </S.ItemLink>
+      <S.ItemLink href={`/${id}`} />
+      <S.PageTitle>{title}</S.PageTitle>
+      <S.PageDate>{formatDate(createdAt)}</S.PageDate>
+      <NotionTagList tags={tags} />
+      {!isCompleted ? <S.CompletedBox /> : null}
     </S.Wrap>
   );
 };
