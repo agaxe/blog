@@ -1,7 +1,7 @@
 import React from 'react';
 import { MultiSelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import styled from 'styled-components';
-import { NotionTagItem } from './NotionTagItem';
+import { NotionTagItem } from '../NotionTagItem';
 
 interface NotionTagListProps {
   tags: MultiSelectPropertyItemObjectResponse['multi_select'];
