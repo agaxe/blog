@@ -24,7 +24,7 @@ export const Search = () => {
             <S.InputWrap>
               <S.SearchBtnArea>
                 {isLoading ? (
-                  <S.SearchLoading />
+                  <S.SearchLoading data-testid='search-loading-icon' />
                 ) : (
                   <S.InputSearchIcon name='search' />
                 )}
