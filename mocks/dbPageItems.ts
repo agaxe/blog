@@ -1,10 +1,11 @@
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
+import pageIds from './pageIds';
 
-const items: Awaited<ReturnType<typeof getPageItems>> = [...Array(5)].map(
+const items: Awaited<ReturnType<typeof getPageItems>> = [...Array(10)].map(
   (_, i) => ({
     object: 'page',
-    id: `f5a36499-58a3-4f5c-bcf4-8781679968d${i + 1}`,
-    created_time: i % 2 === 0 ? '2022-11-08T14:21:00.000Z' : null,
+    id: `${pageIds[i]}`,
+    created_time: '2024-04-29T11:33:00.000Z',
     last_edited_time: '2023-01-20T08:01:00.000Z',
     created_by: { object: 'user', id: 'db8981d9-64e0-4305-b367-4d50b844fbe3' },
     last_edited_by: {
@@ -26,21 +27,21 @@ const items: Awaited<ReturnType<typeof getPageItems>> = [...Array(5)].map(
         type: 'multi_select',
         multi_select: [
           {
-            id: '242c1663-df78-4ac0-9278-ae865b5c44eb',
-            name: 'Tag1',
-            color: 'blue'
+            id: `60b24cda-f768-4783-974c-3f6f6663b6ba1`,
+            name: `tag name_${i + 1}-1`,
+            color: 'default'
           },
           {
-            id: 'd99119ec-0e05-4830-96c8-bef3570bdd44',
-            name: 'Tag2',
-            color: 'yellow'
+            id: `8702102f-bd74-4e2f-a7a0-c9b1b3a6e92c`,
+            name: `tag name_${i + 1}-2`,
+            color: 'pink'
           }
         ]
       },
       createdAt: {
         id: 'gma%3A',
         type: 'created_time',
-        created_time: '2022-11-08T14:21:00.000Z'
+        created_time: '2024-04-29T11:33:00.000Z'
       },
       status: {
         id: 'q%3Ckt',
@@ -62,7 +63,7 @@ const items: Awaited<ReturnType<typeof getPageItems>> = [...Array(5)].map(
         title: [
           {
             type: 'text',
-            text: { content: `포스팅 타이틀_${i + 1}`, link: null },
+            text: { content: `포스트 제목_${i + 1}`, link: null },
             annotations: {
               bold: false,
               italic: false,
@@ -71,15 +72,14 @@ const items: Awaited<ReturnType<typeof getPageItems>> = [...Array(5)].map(
               code: false,
               color: 'default'
             },
-            plain_text: `포스팅 타이틀_${i + 1}`,
+            plain_text: `포스트 제목_${i + 1}`,
             href: null
           }
         ]
       }
     },
-    url: 'https://www.notion.so/포스팅-타이틀-f5a36499-58a3-4f5c-bcf4-8781679968d0',
-    public_url:
-      'https://agaxe.notion.site/포스팅-타이틀-f5a36499-58a3-4f5c-bcf4-8781679968d0'
+    url: `https://www.notion.so/포스팅-타이틀-${pageIds[i]}`,
+    public_url: `https://agaxe.notion.site/포스팅-타이틀-${pageIds[i]}`
   })
 );
 

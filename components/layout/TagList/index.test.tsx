@@ -1,25 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import { TagsWithCnt } from '@/shared/types/TagsWithCnt';
+import tagsWithCnt from '@/mocks/tagsWithCnt';
 import { TagList } from '.';
-
-const mockProps: TagsWithCnt = [
-  {
-    id: '85ec6031-9063-42d1-a512-7dbb5c9ddb61',
-    name: 'Test1',
-    color: 'default',
-    cnt: 1
-  },
-  {
-    id: '85ec6031-9063-42d1-a512-7dbb5c9ddb62',
-    name: 'Test Name',
-    color: 'pink',
-    cnt: 5
-  }
-];
 
 describe('TagList 컴포넌트', () => {
   it('props 체크', () => {
-    render(<TagList tags={mockProps} />);
+    render(<TagList tags={tagsWithCnt} />);
 
     const list = screen.getByRole('list');
     const items = screen.getAllByRole('listitem');

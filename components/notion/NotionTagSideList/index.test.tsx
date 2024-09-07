@@ -1,15 +1,13 @@
 import mockRouter from 'next-router-mock';
 import { MemoryRouterProvider } from 'next-router-mock/MemoryRouterProvider';
 import { fireEvent, render, screen } from '@testing-library/react';
+import mockSideTags from '@/mocks/sideTags';
 import { NotionTagSideList } from '.';
 
 jest.mock('next/router', () => jest.requireActual('next-router-mock'));
 
 const mockProps = {
-  data: {
-    react: 10,
-    'react query': 3
-  }
+  data: mockSideTags
 };
 
 describe('NotionTagSideList 컴포넌트', () => {

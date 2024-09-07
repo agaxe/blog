@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it, jest } from '@jest/globals';
+import mockItems from '@/mocks/parsePageItems';
 import { getPaginationItems } from '../getPaginationItems';
-import mockItems from '../mocks/parseDatabaseItems';
 
 jest.mock('@/shared/variable', () => ({
   pageSize: 3
@@ -24,15 +24,15 @@ describe('getPaginationItems', () => {
   it('1 페이지', () => {
     const items = getPaginationItemsFn(mockItems, 1);
 
-    expect(items[0].title).toBe('test title_1');
-    expect(items.at(-1)?.title).toBe('test title_3');
+    expect(items[0].title).toBe('포스트 제목_1');
+    expect(items.at(-1)?.title).toBe('포스트 제목_3');
   });
 
   it('2 페이지', () => {
     const items = getPaginationItemsFn(mockItems, 2);
 
-    expect(items[0].title).toBe('test title_4');
-    expect(items.at(-1)?.title).toBe('test title_6');
+    expect(items[0].title).toBe('포스트 제목_4');
+    expect(items.at(-1)?.title).toBe('포스트 제목_6');
   });
 
   it('마지막 페이지', () => {
@@ -40,6 +40,6 @@ describe('getPaginationItems', () => {
     const items = getPaginationItemsFn(mockItems, pageLength);
 
     expect(items.length).toBe(1);
-    expect(items[0].title).toBe('test title_10');
+    expect(items[0].title).toBe('포스트 제목_10');
   });
 });
