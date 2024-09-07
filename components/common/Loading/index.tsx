@@ -7,7 +7,7 @@ export interface LoadingProps {
 
 export const Loading = ({ isShow }: LoadingProps) => {
   return (
-    <S.Wrap isShow={isShow}>
+    <S.Wrap role='loading' isShow={isShow}>
       <S.Spinner />
     </S.Wrap>
   );
