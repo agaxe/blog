@@ -28,12 +28,12 @@ const items: Awaited<ReturnType<typeof getPageItems>> = [...Array(10)].map(
         multi_select: [
           {
             id: `60b24cda-f768-4783-974c-3f6f6663b6ba1`,
-            name: `tag name_${i + 1}-1`,
+            name: `Tag Name_${i + 1}-1`,
             color: 'default'
           },
           {
             id: `8702102f-bd74-4e2f-a7a0-c9b1b3a6e92c`,
-            name: `tag name_${i + 1}-2`,
+            name: `Tag Name_${i + 1}-2`,
             color: 'pink'
           }
         ]
