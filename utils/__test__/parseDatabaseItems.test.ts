@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import mockItems from '@/mocks/dbPageItems';
+import mockItems from '@/mocks/notionPageItems';
 import { parseDatabaseItems } from '../parseDatabaseItems';
 
 describe('parseDatabaseItems', () => {

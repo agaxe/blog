@@ -8,7 +8,7 @@ import {
   screen
 } from '@testing-library/react';
 import useSWR from 'swr';
-import dbPageItems from '@/mocks/dbPageItems';
+import notionPageItems from '@/mocks/notionPageItems';
 import pageItems from '@/mocks/parsePageItems';
 import { Search } from '.';
 import { useSearch } from './hooks/useSearch';
@@ -20,7 +20,7 @@ jest.useFakeTimers();
 
 describe('Search 컴포넌트', () => {
   (useSWR as jest.Mock).mockReturnValue({
-    data: dbPageItems,
+    data: notionPageItems,
     isLoading: false,
     error: null
   });
