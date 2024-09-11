@@ -1,4 +1,6 @@
 import '@testing-library/jest-dom';
+import mockNotionClient from '@/mocks/notionClient';
+import MockNotionHqClient from '@/mocks/notionHqClient';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -10,4 +12,11 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn()
   }))
+});
+
+jest.mock('@/lib/notion/config', () => {
+  return {
+    notionClient: mockNotionClient,
+    notionHqClient: new MockNotionHqClient()
+  };
 });
