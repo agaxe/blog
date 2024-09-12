@@ -1,5 +1,3 @@
-import pageIds from '@/mocks/pageIds';
-
 const notionDB = {
   object: 'database',
   id: '1ac4cbc9-3b32-47ee-a529-a6eecc3aa744',
@@ -42,15 +40,15 @@ const notionDB = {
       name: 'tags',
       type: 'multi_select',
       multi_select: {
-        options: [...Array(pageIds.length)].flatMap((_, i) => [
+        options: [...Array(5)].flatMap((_, i) => [
           {
             id: `60b24cda-f768-4783-974c-3f6f6663b6ba1`,
-            name: `Tag Name_${(i % 5) + 1}-1`,
+            name: `Tag Name_${i + 1}-1`,
             color: 'default'
           },
           {
             id: `8702102f-bd74-4e2f-a7a0-c9b1b3a6e92c`,
-            name: `Tag Name_${(i % 5) + 1}-2`,
+            name: `Tag Name_${i + 1}-2`,
             color: 'pink'
           }
         ])

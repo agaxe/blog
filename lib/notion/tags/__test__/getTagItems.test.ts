@@ -10,7 +10,7 @@ describe('getTagItems', () => {
   it('아이템 갯수 체크', async () => {
     const tagItems = await getTagItems();
 
-    expect(tagItems.length).toBe(20);
+    expect(tagItems.length).toBe(10);
   });
 
   it('속성 값 확인', async () => {

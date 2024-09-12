@@ -9,9 +9,11 @@ jest.mock('@/shared/variable', () => ({
 
 const dbTagItems = mockNotionDB.properties.tags.multi_select.options;
 
-(getTagItems as jest.Mock).mockResolvedValue(dbTagItems);
-
 describe('getPathTagPages', () => {
+  beforeAll(() => {
+    (getTagItems as jest.Mock).mockResolvedValue(dbTagItems);
+  });
+
   //TODO: 리팩토링 시 해당 테스트에 맞춰 코드 변경 필요
   // it('tagName 값이 존재하지 않는 경우', async () => {
   //   const res = await getPathTagPages();
@@ -27,16 +29,6 @@ describe('getPathTagPages', () => {
   //     { params: { tagName: 'tag name_4-2', pageNum: '2' } },
   //     { params: { tagName: 'tag name_5-1', pageNum: '2' } },
   //     { params: { tagName: 'tag name_5-2', pageNum: '2' } },
-  //     { params: { tagName: 'tag name_1-1', pageNum: '2' } },
-  //     { params: { tagName: 'tag name_1-2', pageNum: '2' } },
-  //     { params: { tagName: 'tag name_2-1', pageNum: '2' } },
-  //     { params: { tagName: 'tag name_2-2', pageNum: '2' } },
-  //     { params: { tagName: 'tag name_3-1', pageNum: '2' } },
-  //     { params: { tagName: 'tag name_3-2', pageNum: '2' } },
-  //     { params: { tagName: 'tag name_4-1', pageNum: '2' } },
-  //     { params: { tagName: 'tag name_4-2', pageNum: '2' } },
-  //     { params: { tagName: 'tag name_5-1', pageNum: '2' } },
-  //     { params: { tagName: 'tag name_5-2', pageNum: '2' } }
   //   ]);
   // });
 
