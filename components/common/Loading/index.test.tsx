@@ -5,16 +5,16 @@ describe('Loading 컴포넌트', () => {
   it('show', () => {
     render(<Loading isShow={true} />);
 
-    const container = screen.getByRole('loading', { hidden: true });
+    const loadingContainer = screen.getByRole('loading', { hidden: true });
 
-    expect(container).toHaveStyle('visibility: visible');
+    expect(loadingContainer).toHaveStyle('visibility: visible');
   });
 
   it('hide', () => {
     render(<Loading isShow={false} />);
 
-    const container = screen.getByRole('loading', { hidden: true });
+    const loadingContainer = screen.getByRole('loading', { hidden: true });
 
-    expect(container).toHaveStyle('visibility: hidden');
+    expect(loadingContainer).toHaveStyle('visibility: hidden');
   });
 });

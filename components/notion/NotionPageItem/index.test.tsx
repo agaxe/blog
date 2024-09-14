@@ -34,11 +34,11 @@ describe('NotionPageItem 컴포넌트', () => {
   });
 
   it('링크 클릭 이벤트', () => {
-    const { container } = render(<NotionPageItem data={parsePageItems[0]} />, {
+    render(<NotionPageItem data={parsePageItems[0]} />, {
       wrapper: MemoryRouterProvider
     });
 
-    const itemLink = container.querySelector(
+    const itemLink = document.querySelector(
       `a[href='/c9d287d36ecc476a9c4ec9d8b98c9a6e'`
     ) as Element;
 

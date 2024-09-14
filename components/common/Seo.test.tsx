@@ -19,11 +19,11 @@ jest.mock('@/config', () => ({
 
 describe('Seo 컴포넌트', () => {
   it('props 기본값 체크', () => {
-    const { container } = render(<Seo />);
+    render(<Seo />);
 
-    const title = container.querySelector('title');
-    const description = container.querySelector('meta[name="description"');
-    const image = container.querySelector('meta[name="image"');
+    const title = document.querySelector('title');
+    const description = document.querySelector('meta[name="description"');
+    const image = document.querySelector('meta[name="image"');
 
     expect(title?.textContent).toBe('[default] 페이지 타이틀');
     expect(description).toHaveAttribute('content', '[default] 페이지 설명글');
@@ -31,20 +31,20 @@ describe('Seo 컴포넌트', () => {
   });
 
   it('title 체크', () => {
-    const { container } = render(<Seo title='페이지 타이틀' />);
+    render(<Seo title='페이지 타이틀' />);
 
-    const title = container.querySelector('title');
-    const ogTitle = container.querySelector('meta[property="og:title"');
+    const title = document.querySelector('title');
+    const ogTitle = document.querySelector('meta[property="og:title"');
 
     expect(title?.textContent).toBe('페이지 타이틀');
     expect(ogTitle).toHaveAttribute('content', '페이지 타이틀');
   });
 
   it('description 체크', () => {
-    const { container } = render(<Seo description='페이지 설명글' />);
+    render(<Seo description='페이지 설명글' />);
 
-    const description = container.querySelector('meta[name="description"');
-    const ogDescription = container.querySelector(
+    const description = document.querySelector('meta[name="description"');
+    const ogDescription = document.querySelector(
       'meta[property="og:description"'
     );
 
@@ -53,11 +53,11 @@ describe('Seo 컴포넌트', () => {
   });
 
   it('image 체크', () => {
-    const { container } = render(<Seo img_url='/images/test-og-img.jpg' />);
+    render(<Seo img_url='/images/test-og-img.jpg' />);
 
-    const linkImage = container.querySelector('link[rel="image_src"');
-    const image = container.querySelector('meta[name="image"]');
-    const ogImage = container.querySelector('meta[property="og:image"');
+    const linkImage = document.querySelector('link[rel="image_src"');
+    const image = document.querySelector('meta[name="image"]');
+    const ogImage = document.querySelector('meta[property="og:image"');
 
     expect(linkImage).toHaveAttribute('href', '/images/test-og-img.jpg');
     expect(image).toHaveAttribute('content', '/images/test-og-img.jpg');

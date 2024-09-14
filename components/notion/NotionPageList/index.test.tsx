@@ -33,9 +33,9 @@ describe('NotionPageList 컴포넌트', () => {
     swrMock(undefined);
     swrMock(mockData.tags);
 
-    const { container } = render(<NotionPageList data={mockProps.data} />);
+    render(<NotionPageList data={mockProps.data} />);
 
-    const pageList = container.querySelector('ul:nth-child(2)');
+    const pageList = document.querySelector('ul:nth-child(2)');
     const pageItems = pageList?.querySelectorAll(
       ':scope > li'
     ) as NodeListOf<Element>;

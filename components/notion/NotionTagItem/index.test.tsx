@@ -15,10 +15,10 @@ const defaultMockProps = {
 
 describe('NotionTagItem 컴포넌트', () => {
   it('기본 props 체크', () => {
-    const { container } = render(<NotionTagItem {...defaultMockProps} />);
+    render(<NotionTagItem {...defaultMockProps} />);
 
-    const tagItem = container.querySelector('.test-classname');
-    const tagLink = container?.querySelector('a');
+    const tagItem = document.querySelector('.test-classname');
+    const tagLink = document.querySelector('a');
     const tagNameText = tagItem?.querySelector('p:first-child');
     const tagCountText = tagItem?.querySelector('p:last-child');
 
@@ -33,7 +33,7 @@ describe('NotionTagItem 컴포넌트', () => {
   });
 
   it('count 표시', () => {
-    const { container } = render(
+    render(
       <NotionTagItem
         {...{
           ...defaultMockProps,
@@ -42,14 +42,14 @@ describe('NotionTagItem 컴포넌트', () => {
       />
     );
 
-    const tagItem = container.querySelector('.test-classname');
+    const tagItem = document.querySelector('.test-classname');
     const tagCountText = tagItem?.querySelector('p:last-child');
 
     expect(tagCountText).toHaveTextContent('(10)');
   });
 
   it('링크 비활성화', () => {
-    const { container } = render(
+    render(
       <NotionTagItem
         {...{
           ...defaultMockProps,
@@ -58,17 +58,17 @@ describe('NotionTagItem 컴포넌트', () => {
       />
     );
 
-    const tagLink = container?.querySelector('a');
+    const tagLink = document?.querySelector('a');
 
     expect(tagLink).not.toBeInTheDocument;
   });
 
   it('링크 클릭 시 태그 페이지로 이동', () => {
-    const { container } = render(<NotionTagItem {...defaultMockProps} />, {
+    render(<NotionTagItem {...defaultMockProps} />, {
       wrapper: MemoryRouterProvider
     });
 
-    const tagLink = container?.querySelector('a') as HTMLAnchorElement;
+    const tagLink = document?.querySelector('a') as HTMLAnchorElement;
 
     fireEvent.click(tagLink);
 
