@@ -5,8 +5,6 @@ import userEvent from '@testing-library/user-event';
 import parsePageItems from '@/mocks/parsePageItems';
 import { NotionPageItem } from '.';
 
-jest.mock('next/router', () => jest.requireActual('next-router-mock'));
-
 describe('NotionPageItem 컴포넌트', () => {
   it('기본 props 체크', () => {
     const { getByRole, getByText, getAllByRole } = render(

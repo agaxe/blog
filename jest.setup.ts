@@ -20,3 +20,5 @@ jest.mock('@/lib/notion/config', () => {
     notionHqClient: new MockNotionHqClient()
   };
 });
+
+jest.mock('next/router', () => jest.requireActual('next-router-mock'));

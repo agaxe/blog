@@ -4,8 +4,6 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { NotionTagItem } from '.';
 
-jest.mock('next/router', () => jest.requireActual('next-router-mock'));
-
 const defaultMockProps = {
   className: 'test-classname',
   name: 'tag name',

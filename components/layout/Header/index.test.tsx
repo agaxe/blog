@@ -4,8 +4,6 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Header } from '.';
 
-jest.mock('next/router', () => jest.requireActual('next-router-mock'));
-
 describe('Header 컴포넌트', () => {
   it('스크롤 시 헤더 hide', () => {
     render(<Header />);

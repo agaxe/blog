@@ -13,7 +13,6 @@ import pageItems from '@/mocks/parsePageItems';
 import { Search } from '.';
 import { useSearch } from './hooks/useSearch';
 
-jest.mock('next/router', () => jest.requireActual('next-router-mock'));
 jest.mock('swr');
 
 jest.useFakeTimers();

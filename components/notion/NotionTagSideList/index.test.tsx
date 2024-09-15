@@ -5,8 +5,6 @@ import userEvent from '@testing-library/user-event';
 import mockSideTags from '@/mocks/sideTags';
 import { NotionTagSideList } from '.';
 
-jest.mock('next/router', () => jest.requireActual('next-router-mock'));
-
 const mockProps = {
   data: mockSideTags
 };
