@@ -1,6 +1,7 @@
 import mockRouter from 'next-router-mock';
 import { MemoryRouterProvider } from 'next-router-mock/MemoryRouterProvider';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import mockSideTags from '@/mocks/sideTags';
 import { NotionTagSideList } from '.';
 
@@ -27,7 +28,9 @@ describe('NotionTagSideList 컴포넌트', () => {
     expect(firstItemCnt).toHaveTextContent('(10)');
   });
 
-  it('태그 아이템 링크 클릭', () => {
+  it('태그 아이템 링크 클릭', async () => {
+    const user = userEvent.setup();
+
     render(<NotionTagSideList data={mockProps.data} />, {
       wrapper: MemoryRouterProvider
     });
@@ -35,7 +38,7 @@ describe('NotionTagSideList 컴포넌트', () => {
     const items = screen.getAllByRole('listitem');
     const secondItemLink = items[1].querySelector('a') as HTMLAnchorElement;
 
-    fireEvent.click(secondItemLink);
+    await user.click(secondItemLink);
 
     expect(mockRouter.asPath).toEqual('/tags/react%20query/pages/1');
   });

@@ -1,6 +1,7 @@
 import mockRouter from 'next-router-mock';
 import { MemoryRouterProvider } from 'next-router-mock/MemoryRouterProvider';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import parsePageItems from '@/mocks/parsePageItems';
 import { NotionPageItem } from '.';
 
@@ -33,7 +34,9 @@ describe('NotionPageItem 컴포넌트', () => {
     expect(tag2).toHaveClass('notion-item-pink');
   });
 
-  it('링크 클릭 이벤트', () => {
+  it('링크 클릭 이벤트', async () => {
+    const user = userEvent.setup();
+
     render(<NotionPageItem data={parsePageItems[0]} />, {
       wrapper: MemoryRouterProvider
     });
@@ -42,7 +45,7 @@ describe('NotionPageItem 컴포넌트', () => {
       `a[href='/c9d287d36ecc476a9c4ec9d8b98c9a6e'`
     ) as Element;
 
-    fireEvent.click(itemLink);
+    await user.click(itemLink);
 
     expect(mockRouter.asPath).toEqual(`/c9d287d36ecc476a9c4ec9d8b98c9a6e`);
   });

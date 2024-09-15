@@ -1,6 +1,7 @@
 import mockRouter from 'next-router-mock';
 import { MemoryRouterProvider } from 'next-router-mock/MemoryRouterProvider';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { NotionTagItem } from '.';
 
 jest.mock('next/router', () => jest.requireActual('next-router-mock'));
@@ -63,14 +64,16 @@ describe('NotionTagItem 컴포넌트', () => {
     expect(tagLink).not.toBeInTheDocument;
   });
 
-  it('링크 클릭 시 태그 페이지로 이동', () => {
+  it('링크 클릭 시 태그 페이지로 이동', async () => {
+    const user = userEvent.setup();
+
     render(<NotionTagItem {...defaultMockProps} />, {
       wrapper: MemoryRouterProvider
     });
 
     const tagLink = document?.querySelector('a') as HTMLAnchorElement;
 
-    fireEvent.click(tagLink);
+    await user.click(tagLink);
 
     expect(mockRouter.asPath).toEqual('/tags/tag%20name/pages/1');
   });
