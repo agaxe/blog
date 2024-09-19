@@ -5,7 +5,7 @@ import config from '@/config';
 export const Seo = ({
   title = config.site.title,
   description = config.site.description,
-  img_url = '/images/og_img.jpg'
+  imgUrl = '/images/og_img.jpg'
 }) => {
   return (
     <div>
@@ -16,9 +16,9 @@ export const Seo = ({
           name='viewport'
           content='width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0'
         />
-        {img_url && <link rel='image_src' href={img_url} />}
+        {imgUrl && <link rel='image_src' href={imgUrl} />}
         <meta name='description' content={description} />
-        {img_url && <meta name='image' content={img_url} />}
+        {imgUrl && <meta name='image' content={imgUrl} />}
         <meta property='og:locale' content='ko_KR' />
         <meta property='og:title' content={title} />
         <meta property='og:description' content={description} />
@@ -27,7 +27,7 @@ export const Seo = ({
           property='og:url'
           content={typeof window !== 'undefined' ? window.location.href : ''}
         />
-        {img_url && <meta property='og:image' content={img_url} />}
+        {imgUrl && <meta property='og:image' content={imgUrl} />}
         <meta name='format-detection' content='telephone=no' />
         <meta
           name='google-site-verification'

@@ -53,7 +53,7 @@ describe('Seo 컴포넌트', () => {
   });
 
   it('image 체크', () => {
-    render(<Seo img_url='/images/test-og-img.jpg' />);
+    render(<Seo imgUrl='/images/test-og-img.jpg' />);
 
     const linkImage = document.querySelector('link[rel="image_src"');
     const image = document.querySelector('meta[name="image"]');
