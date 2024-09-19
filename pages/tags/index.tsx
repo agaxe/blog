@@ -42,6 +42,8 @@ export const getStaticProps: GetStaticProps = async (
       revalidate: ISR_REVALIDATE_TIME
     };
   } catch (error) {
+    console.error(error);
+
     return {
       notFound: true
     };

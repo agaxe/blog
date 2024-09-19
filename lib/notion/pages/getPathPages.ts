@@ -3,11 +3,16 @@ import { getPaginationLength } from '@/utils/getPaginationLength';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
 export const getPathPages = async () => {
-  const data = await getPageItems();
-  const items = parseDatabaseItems(data);
-  const pageLength = getPaginationLength(items);
+  try {
+    const data = await getPageItems();
+    const items = parseDatabaseItems(data);
+    const pageLength = getPaginationLength(items);
 
-  return [...Array(pageLength)].map((v, i) => ({
-    params: { pageNum: String(i + 1) }
-  }));
+    return [...Array(pageLength)].map((v, i) => ({
+      params: { pageNum: String(i + 1) }
+    }));
+  } catch (error) {
+    console.error('Error: getPathPages');
+    throw error;
+  }
 };

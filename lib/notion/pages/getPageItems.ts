@@ -23,44 +23,49 @@ export const getPageItems = async (options?: {
   tagName?: string;
   pageSize?: number;
 }) => {
-  const databaseId = process.env.NOTION_DB_ID as string;
-  const tagName = options?.tagName ? convertPascalCase(options?.tagName) : '';
-  const pageSizeNum = options?.pageSize;
+  try {
+    const databaseId = process.env.NOTION_DB_ID as string;
+    const tagName = options?.tagName ? convertPascalCase(options?.tagName) : '';
+    const pageSizeNum = options?.pageSize;
 
-  //* options
-  const filterAnd = [
-    {
-      property: propertyTable.Tags,
-      multi_select: {
-        contains: tagName
-      }
-    }
-  ];
-
-  if (!isDev) {
-    filterAnd.push({
-      property: propertyTable.Status,
-      status: {
-        equals: propertyStatus.Complete
-      }
-    } as any);
-  }
-
-  const request: QueryDatabaseParameters = {
-    database_id: databaseId,
-    filter: {
-      and: filterAnd
-    },
-    sorts: [
+    //* options
+    const filterAnd = [
       {
-        property: propertyTable.CreatedAt,
-        direction: 'descending'
+        property: propertyTable.Tags,
+        multi_select: {
+          contains: tagName
+        }
       }
-    ],
-    page_size: pageSizeNum
-  };
+    ];
 
-  const response = await notionHqClient.databases.query(request);
+    if (!isDev) {
+      filterAnd.push({
+        property: propertyTable.Status,
+        status: {
+          equals: propertyStatus.Complete
+        }
+      } as any);
+    }
 
-  return response.results;
+    const request: QueryDatabaseParameters = {
+      database_id: databaseId,
+      filter: {
+        and: filterAnd
+      },
+      sorts: [
+        {
+          property: propertyTable.CreatedAt,
+          direction: 'descending'
+        }
+      ],
+      page_size: pageSizeNum
+    };
+
+    const response = await notionHqClient.databases.query(request);
+
+    return response.results;
+  } catch (error) {
+    console.error('Error: getPageItems');
+    throw error;
+  }
 };

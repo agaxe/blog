@@ -42,6 +42,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
       revalidate: ISR_REVALIDATE_TIME
     };
   } catch (error) {
+    console.error(error);
+
     return {
       notFound: true
     };

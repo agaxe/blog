@@ -24,27 +24,32 @@ const gatParamsTagPages = async (tag: string) => {
 };
 
 export const getPathTagPages = async (tagName = '') => {
-  const tagItems = await getTagItems();
+  try {
+    const tagItems = await getTagItems();
 
-  // all
-  if (!tagName) {
-    const params = await Promise.all([
-      ...tagItems.map(async (v: any) => {
-        return gatParamsTagPages(v.name);
-      })
-    ]);
+    // all
+    if (!tagName) {
+      const params = await Promise.all([
+        ...tagItems.map(async (v: any) => {
+          return gatParamsTagPages(v.name);
+        })
+      ]);
 
-    return ([] as PathTagPages).concat(...params);
+      return ([] as PathTagPages).concat(...params);
+    }
+
+    // specific
+    const findTag =
+      tagItems.find((tag) => tag.name.toLowerCase() === tagName.toLowerCase())
+        ?.name || '';
+
+    if (!findTag) {
+      throw new Error('tag not found');
+    }
+
+    return gatParamsTagPages(findTag);
+  } catch (error) {
+    console.error('Error: getPathTagPages');
+    throw error;
   }
-
-  // specific
-  const findTag =
-    tagItems.find((tag) => tag.name.toLowerCase() === tagName.toLowerCase())
-      ?.name || '';
-
-  if (!findTag) {
-    throw new Error('tag not found');
-  }
-
-  return gatParamsTagPages(findTag);
 };

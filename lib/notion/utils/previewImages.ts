@@ -9,24 +9,29 @@ import { mapImageUrl } from '@/lib/notion/utils/mapImageUrl';
 export async function getPreviewImageMap(
   recordMap: ExtendedRecordMap
 ): Promise<PreviewImageMap> {
-  const urls: string[] = getPageImageUrls(recordMap, {
-    mapImageUrl
-  }).filter(Boolean);
+  try {
+    const urls: string[] = getPageImageUrls(recordMap, {
+      mapImageUrl
+    }).filter(Boolean);
 
-  const previewImagesMap = Object.fromEntries(
-    await pMap(
-      urls,
-      async (url) => {
-        const cacheKey = normalizeUrl(url);
-        return [cacheKey, await getPreviewImage(url, { cacheKey })];
-      },
-      {
-        concurrency: 8
-      }
-    )
-  );
+    const previewImagesMap = Object.fromEntries(
+      await pMap(
+        urls,
+        async (url) => {
+          const cacheKey = normalizeUrl(url);
+          return [cacheKey, await getPreviewImage(url, { cacheKey })];
+        },
+        {
+          concurrency: 8
+        }
+      )
+    );
 
-  return previewImagesMap;
+    return previewImagesMap;
+  } catch (error) {
+    console.error('Error: getPreviewImageMap');
+    throw error;
+  }
 }
 
 async function createPreviewImage(

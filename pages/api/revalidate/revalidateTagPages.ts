@@ -8,17 +8,22 @@ export const revalidateTagPages = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const queryTagName = (req.query?.tagName as string) || '';
+  try {
+    const queryTagName = (req.query?.tagName as string) || '';
 
-  const revalidate = (arr: PathTagPages = []) => {
-    return arr.map(({ params: { tagName, pageNum } }) => {
-      const path = `/tags/${tagName}/pages/${pageNum}`;
+    const revalidate = (arr: PathTagPages = []) => {
+      return arr.map(({ params: { tagName, pageNum } }) => {
+        const path = `/tags/${tagName}/pages/${pageNum}`;
 
-      res.revalidate(path);
-      return path;
-    });
-  };
+        res.revalidate(path);
+        return path;
+      });
+    };
 
-  const tagPaths = await getPathTagPages(queryTagName);
-  return revalidate(tagPaths);
+    const tagPaths = await getPathTagPages(queryTagName);
+    return revalidate(tagPaths);
+  } catch (error) {
+    console.error('Error: revalidateTagPages');
+    throw error;
+  }
 };
