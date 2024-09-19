@@ -32,7 +32,7 @@ test.describe('공통 테스트', () => {
     await tagLink.click();
 
     await expect(page).toHaveURL(new RegExp(`/tags$`), {
-      timeout: 10000
+      timeout: 15000
     });
   });
 

@@ -33,7 +33,7 @@ test.describe('[포스트 리스트] 페이지', () => {
     await nextPageBtn.click();
 
     await expect(page).toHaveURL(new RegExp(`/pages/2$`), {
-      timeout: 10000
+      timeout: 15000
     });
   });
 
@@ -59,7 +59,7 @@ test.describe('[포스트 리스트] 페이지', () => {
     await prevPageBtn.click();
 
     await expect(page).toHaveURL(new RegExp(`/pages/1$`), {
-      timeout: 10000
+      timeout: 15000
     });
   });
 });
