@@ -10,6 +10,7 @@
     "start:local": "next build && next start",
     "lint": "next lint",
     "test": "jest",
+    "e2e": "yarn playwright test",
     "export": "next export"
   },
   "dependencies": {
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@playwright/test": "^1.47.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.0",

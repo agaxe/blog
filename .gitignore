@@ -41,3 +41,7 @@ _temp
 # seo
 robots.txt
 sitemap*.xml
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
