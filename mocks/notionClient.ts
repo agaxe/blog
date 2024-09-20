@@ -55,7 +55,3 @@ const notionClient = {
 };
 
 export default notionClient;
-
-class Client {
-  async getPage(pageId: string) {}
-}
