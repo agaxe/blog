@@ -2,8 +2,8 @@ import React from 'react';
 import type { GetStaticProps } from 'next';
 import { SWRConfig } from 'swr';
 import { Seo } from '@/components/common/Seo';
-import { Layout } from '@/components/layout/Layout';
 import { MainHeader } from '@/components/layout/MainHeader';
+import { PageLayout } from '@/components/layout/PageLayout';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
@@ -23,7 +23,7 @@ interface HomeProps {
 export default function Home({ items = [], fallback }: HomeProps) {
   return (
     <SWRConfig value={{ fallback }}>
-      <Layout>
+      <PageLayout>
         <Seo />
         <MainHeader />
         <>
@@ -33,7 +33,7 @@ export default function Home({ items = [], fallback }: HomeProps) {
             <div>데이터가 존재하지 않습니다.</div>
           )}
         </>
-      </Layout>
+      </PageLayout>
     </SWRConfig>
   );
 }

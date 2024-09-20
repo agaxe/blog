@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { SWRConfig } from 'swr';
 import { Loading } from '@/components/common/Loading';
 import { Seo } from '@/components/common/Seo';
-import { Layout } from '@/components/layout/Layout';
+import { PageLayout } from '@/components/layout/PageLayout';
 import { TagPageHeader } from '@/components/layout/TagPageHeader';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
@@ -48,7 +48,7 @@ export default function TagDetailPage({
       <Seo title={tagName ? `${pascalTagName} (${postCnt})` : undefined} />
       <Loading isShow={isFallback} />
       {!isFallback && (
-        <Layout>
+        <PageLayout>
           <TagPageHeader tagName={pascalTagName} />
           <div>
             {items.length ? (
@@ -57,7 +57,7 @@ export default function TagDetailPage({
               <div>데이터가 존재하지 않습니다.</div>
             )}
           </div>
-        </Layout>
+        </PageLayout>
       )}
     </SWRConfig>
   );

@@ -51,7 +51,7 @@ test.describe('[메인] 페이지', () => {
   });
 
   test('메인 페이지의 포스트 아이템은 최대 5개 존재한다.', async ({ page }) => {
-    const mainSection = page.locator('[class*="styles__Section"]');
+    const mainSection = page.locator('[class*="styles__MainSection"]');
     const postList = mainSection.locator('ul:nth-child(2)');
 
     const postItems = postList.locator(':scope > li');

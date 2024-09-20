@@ -4,7 +4,7 @@ import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { ExtendedRecordMap } from 'notion-types';
 import { NotionRenderer } from 'react-notion-x';
-import { Layout } from '@/components/layout/Layout';
+import { PageLayout } from '@/components/layout/PageLayout';
 import { NotionTagItem } from '@/components/notion/NotionTagItem';
 import { mapImageUrl } from '@/lib/notion/utils/mapImageUrl';
 import { formatDate } from '@/utils/formatDate';
@@ -31,7 +31,7 @@ const Collection = dynamic(() =>
 
 const NotionPage = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
   return (
-    <Layout>
+    <PageLayout>
       <NotionRenderer
         recordMap={recordMap}
         fullPage={true}
@@ -73,7 +73,7 @@ const NotionPage = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
           }
         }}
       />
-    </Layout>
+    </PageLayout>
   );
 };
 

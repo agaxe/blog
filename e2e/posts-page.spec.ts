@@ -5,7 +5,7 @@ test.describe('[포스트 리스트] 페이지', () => {
     await page.goto('http://127.0.0.1:3000/pages/1');
 
     const postItems = page.locator(
-      '[class*="styles__Section"] > [class*="styles__Wrap"] > ul:nth-child(2) > li'
+      '[class*="styles__MainSection"] > [class*="styles__Wrap"] > ul:nth-child(2) > li'
     );
 
     expect(await postItems.count()).toBeLessThanOrEqual(10);

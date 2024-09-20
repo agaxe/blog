@@ -1,7 +1,7 @@
 import React from 'react';
 import type { GetStaticProps, GetStaticPropsContext } from 'next';
 import { Seo } from '@/components/common/Seo';
-import { Layout } from '@/components/layout/Layout';
+import { PageLayout } from '@/components/layout/PageLayout';
 import { TagList } from '@/components/layout/TagList';
 import { TagPageHeader } from '@/components/layout/TagPageHeader';
 import { getTagItems } from '@/lib/notion/tags/getTagItems';
@@ -17,10 +17,10 @@ export default function TagPage({ tags = [] }: PageProps) {
   return (
     <>
       <Seo title='Tags' />
-      <Layout>
+      <PageLayout>
         <TagPageHeader tagName={'Tags'} />
         <TagList tags={tags} />
-      </Layout>
+      </PageLayout>
     </>
   );
 }

@@ -6,7 +6,7 @@ import type {
 } from 'next';
 import { SWRConfig } from 'swr';
 import { Seo } from '@/components/common/Seo';
-import { Layout } from '@/components/layout/Layout';
+import { PageLayout } from '@/components/layout/PageLayout';
 import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getPathPages } from '@/lib/notion/pages/getPathPages';
@@ -30,15 +30,13 @@ export default function Page({ items = [], fallback }: PageProps) {
   return (
     <SWRConfig value={{ fallback }}>
       <Seo />
-      <Layout>
-        <>
-          {items.length ? (
-            <NotionPageList data={items} />
-          ) : (
-            <div>데이터가 존재하지 않습니다.</div>
-          )}
-        </>
-      </Layout>
+      <PageLayout>
+        {items.length ? (
+          <NotionPageList data={items} />
+        ) : (
+          <div>데이터가 존재하지 않습니다.</div>
+        )}
+      </PageLayout>
     </SWRConfig>
   );
 }

@@ -12,7 +12,7 @@ pages.forEach((pageItem) => {
     await page.goto(pageItem.url);
 
     firstPostItem = page.locator(
-      '[class*="styles__Section"] ul:nth-child(2) > li:first-child'
+      '[class*="styles__MainSection"] ul:nth-child(2) > li:first-child'
     );
   });
 
@@ -47,7 +47,7 @@ pages.forEach((pageItem) => {
     test('포스트 아이템 클릭 시 해당 포스트의 상세 페이지로 이동한다.', async ({
       page
     }) => {
-      const mainSection = page.locator('[class*="styles__Section"]');
+      const mainSection = page.locator('[class*="styles__MainSection"]');
       const firstPostLink = mainSection.locator(
         'ul:nth-child(2) > li:first-child > div > a'
       );
@@ -63,7 +63,7 @@ pages.forEach((pageItem) => {
     test('포스트 아이템의 태그 클릭 시 해당 태그의 포스트 리스트 페이지로 이동한다.', async ({
       page
     }) => {
-      const mainSection = page.locator('[class*="styles__Section"]');
+      const mainSection = page.locator('[class*="styles__MainSection"]');
       const firstPostItem = mainSection.locator(
         'ul:nth-child(2) > li:nth-child(2)'
       );

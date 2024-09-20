@@ -1,7 +1,21 @@
 import styled from 'styled-components';
 import { device } from '@/styles/device';
 
-export const Section = styled.div`
+export const Wrap = styled.div`
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 100%;
+  width: 100%;
+  grid-template-rows: auto var(--layout-footer-h);
+  min-height: 100vh;
+
+  // 모바일 환경 min-height 적용
+  @supports (-webkit-touch-callout: none) {
+    min-height: fill-available;
+  }
+`;
+
+export const MainSection = styled.main`
   padding-top: calc(var(--layout-padding-top) + var(--layout-header-h));
   max-width: var(--layout-inner-w);
   margin: 0 auto;
