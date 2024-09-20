@@ -1,11 +1,11 @@
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 
-export type TagsMap = Map<string, number>;
-export type TagsObj = Record<string, number>;
+export type TagWithCnt = Awaited<ReturnType<typeof getTagsWithPostCnt>>;
+export type TagWithCntObj = Record<string, number>;
 
-export const getTagsWithPostCnt = async (): Promise<TagsMap> => {
+export const getTagsWithPostCnt = async () => {
   try {
-    const tagsMap = new Map();
+    const tagsMap = new Map<string, number>();
     const pages = await getPageItems();
 
     pages.forEach((page) => {

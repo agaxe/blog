@@ -9,8 +9,8 @@ import { SWRConfig } from 'swr';
 import { Loading } from '@/components/common/Loading';
 import { Seo } from '@/components/common/Seo';
 import { PageLayout } from '@/components/layout/PageLayout';
+import { PostListContent } from '@/components/layout/PostListContent';
 import { TagPageHeader } from '@/components/layout/TagPageHeader';
-import { NotionPageList } from '@/components/notion/NotionPageList';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getPathTagPages } from '@/lib/notion/tags/getPathTagPages';
 import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
@@ -52,7 +52,7 @@ export default function TagDetailPage({
           <TagPageHeader tagName={pascalTagName} />
           <div>
             {items.length ? (
-              <NotionPageList data={items} />
+              <PostListContent data={items} />
             ) : (
               <div>데이터가 존재하지 않습니다.</div>
             )}

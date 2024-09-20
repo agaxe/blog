@@ -7,7 +7,7 @@ import type {
 import { SWRConfig } from 'swr';
 import { Seo } from '@/components/common/Seo';
 import { PageLayout } from '@/components/layout/PageLayout';
-import { NotionPageList } from '@/components/notion/NotionPageList';
+import { PostListContent } from '@/components/layout/PostListContent';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getPathPages } from '@/lib/notion/pages/getPathPages';
 import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
@@ -32,7 +32,7 @@ export default function Page({ items = [], fallback }: PageProps) {
       <Seo />
       <PageLayout>
         {items.length ? (
-          <NotionPageList data={items} />
+          <PostListContent data={items} />
         ) : (
           <div>데이터가 존재하지 않습니다.</div>
         )}

@@ -4,7 +4,7 @@ import { SWRConfig } from 'swr';
 import { Seo } from '@/components/common/Seo';
 import { MainHeader } from '@/components/layout/MainHeader';
 import { PageLayout } from '@/components/layout/PageLayout';
-import { NotionPageList } from '@/components/notion/NotionPageList';
+import { PostListContent } from '@/components/layout/PostListContent';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
 import { SwrFallbackKeys } from '@/shared/enums/SwrFallbackKeys';
@@ -28,7 +28,7 @@ export default function Home({ items = [], fallback }: HomeProps) {
         <MainHeader />
         <>
           {items.length ? (
-            <NotionPageList data={items} />
+            <PostListContent data={items} />
           ) : (
             <div>데이터가 존재하지 않습니다.</div>
           )}

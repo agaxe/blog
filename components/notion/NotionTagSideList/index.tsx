@@ -1,11 +1,7 @@
 import React, { ForwardedRef, forwardRef } from 'react';
-import type { TagsObj } from '@/lib/notion/tags/getTagsWithPostCnt';
 import { convertPascalCase } from '@/utils/convertPascalCase';
+import { NotionTagSideListProps } from './interface';
 import * as S from './styles';
-
-interface NotionTagSideListProps {
-  data: TagsObj;
-}
 
 export const NotionTagSideList = forwardRef(
   ({ data }: NotionTagSideListProps, ref?: ForwardedRef<HTMLUListElement>) => {
