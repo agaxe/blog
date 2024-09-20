@@ -6,7 +6,7 @@ import { getPageTitle } from 'notion-utils';
 import { Loading } from '@/components/common/Loading';
 import { Seo } from '@/components/common/Seo';
 import { PageLayout } from '@/components/layout/PageLayout';
-import NotionPage from '@/components/notion/NotionPage';
+import { NotionPage } from '@/components/notion/NotionPage';
 import { getPageItem } from '@/lib/notion/page/getPageItem';
 import { getPathPage } from '@/lib/notion/page/getPathPage';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
