@@ -11,6 +11,7 @@
     "lint": "next lint",
     "test": "jest",
     "e2e": "yarn playwright test",
+    "test:all":"yarn jest && yarn e2e",
     "export": "next export"
   },
   "dependencies": {
