@@ -10,16 +10,18 @@ interface NotionTagSideListProps {
 export const NotionTagSideList = forwardRef(
   ({ data }: NotionTagSideListProps, ref?: ForwardedRef<HTMLUListElement>) => {
     return (
-      <S.List ref={ref}>
-        {Object.entries(data).map(([key, value]) => (
-          <S.Item key={key}>
-            <S.ItemLink href={`/tags/${key}/pages/1`}>
-              <S.Title>{convertPascalCase(key)}</S.Title>
-              <S.Count>({value})</S.Count>
-            </S.ItemLink>
-          </S.Item>
-        ))}
-      </S.List>
+      <S.Wrap>
+        <S.List ref={ref}>
+          {Object.entries(data).map(([key, value]) => (
+            <S.Item key={key}>
+              <S.ItemLink href={`/tags/${key}/pages/1`}>
+                <S.Title>{convertPascalCase(key)}</S.Title>
+                <S.Count>({value})</S.Count>
+              </S.ItemLink>
+            </S.Item>
+          ))}
+        </S.List>
+      </S.Wrap>
     );
   }
 );

@@ -20,7 +20,7 @@ pages.forEach((pageItem) => {
       page
     }) => {
       const sideTagList = page.locator(
-        '[class*="styles__MainSection"] [class*="styles__Wrap"] > ul:first-child'
+        '[class*="styles__MainSection"] [class*="styles__Wrap"] > aside'
       );
       await expect(sideTagList).toBeVisible();
 

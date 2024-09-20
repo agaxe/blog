@@ -2,17 +2,20 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { device } from '@/styles/device';
 
-export const List = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+export const Wrap = styled.aside`
   position: absolute;
   top: 0;
   left: 0;
   transform: translate(calc(-100% - 72px), 0);
+
   ${device('lg')} {
     display: none;
   }
+`;
+
+export const List = styled.ul`
+  display: grid;
+  gap: 16px;
 `;
 
 export const Item = styled.li``;
