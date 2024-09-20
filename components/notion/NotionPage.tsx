@@ -4,7 +4,6 @@ import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { ExtendedRecordMap } from 'notion-types';
 import { NotionRenderer } from 'react-notion-x';
-import { PageLayout } from '@/components/layout/PageLayout';
 import { NotionTagItem } from '@/components/notion/NotionTagItem';
 import { mapImageUrl } from '@/lib/notion/utils/mapImageUrl';
 import { formatDate } from '@/utils/formatDate';
@@ -31,49 +30,47 @@ const Collection = dynamic(() =>
 
 const NotionPage = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
   return (
-    <PageLayout>
-      <NotionRenderer
-        recordMap={recordMap}
-        fullPage={true}
-        darkMode={false}
-        disableHeader={true}
-        minTableOfContentsItems={3}
-        showCollectionViewDropdown={false}
-        showTableOfContents={true}
-        // header={<Header />}
-        // footer={<Footer />}
-        previewImages={!!recordMap.preview_images}
-        mapImageUrl={mapImageUrl}
-        //isLinkCollectionToUrlProperty={false}
-        //linkTableTitleProperties={false}
-        components={{
-          nextLink: Link,
-          nextImage: Image,
-          Code,
-          Collection,
-          propertyCreatedTimeValue: (dateProperty) => {
-            return formatDate(dateProperty.block.created_time);
-          },
-          propertyLastEditedTimeValue: (dateProperty) => {
-            return formatDate(dateProperty.block.last_edited_time);
-          },
-          // 텍스트 속성 return null
-          propertyTextValue: () => {
-            return null;
-          },
-          propertySelectValue: (
-            { schema, value, key, pageHeader, color },
-            defaultFn: () => React.ReactNode
-          ) => {
-            if (pageHeader && schema.type === 'multi_select' && value) {
-              return <NotionTagItem key={key} name={value} color={color} />;
-            }
-
-            return defaultFn();
+    <NotionRenderer
+      recordMap={recordMap}
+      fullPage={true}
+      darkMode={false}
+      disableHeader={true}
+      minTableOfContentsItems={3}
+      showCollectionViewDropdown={false}
+      showTableOfContents={true}
+      // header={<Header />}
+      // footer={<Footer />}
+      previewImages={!!recordMap.preview_images}
+      mapImageUrl={mapImageUrl}
+      //isLinkCollectionToUrlProperty={false}
+      //linkTableTitleProperties={false}
+      components={{
+        nextLink: Link,
+        nextImage: Image,
+        Code,
+        Collection,
+        propertyCreatedTimeValue: (dateProperty) => {
+          return formatDate(dateProperty.block.created_time);
+        },
+        propertyLastEditedTimeValue: (dateProperty) => {
+          return formatDate(dateProperty.block.last_edited_time);
+        },
+        // 텍스트 속성 return null
+        propertyTextValue: () => {
+          return null;
+        },
+        propertySelectValue: (
+          { schema, value, key, pageHeader, color },
+          defaultFn: () => React.ReactNode
+        ) => {
+          if (pageHeader && schema.type === 'multi_select' && value) {
+            return <NotionTagItem key={key} name={value} color={color} />;
           }
-        }}
-      />
-    </PageLayout>
+
+          return defaultFn();
+        }
+      }}
+    />
   );
 };
 

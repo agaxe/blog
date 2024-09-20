@@ -5,6 +5,7 @@ import { ExtendedRecordMap } from 'notion-types';
 import { getPageTitle } from 'notion-utils';
 import { Loading } from '@/components/common/Loading';
 import { Seo } from '@/components/common/Seo';
+import { PageLayout } from '@/components/layout/PageLayout';
 import NotionPage from '@/components/notion/NotionPage';
 import { getPageItem } from '@/lib/notion/page/getPageItem';
 import { getPathPage } from '@/lib/notion/page/getPathPage';
@@ -22,7 +23,11 @@ export default function Post({ recordMap, pageTitle }: PostProps) {
     <>
       <Seo title={pageTitle} />
       <Loading isShow={isFallback} />
-      {!isFallback && <NotionPage recordMap={recordMap} />}
+      {!isFallback && (
+        <PageLayout>
+          <NotionPage recordMap={recordMap} />
+        </PageLayout>
+      )}
     </>
   );
 }
