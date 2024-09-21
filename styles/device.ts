@@ -1,13 +1,13 @@
-export const size: Record<string, number> = {
+export const size = {
   sm: 414,
   md: 768,
   lg: 1176,
   xl: 1440
 };
 
-type DeviceType = 'sm' | 'md' | 'lg' | 'xl' | number;
+type DeviceSize = keyof typeof size | number;
 
-export const device = (width: DeviceType) =>
+export const device = (width: DeviceSize) =>
   `@media(max-width: ${
-    typeof width === 'number' ? `${width}px` : `${size[String(width)]}px`
+    typeof width === 'number' ? `${width}px` : `${size[width]}px`
   })`;
