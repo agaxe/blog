@@ -38,6 +38,6 @@ describe('NotionTagSideList 컴포넌트', () => {
 
     await user.click(secondItemLink);
 
-    expect(mockRouter.asPath).toEqual('/tags/react%20query/pages/1');
+    expect(mockRouter.asPath).toEqual('/tags/react-query/pages/1');
   });
 });

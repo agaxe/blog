@@ -53,16 +53,16 @@ describe('revalidate', () => {
         ],
         ['/pages/1'],
         [
-          '/tags/tag name_1-1/pages/1',
-          '/tags/tag name_1-2/pages/1',
-          '/tags/tag name_2-1/pages/1',
-          '/tags/tag name_2-2/pages/1',
-          '/tags/tag name_3-1/pages/1',
-          '/tags/tag name_3-2/pages/1',
-          '/tags/tag name_4-1/pages/1',
-          '/tags/tag name_4-2/pages/1',
-          '/tags/tag name_5-1/pages/1',
-          '/tags/tag name_5-2/pages/1'
+          '/tags/tag-name_1-1/pages/1',
+          '/tags/tag-name_1-2/pages/1',
+          '/tags/tag-name_2-1/pages/1',
+          '/tags/tag-name_2-2/pages/1',
+          '/tags/tag-name_3-1/pages/1',
+          '/tags/tag-name_3-2/pages/1',
+          '/tags/tag-name_4-1/pages/1',
+          '/tags/tag-name_4-2/pages/1',
+          '/tags/tag-name_5-1/pages/1',
+          '/tags/tag-name_5-2/pages/1'
         ]
       ]
     });
@@ -88,16 +88,16 @@ describe('revalidate', () => {
         '/192ed4071faa47ccbe65878e28af5e3a',
         ['/pages/1'],
         [
-          '/tags/tag name_1-1/pages/1',
-          '/tags/tag name_1-2/pages/1',
-          '/tags/tag name_2-1/pages/1',
-          '/tags/tag name_2-2/pages/1',
-          '/tags/tag name_3-1/pages/1',
-          '/tags/tag name_3-2/pages/1',
-          '/tags/tag name_4-1/pages/1',
-          '/tags/tag name_4-2/pages/1',
-          '/tags/tag name_5-1/pages/1',
-          '/tags/tag name_5-2/pages/1'
+          '/tags/tag-name_1-1/pages/1',
+          '/tags/tag-name_1-2/pages/1',
+          '/tags/tag-name_2-1/pages/1',
+          '/tags/tag-name_2-2/pages/1',
+          '/tags/tag-name_3-1/pages/1',
+          '/tags/tag-name_3-2/pages/1',
+          '/tags/tag-name_4-1/pages/1',
+          '/tags/tag-name_4-2/pages/1',
+          '/tags/tag-name_5-1/pages/1',
+          '/tags/tag-name_5-2/pages/1'
         ]
       ]
     });
@@ -133,7 +133,7 @@ describe('revalidate', () => {
           '/a38132152b6c4281b880019f956cf8e4'
         ],
         ['/pages/1'],
-        ['/tags/tag name_1-2/pages/1']
+        ['/tags/tag-name_1-2/pages/1']
       ]
     });
   });
@@ -158,7 +158,7 @@ describe('revalidate', () => {
         '/',
         '/a38132152b6c4281b880019f956cf8e4',
         ['/pages/1'],
-        ['/tags/tag name_3-2/pages/1']
+        ['/tags/tag-name_3-2/pages/1']
       ]
     });
   });

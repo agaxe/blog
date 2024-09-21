@@ -1,4 +1,5 @@
 import React, { ForwardedRef, forwardRef } from 'react';
+import { convertBlankToHyphen } from '@/utils/convertBlankToHyphen';
 import { convertPascalCase } from '@/utils/convertPascalCase';
 import { NotionTagSideListProps } from './interface';
 import * as S from './styles';
@@ -10,7 +11,7 @@ export const NotionTagSideList = forwardRef(
         <S.List ref={ref}>
           {Object.entries(data).map(([key, value]) => (
             <S.Item key={key}>
-              <S.ItemLink href={`/tags/${key}/pages/1`}>
+              <S.ItemLink href={`/tags/${convertBlankToHyphen(key)}/pages/1`}>
                 <S.Title>{convertPascalCase(key)}</S.Title>
                 <S.Count>({value})</S.Count>
               </S.ItemLink>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { convertBlankToHyphen } from '@/utils/convertBlankToHyphen';
 import { convertPascalCase } from '@/utils/convertPascalCase';
 import { NotionTagItemProps } from './interface';
 import * as S from './styles';
@@ -24,10 +25,12 @@ export const NotionTagItem = ({
     );
   }
 
+  const tagLinkName = convertBlankToHyphen(name.toLowerCase());
+
   return (
     <>
       {isLink ? (
-        <Link href={`/tags/${name.toLowerCase()}/pages/1`}>
+        <Link href={`/tags/${tagLinkName}/pages/1`}>
           <Tag />
         </Link>
       ) : (

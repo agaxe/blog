@@ -3,6 +3,7 @@ import {
   PathTagPages,
   getPathTagPages
 } from '@/lib/notion/tags/getPathTagPages';
+import { convertBlankToHyphen } from '@/utils/convertBlankToHyphen';
 
 export const revalidateTagPages = async (
   req: NextApiRequest,
@@ -13,7 +14,7 @@ export const revalidateTagPages = async (
 
     const revalidate = (arr: PathTagPages = []) => {
       return arr.map(({ params: { tagName, pageNum } }) => {
-        const path = `/tags/${tagName}/pages/${pageNum}`;
+        const path = `/tags/${convertBlankToHyphen(tagName)}/pages/${pageNum}`;
 
         res.revalidate(path);
         return path;

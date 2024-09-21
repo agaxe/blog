@@ -17,6 +17,7 @@ import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
 import { SwrFallbackKeys } from '@/shared/enums/SwrFallbackKeys';
 import { NavPageOptionsFallback } from '@/shared/types/NavPageOptionsFallback';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
+import { convertHyphenToBlank } from '@/utils/convertHyphenToBlank';
 import { convertPascalCase } from '@/utils/convertPascalCase';
 import { getPaginationItems } from '@/utils/getPaginationItems';
 import { getPaginationLength } from '@/utils/getPaginationLength';
@@ -37,7 +38,7 @@ export default function TagDetailPage({
   postCnt = 0
 }: PageProps) {
   const { isFallback } = useRouter();
-  const pascalTagName = convertPascalCase(tagName);
+  const pascalTagName = convertHyphenToBlank(convertPascalCase(tagName));
 
   return (
     <SWRConfig
@@ -68,11 +69,12 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   const { params } = context;
   const pageNum = Number(params?.pageNum) || 0;
-  const tagName = params?.tagName as string;
+  const tagName = (params?.tagName as string) ?? '';
+  const tagNameWithBlank = convertHyphenToBlank(convertPascalCase(tagName));
 
   try {
     const [data, tags] = await Promise.all([
-      await getPageItems({ tagName }),
+      await getPageItems({ tagName: tagNameWithBlank }),
       await getTagsWithPostCnt()
     ]);
 
@@ -83,7 +85,7 @@ export const getStaticProps: GetStaticProps = async (
     return {
       props: {
         items,
-        tagName: convertPascalCase(tagName),
+        tagName: tagNameWithBlank,
         postCnt: data.length,
         fallback: {
           [SwrFallbackKeys.PAGE_OPTIONS]: {

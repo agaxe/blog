@@ -1,5 +1,6 @@
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getTagItems } from '@/lib/notion/tags/getTagItems';
+import { convertBlankToHyphen } from '@/utils/convertBlankToHyphen';
 import { getPaginationLength } from '@/utils/getPaginationLength';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
@@ -11,7 +12,7 @@ export type PathTagPages = {
 }[];
 
 const gatParamsTagPages = async (tag: string) => {
-  const tagName = String(tag).toLowerCase();
+  const tagName = tag.toLowerCase();
   const data = await getPageItems({
     tagName
   });
@@ -19,7 +20,7 @@ const gatParamsTagPages = async (tag: string) => {
   const pageLength = getPaginationLength(items);
 
   return [...Array(pageLength)].map((_, idx) => ({
-    params: { tagName, pageNum: String(idx + 1) }
+    params: { tagName: convertBlankToHyphen(tagName), pageNum: String(idx + 1) }
   }));
 };
 

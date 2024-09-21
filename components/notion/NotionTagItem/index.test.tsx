@@ -73,6 +73,6 @@ describe('NotionTagItem 컴포넌트', () => {
 
     await user.click(tagLink);
 
-    expect(mockRouter.asPath).toEqual('/tags/tag%20name/pages/1');
+    expect(mockRouter.asPath).toEqual('/tags/tag-name/pages/1');
   });
 });
