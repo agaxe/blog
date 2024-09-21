@@ -12,7 +12,7 @@ export const TagList = ({ tags = [] }: TagListProps) => {
     <Wrap>
       {tags.map(({ id, name, color, cnt }) => (
         <TagItem key={id}>
-          <Tag name={name} color={color} size='large' count={cnt} />
+          <Tag name={name} color={color} count={cnt} />
         </TagItem>
       ))}
     </Wrap>

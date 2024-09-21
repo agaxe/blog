@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { NotionTagItemProps } from './interface';
 
 const sizes = {
-  large: css`
+  lg: css`
     font-size: 16px;
     padding: 6px;
     border-radius: 5px;

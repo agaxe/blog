@@ -10,7 +10,7 @@ export const NotionTagItem = ({
   name = '',
   color = 'default',
   isLink = true,
-  size,
+  size = 'lg',
   count = 0
 }: NotionTagItemProps) => {
   function Tag() {

@@ -9,7 +9,7 @@ const defaultMockProps = {
   name: 'tag name',
   isLink: true,
   color: 'pink',
-  size: 'large'
+  size: 'lg'
 } as const;
 
 describe('NotionTagItem 컴포넌트', () => {
