@@ -34,6 +34,16 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
+    env:
+        NOTION_ROOT_PAGE_ID: ${{ secrets.NOTION_ROOT_PAGE_ID }}
+        NOTION_ACTIVE_USER_ID: ${{ secrets.NOTION_ACTIVE_USER_ID }}
+        NOTION_AUTH_TOKEN: ${{ secrets.NOTION_AUTH_TOKEN }}
+        NOTION_API_TOKEN: ${{ secrets.NOTION_API_TOKEN }}
+        NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+        NOTION_PORTFOLIO_PAGE_ID: ${{ secrets.NOTION_PORTFOLIO_PAGE_ID }}
+        BLOG_ODR_TOKEN: ${{ secrets.BLOG_ODR_TOKEN }}
+        NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -59,15 +69,6 @@ jobs:
     
     - name: Build project
       run: yarn build
-      env:
-        NOTION_ROOT_PAGE_ID: ${{ secrets.NOTION_ROOT_PAGE_ID }}
-        NOTION_ACTIVE_USER_ID: ${{ secrets.NOTION_ACTIVE_USER_ID }}
-        NOTION_AUTH_TOKEN: ${{ secrets.NOTION_AUTH_TOKEN }}
-        NOTION_API_TOKEN: ${{ secrets.NOTION_API_TOKEN }}
-        NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
-        NOTION_PORTFOLIO_PAGE_ID: ${{ secrets.NOTION_PORTFOLIO_PAGE_ID }}
-        BLOG_ODR_TOKEN: ${{ secrets.BLOG_ODR_TOKEN }}
-        NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
         
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
