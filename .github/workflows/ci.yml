@@ -1,0 +1,67 @@
+name: CI
+on:
+  push:
+     branches:
+        - refactor # 테스트
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'yarn'
+
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-node-
+        path: '**/node_modules'
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install Packages
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: yarn install  
+
+    - name: Run Unit and Integration Tests
+      run: yarn run test
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'yarn'
+
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-node-
+        path: '**/node_modules'
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install Packages
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: yarn install
+    
+    - name: Build project
+      run: yarn build
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+
+    - name: Start e2e test
+      run: yarn e2e
