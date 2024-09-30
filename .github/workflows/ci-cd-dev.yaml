@@ -12,6 +12,7 @@ jobs:
   deploy-vercel:
     needs: [test]
     uses: ./.github/workflows/deploy-vercel.yaml
+    secrets: inherit
   e2e:
     needs: [deploy-vercel]
     uses: ./.github/workflows/e2e.yaml
