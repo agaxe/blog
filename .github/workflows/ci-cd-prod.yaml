@@ -1,0 +1,15 @@
+name: CI/CD Pipeline (prod)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test:
+    uses: ./.github/workflows/test.yaml
+  deploy-vercel:
+    needs: [test]
+    uses: ./.github/workflows/deploy-vercel.yaml
+    secrets: inherit
