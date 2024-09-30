@@ -8,12 +8,12 @@ on:
       - refactor
 jobs:
   test:
-    uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/test.yaml
   deploy-vercel:
     needs: [test]
-    uses: ./.github/workflows/deploy-vercel.yml
+    uses: ./.github/workflows/deploy-vercel.yaml
   e2e:
     needs: [deploy-vercel]
-    uses: ./.github/workflows/e2e.yml
+    uses: ./.github/workflows/e2e.yaml
     with:
       env: dev 
