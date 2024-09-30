@@ -1,0 +1,36 @@
+name: Unit and Integration Tests
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: false
+        type: number
+        default: 20
+jobs:
+  test:
+     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: 'yarn'
+
+      - name: Cache dependencies
+        id: dependencies-cache
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          path: '**/node_modules'
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Packages
+        if: steps.dependencies-cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - name: Run Unit and Integration Tests
+        run: yarn run test
