@@ -10,31 +10,48 @@ const mockProps = {
 };
 
 describe('NotionTagSideList 컴포넌트', () => {
-  it('태그 목록 렌더링', () => {
-    render(<NotionTagSideList data={mockProps.data} />, {
-      wrapper: MemoryRouterProvider
-    });
+  it('태그 리스트가 표시된다.', () => {
+    render(<NotionTagSideList data={mockProps.data} />);
 
     const list = screen.getByRole('list');
-    const items = screen.getAllByRole('listitem');
-    const firstItemTitle = items[0].querySelector('a > p:first-child');
-    const firstItemCnt = items[0].querySelector('a > p:last-child');
 
     expect(list).toBeInTheDocument;
-    expect(items).toHaveLength(2);
-    expect(firstItemTitle).toHaveTextContent('React');
-    expect(firstItemCnt).toHaveTextContent('(10)');
   });
 
-  it('태그 아이템 링크 클릭', async () => {
+  it('태그 아이템이 데이터 갯수만큼 표시된다.', () => {
+    render(<NotionTagSideList data={mockProps.data} />);
+
+    const items = screen.getAllByRole('listitem');
+
+    expect(items).toHaveLength(2);
+  });
+
+  it('태그 아이템에 태그 이름이 표시된다.', () => {
+    render(<NotionTagSideList data={mockProps.data} />);
+
+    const tagName = screen.getAllByRole('paragraph')[0];
+
+    expect(tagName.textContent).toBe('React');
+  });
+
+  it('태그에 해당하는 포스트 갯수가 표시된다.', () => {
+    render(<NotionTagSideList data={mockProps.data} />);
+
+    const firstItem = screen.getAllByRole('listitem')[0];
+    const tagCnt = firstItem.querySelector('span') as HTMLSpanElement;
+
+    expect(tagCnt.textContent).toBe('(10)');
+  });
+
+  it('태그 아이템을 클릭하면 해당 태그의 포스트 리스트 페이지로 이동한다.', async () => {
     const user = userEvent.setup();
 
     render(<NotionTagSideList data={mockProps.data} />, {
       wrapper: MemoryRouterProvider
     });
 
-    const items = screen.getAllByRole('listitem');
-    const secondItemLink = items[1].querySelector('a') as HTMLAnchorElement;
+    const secondItem = screen.getAllByRole('listitem')[1];
+    const secondItemLink = secondItem.querySelector('a') as HTMLAnchorElement;
 
     await user.click(secondItemLink);
 

@@ -33,7 +33,7 @@ export const Title = styled.p`
   }
 `;
 
-export const Count = styled.p`
+export const Count = styled.span`
   font-size: 12px;
   color: var(--color-gray);
 `;
