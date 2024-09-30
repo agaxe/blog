@@ -1,0 +1,19 @@
+name: CI/CD Pipeline (dev)
+on:
+  push:
+    branches:
+      - refactor
+  pull_request: 
+    branches:
+      - refactor
+jobs:
+  test:
+    uses: ./.github/workflows/jobs/test.yml
+  deploy-vercel:
+    needs: [test]
+    uses: ./.github/workflows/jobs/deploy-vercel.yml
+  e2e:
+    needs: [deploy-vercel]
+    uses: ./.github/workflows/jobs/e2e.yml
+    with:
+      env: dev 
