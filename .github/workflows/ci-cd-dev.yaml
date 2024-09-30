@@ -16,5 +16,6 @@ jobs:
   e2e:
     needs: [deploy-vercel]
     uses: ./.github/workflows/e2e.yaml
+    secrets: inherit
     with:
       env: dev 
