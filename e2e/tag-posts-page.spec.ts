@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(`http://127.0.0.1:3000/tags/react/pages/1`);
+  await page.goto(`/tags/react/pages/1`);
 });
 
 test.describe('[태그 포스트 리스트] 페이지', () => {

@@ -2,11 +2,11 @@ import { expect, test } from '@playwright/test';
 import { size } from '@/styles/device';
 
 const pages = [
-  { name: '메인', url: 'http://127.0.0.1:3000' },
-  { name: '포스트 리스트', url: 'http://127.0.0.1:3000/pages/1' },
+  { name: '메인', url: '/' },
+  { name: '포스트 리스트', url: '/pages/1' },
   {
     name: '특정 태그 포스트 리스트',
-    url: 'http://127.0.0.1:3000/tags/react/pages/1'
+    url: '/tags/react/pages/1'
   }
 ];
 

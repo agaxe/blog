@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 const pages = [
-  { name: '메인', url: 'http://127.0.0.1:3000' },
-  { name: '포스트 리스트', url: 'http://127.0.0.1:3000/pages/1' }
+  { name: '메인', url: '/' },
+  { name: '포스트 리스트', url: '/pages/1' }
 ];
 
 pages.forEach((pageItem) => {
@@ -66,7 +66,7 @@ pages.forEach((pageItem) => {
       await firstPostLink.click();
 
       await expect(page).toHaveURL(new RegExp(`${postLinkHref}$`), {
-        timeout: 15000
+        timeout: 20000
       });
     });
 
@@ -86,7 +86,7 @@ pages.forEach((pageItem) => {
       await tagLink.click();
 
       await expect(page).toHaveURL(new RegExp(`${tagHref}$`), {
-        timeout: 15000
+        timeout: 20000
       });
     });
   });

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('[포스트 리스트] 페이지', () => {
   test('포스트 리스트의 아이템은 최대 10개 존재한다.', async ({ page }) => {
-    await page.goto('http://127.0.0.1:3000/pages/1');
+    await page.goto('/pages/1');
 
     const postItems = page.locator(
       '[class*="styles__MainSection"] > [class*="styles__Wrap"] > ul:nth-child(2) > li'
@@ -14,7 +14,7 @@ test.describe('[포스트 리스트] 페이지', () => {
   test(`다음 페이지가 존재하는 경우 '다음 페이지' 버튼이 존재한다.`, async ({
     page
   }) => {
-    await page.goto('http://127.0.0.1:3000/pages/1');
+    await page.goto('/pages/1');
 
     const nextPageBtn = page.locator('[class*="styles__NextArrowLink"]');
 
@@ -26,7 +26,7 @@ test.describe('[포스트 리스트] 페이지', () => {
   test(`'다음 페이지' 버튼 클릭 시 다음 페이지로 이동한다.`, async ({
     page
   }) => {
-    await page.goto('http://127.0.0.1:3000/pages/1');
+    await page.goto('/pages/1');
 
     const nextPageBtn = page.locator('[class*="styles__NextArrowLink"]');
 
@@ -40,7 +40,7 @@ test.describe('[포스트 리스트] 페이지', () => {
   test(`이전 페이지가 존재하는 경우 '이전 페이지' 버튼이 존재한다.`, async ({
     page
   }) => {
-    await page.goto('http://127.0.0.1:3000/pages/2');
+    await page.goto('/pages/2');
 
     const prevPageBtn = page.locator('[class*="styles__PrevArrowLink"]');
 
@@ -52,7 +52,7 @@ test.describe('[포스트 리스트] 페이지', () => {
   test(`'이전 페이지' 버튼 클릭 시 이전 페이지로 이동한다.`, async ({
     page
   }) => {
-    await page.goto('http://127.0.0.1:3000/pages/2');
+    await page.goto('/pages/2');
 
     const prevPageBtn = page.locator('[class*="styles__PrevArrowLink"]');
 

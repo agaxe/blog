@@ -1,15 +1,19 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'path';
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+const baseUrl: Record<string, string> = {
+  local: 'http://127.0.0.1:3000',
+  dev: 'https://dev-blog-agaxe.vercel.app',
+  prod: 'https://blog-agaxe.vercel.app'
+};
+
 export default defineConfig({
   testDir: './e2e',
   /* Run tests in files in parallel */
@@ -25,8 +29,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    //TODO: baseURL 설정 (script flag 를 통한 환경 구분 처리)
-    // baseURL: 'http://127.0.0.1:3000',
+    baseURL: baseUrl[process.env.APP_ENV ?? 'local'],
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry'

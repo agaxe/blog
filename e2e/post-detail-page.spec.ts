@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('http://127.0.0.1:3000/6231c9937b2e49e18ad6000eeabe7e38', {
+  await page.goto('/6231c9937b2e49e18ad6000eeabe7e38', {
     timeout: 15000
   });
 });
