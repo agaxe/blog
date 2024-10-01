@@ -18,8 +18,8 @@ describe('NotionTagItem 컴포넌트', () => {
 
     const tagItem = document.querySelector('.test-classname');
     const tagLink = document.querySelector('a');
-    const tagNameText = tagItem?.querySelector('p:first-child');
-    const tagCountText = tagItem?.querySelector('p:last-child');
+    const tagNameText = tagItem?.querySelector('p');
+    const tagCountText = tagItem?.querySelector('span');
 
     expect(tagLink).toBeInTheDocument;
 
@@ -28,7 +28,7 @@ describe('NotionTagItem 컴포넌트', () => {
     expect(tagItem).toHaveClass('notion-item-pink');
 
     expect(tagNameText).toHaveTextContent('Tag Name');
-    expect(tagCountText).not.toHaveTextContent('(10)');
+    expect(tagCountText).toBe(null);
   });
 
   it('count 표시', () => {
@@ -42,7 +42,7 @@ describe('NotionTagItem 컴포넌트', () => {
     );
 
     const tagItem = document.querySelector('.test-classname');
-    const tagCountText = tagItem?.querySelector('p:last-child');
+    const tagCountText = tagItem?.querySelector('span');
 
     expect(tagCountText).toHaveTextContent('(10)');
   });

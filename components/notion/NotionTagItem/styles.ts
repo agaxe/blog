@@ -25,7 +25,7 @@ export const Tag = styled.div<Pick<NotionTagItemProps, 'size'>>`
 
 export const Name = styled.p``;
 
-export const Count = styled.p`
+export const Count = styled.span`
   font-size: 14px;
   color: var(--color-gray);
 `;
