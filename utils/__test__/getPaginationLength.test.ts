@@ -1,12 +1,11 @@
-import { beforeAll, describe, expect, it, jest } from '@jest/globals';
 import mockPageItems from '@/mocks/parsePageItems';
 import { getPaginationLength } from '../getPaginationLength';
 
 jest.mock('@/shared/variable', () => ({
-  pageSize: 3
+  pageSize: 3 // 페이지 최대 아이템 개수
 }));
 
-describe('getPaginationLength', () => {
+describe('utils/getPaginationLength', () => {
   let getPaginationLengthFn: typeof getPaginationLength;
 
   beforeAll(async () => {
@@ -15,13 +14,13 @@ describe('getPaginationLength', () => {
     );
   });
 
-  it('총 페이지 수 (아이템 10개, 3개씩)', () => {
+  it('아이템의 개수가 10개면 페이지는 4페이지 존재한다.', () => {
     const pageLength = getPaginationLengthFn(mockPageItems);
 
     expect(pageLength).toBe(4);
   });
 
-  it('총 페이지 수 (아이템 5개, 3개씩)', () => {
+  it('아이템의 개수가 5개면 페이지는 2페이지 존재한다.', () => {
     const items = mockPageItems.filter((_, i) => i > 5);
     const pageLength = getPaginationLengthFn(items);
 

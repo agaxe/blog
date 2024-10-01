@@ -1,22 +1,21 @@
-import { describe, expect, it } from '@jest/globals';
 import { formatDate } from '../formatDate';
 
-describe('formatDate', () => {
-  it('date type', () => {
+describe('utils/formatDate', () => {
+  it('Date 타입을 특정 format 의 날짜로 변환시킨다.', () => {
     const date = new Date('1995-10-05');
 
-    expect(formatDate(date)).toBe('1995년 10월 5일');
+    expect(formatDate(date, 'yyyy년 M월 d일')).toBe('1995년 10월 5일');
   });
 
-  it('timestamp type', () => {
+  it('timestamp 를 특정 format 의 날짜로 변환시킨다.', () => {
     const date = new Date('1995-10-05').getTime();
 
-    expect(formatDate(date)).toBe('1995년 10월 5일');
+    expect(formatDate(date, 'yyyy년 M월 d일')).toBe('1995년 10월 5일');
   });
 
-  it('ISO type', () => {
+  it('ISO 형식을 특정 format 의 날짜로 변환시킨다.', () => {
     const iso = new Date('1995-08-25').toISOString();
 
-    expect(formatDate(iso)).toBe('1995년 8월 25일');
+    expect(formatDate(iso, 'yyyy년 M월 d일')).toBe('1995년 8월 25일');
   });
 });

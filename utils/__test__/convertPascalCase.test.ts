@@ -1,12 +1,11 @@
-import { describe, expect, it } from '@jest/globals';
 import { convertPascalCase } from '../convertPascalCase';
 
-describe('convertPascalCase', () => {
-  it('lower case', () => {
+describe('utils/convertPascalCase', () => {
+  it('lower case 텍스트를 pascal case 로 변환시킨다.', () => {
     expect(convertPascalCase('example text')).toBe('Example Text');
   });
 
-  it('upper case', () => {
+  it('upper case 텍스트를 pascal case 로 변환시킨다.', () => {
     expect(convertPascalCase('EXAMPLE TEXT')).toBe('Example Text');
   });
 });
