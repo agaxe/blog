@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import 'jest-styled-components';
 import mockNotionClient from '@/mocks/notionClient';
 import MockNotionHqClient from '@/mocks/notionHqClient';
 
