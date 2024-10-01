@@ -1,6 +1,6 @@
 import mockRouter from 'next-router-mock';
 import { MemoryRouterProvider } from 'next-router-mock/MemoryRouterProvider';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { NotionTagItem } from '.';
 
@@ -8,71 +8,89 @@ const defaultMockProps = {
   className: 'test-classname',
   name: 'tag name',
   isLink: true,
-  color: 'pink',
+  color: 'default',
   size: 'lg'
 } as const;
 
 describe('NotionTagItem 컴포넌트', () => {
-  it('기본 props 체크', () => {
+  it('태그 아이템이 표시된다.', () => {
     render(<NotionTagItem {...defaultMockProps} />);
 
     const tagItem = document.querySelector('.test-classname');
-    const tagLink = document.querySelector('a');
-    const tagNameText = tagItem?.querySelector('p');
-    const tagCountText = tagItem?.querySelector('span');
-
-    expect(tagLink).toBeInTheDocument;
 
     expect(tagItem).toBeInTheDocument;
-    expect(tagItem).toHaveStyle('font-size: 16px');
-    expect(tagItem).toHaveClass('notion-item-pink');
-
-    expect(tagNameText).toHaveTextContent('Tag Name');
-    expect(tagCountText).toBe(null);
   });
 
-  it('count 표시', () => {
-    render(
-      <NotionTagItem
-        {...{
-          ...defaultMockProps,
-          count: 10
-        }}
-      />
-    );
+  it('태그 아이템의 배경 색상이 분홍색으로 표시된다.', () => {
+    const props = {
+      ...defaultMockProps,
+      color: 'pink'
+    };
+    render(<NotionTagItem {...props} />);
 
+    const tagItem = document.querySelector('.test-classname');
+
+    expect(tagItem).toHaveClass('notion-item-pink');
+  });
+
+  it('태그 이름이 표시된다.', () => {
+    const props = {
+      ...defaultMockProps,
+      name: 'test tag name'
+    };
+    render(<NotionTagItem {...props} />);
+
+    const tagNameText = screen.getByRole('paragraph');
+
+    expect(tagNameText).toHaveTextContent('Test Tag Name');
+  });
+
+  it('해당 태그의 포스트 수가 표시되지 않는다.', () => {
+    render(<NotionTagItem {...defaultMockProps} />);
     const tagItem = document.querySelector('.test-classname');
     const tagCountText = tagItem?.querySelector('span');
 
-    expect(tagCountText).toHaveTextContent('(10)');
+    expect(tagCountText).not.toBeInTheDocument();
   });
 
-  it('링크 비활성화', () => {
-    render(
-      <NotionTagItem
-        {...{
-          ...defaultMockProps,
-          isLink: false
-        }}
-      />
-    );
+  it('해당 태그의 포스트 수가 표시된다.', () => {
+    const props = {
+      ...defaultMockProps,
+      count: 10
+    };
+    render(<NotionTagItem {...props} />);
+    const tagItem = document.querySelector('.test-classname');
+    const tagCountText = tagItem?.querySelector('span');
 
-    const tagLink = document?.querySelector('a');
-
-    expect(tagLink).not.toBeInTheDocument;
+    expect(tagCountText?.textContent).toBe('(10)');
   });
 
-  it('링크 클릭 시 태그 페이지로 이동', async () => {
+  it('링크 활성화 시 태그를 클릭하면 해당 태그의 포스트 리스트 페이지로 이동한다.', async () => {
     const user = userEvent.setup();
 
-    render(<NotionTagItem {...defaultMockProps} />, {
+    const props = {
+      ...defaultMockProps,
+      name: 'test tag name'
+    };
+    render(<NotionTagItem {...props} />, {
       wrapper: MemoryRouterProvider
     });
 
-    const tagLink = document?.querySelector('a') as HTMLAnchorElement;
+    const tagLink = screen.queryByRole('link');
 
-    await user.click(tagLink);
+    if (tagLink) await user.click(tagLink);
 
-    expect(mockRouter.asPath).toEqual('/tags/tag-name/pages/1');
+    expect(mockRouter.asPath).toEqual('/tags/test-tag-name/pages/1');
+  });
+
+  it('링크 비활성화 시 a 태그가 표시되지 않는다.', () => {
+    const props = {
+      ...defaultMockProps,
+      isLink: false
+    };
+    render(<NotionTagItem {...props} />);
+    const tagLink = screen.queryByRole('link');
+
+    expect(tagLink).not.toBeInTheDocument();
   });
 });

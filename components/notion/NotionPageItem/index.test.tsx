@@ -33,19 +33,26 @@ describe('NotionPageItem 컴포넌트', () => {
     expect(tagList).toBeInTheDocument;
   });
 
-  it('태그 아이템이 표시된다.', () => {
+  it('태그 아이템이 데이터 개수인 2개가 표시된다.', () => {
     render(<NotionPageItem data={parsePageItems[0]} />);
 
     const tagItems = screen.getAllByRole('listitem');
-    const [tagItem1, tagItem2] = tagItems;
 
     expect(tagItems).toHaveLength(2);
-
-    expect(tagItem1.textContent).toBe('Tag Name_1-1');
-    expect(tagItem2.textContent).toBe('Tag Name_1-2');
   });
 
-  it('태그 아이템마다 배경색 class 가 설정된다.', () => {
+  it('태그 아이템에 태그 이름이 표시된다.', () => {
+    render(<NotionPageItem data={parsePageItems[0]} />);
+
+    const tagItems = screen.getAllByRole('listitem');
+    const tagText1 = tagItems[0].querySelector('p') as HTMLParagraphElement;
+    const tagText2 = tagItems[1].querySelector('p') as HTMLParagraphElement;
+
+    expect(tagText1.textContent).toBe('Tag Name_1-1');
+    expect(tagText2.textContent).toBe('Tag Name_1-2');
+  });
+
+  it('태그 아이템마다 배경색이 설정된다.', () => {
     render(<NotionPageItem data={parsePageItems[0]} />);
 
     const tagItems = screen.getAllByRole('listitem');

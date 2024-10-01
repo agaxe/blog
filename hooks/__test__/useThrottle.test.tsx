@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { fireEvent, render, renderHook, screen } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
 import { useThrottle } from '../useThrottle';
 
 jest.useFakeTimers();

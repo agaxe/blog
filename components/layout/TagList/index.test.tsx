@@ -3,25 +3,37 @@ import tagsWithCnt from '@/mocks/tagsWithCnt';
 import { TagList } from '.';
 
 describe('TagList 컴포넌트', () => {
-  it('props 체크', () => {
+  it('태그 리스트가 존재한다.', () => {
     render(<TagList tags={tagsWithCnt} />);
 
     const list = screen.getByRole('list');
-    const items = screen.getAllByRole('listitem');
-
-    const item1 = items[0].querySelector('.notion-item-default');
-    const item2 = items[1].querySelector('.notion-item-pink');
-
-    const itemCnt1 = item1?.querySelector('p:last-child');
-    const itemCnt2 = item2?.querySelector('p:last-child');
 
     expect(list).toBeInTheDocument;
+  });
+
+  it('태그 아이템이 데이터 개수인 2개가 존재한다.', () => {
+    render(<TagList tags={tagsWithCnt} />);
+
+    const items = screen.getAllByRole('listitem');
+
     expect(items).toHaveLength(2);
+  });
 
-    expect(item1).toHaveTextContent('Test1');
-    expect(item2).toHaveTextContent('Test Name');
+  it('PascalCase 형식의 태그 이름이 표시된다.', () => {
+    render(<TagList tags={tagsWithCnt} />);
 
-    expect(itemCnt1).toHaveTextContent('(1)');
-    expect(itemCnt2).toHaveTextContent('(5)');
+    const tagName = screen.getAllByRole('paragraph');
+
+    expect(tagName[0].textContent).toBe('Test1');
+    expect(tagName[1].textContent).toBe('Test Name');
+  });
+
+  it('해당 태그의 포스트 수가 표시된다.', () => {
+    render(<TagList tags={tagsWithCnt} />);
+
+    const tagCnt = document.querySelectorAll('span');
+
+    expect(tagCnt[0].textContent).toBe('(1)');
+    expect(tagCnt[1].textContent).toBe('(5)');
   });
 });
