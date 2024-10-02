@@ -31,9 +31,10 @@ describe('TagList 컴포넌트', () => {
   it('해당 태그의 포스트 수가 표시된다.', () => {
     render(<TagList tags={tagsWithCnt} />);
 
-    const tagCnt = document.querySelectorAll('span');
+    const firstTagCnt = screen.getByText('(1)', { selector: 'span' });
+    const secondTagCnt = screen.getByText('(5)', { selector: 'span' });
 
-    expect(tagCnt[0].textContent).toBe('(1)');
-    expect(tagCnt[1].textContent).toBe('(5)');
+    expect(firstTagCnt).toBeInTheDocument;
+    expect(secondTagCnt).toBeInTheDocument;
   });
 });

@@ -16,6 +16,7 @@ export const NotionTagItem = ({
   function Tag() {
     return (
       <S.Tag
+        data-testid='notion-tag-item'
         className={`${className} notion-property-multi_select-item notion-item-${color}`}
         size={size}
       >
@@ -30,7 +31,10 @@ export const NotionTagItem = ({
   return (
     <>
       {isLink ? (
-        <Link href={`/tags/${tagLinkName}/pages/1`}>
+        <Link
+          data-testid='notion-tag-item-link'
+          href={`/tags/${tagLinkName}/pages/1`}
+        >
           <Tag />
         </Link>
       ) : (

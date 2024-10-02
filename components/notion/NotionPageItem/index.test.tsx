@@ -44,12 +44,15 @@ describe('NotionPageItem 컴포넌트', () => {
   it('태그 아이템에 태그 이름이 표시된다.', () => {
     render(<NotionPageItem data={parsePageItems[0]} />);
 
-    const tagItems = screen.getAllByRole('listitem');
-    const tagText1 = tagItems[0].querySelector('p') as HTMLParagraphElement;
-    const tagText2 = tagItems[1].querySelector('p') as HTMLParagraphElement;
+    const firstTagName = screen.getByText('Tag Name_1-1', {
+      selector: 'p'
+    });
+    const secondTagName = screen.getByText('Tag Name_1-2', {
+      selector: 'p'
+    });
 
-    expect(tagText1.textContent).toBe('Tag Name_1-1');
-    expect(tagText2.textContent).toBe('Tag Name_1-2');
+    expect(firstTagName).toBeInTheDocument();
+    expect(secondTagName).toBeInTheDocument();
   });
 
   it('태그 아이템마다 배경색이 설정된다.', () => {
@@ -84,7 +87,7 @@ describe('NotionPageItem 컴포넌트', () => {
   it(`작성 완료 포스트의 경우 '작성중' 표시가 표시되지 않는다.`, () => {
     render(<NotionPageItem data={parsePageItems[0]} />);
 
-    const completBox = document.querySelector('complete-box');
+    const completBox = screen.queryByTestId('complete-box');
 
     expect(completBox).not.toBeInTheDocument;
   });
@@ -94,7 +97,7 @@ describe('NotionPageItem 컴포넌트', () => {
       <NotionPageItem data={{ ...parsePageItems[0], isCompleted: false }} />
     );
 
-    const completBox = document.querySelector('complete-box');
+    const completBox = screen.getByTestId('complete-box');
 
     expect(completBox).toBeInTheDocument;
   });

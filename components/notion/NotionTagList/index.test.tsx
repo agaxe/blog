@@ -30,11 +30,9 @@ describe('NotionTagList 컴포넌트', () => {
       wrapper: MemoryRouterProvider
     });
 
-    const itemLink = screen
-      .getAllByRole('listitem')[0]
-      .querySelector('a') as HTMLAnchorElement;
+    const firstitemLink = screen.getAllByTestId('notion-tag-item-link')[0];
 
-    await user.click(itemLink);
+    await user.click(firstitemLink);
 
     expect(mockRouter.asPath).toEqual('/tags/react-query/pages/1');
   });

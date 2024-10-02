@@ -16,7 +16,7 @@ describe('NotionTagItem 컴포넌트', () => {
   it('태그 아이템이 표시된다.', () => {
     render(<NotionTagItem {...defaultMockProps} />);
 
-    const tagItem = document.querySelector('.test-classname');
+    const tagItem = screen.getByTestId('notion-tag-item');
 
     expect(tagItem).toBeInTheDocument;
   });
@@ -28,7 +28,7 @@ describe('NotionTagItem 컴포넌트', () => {
     };
     render(<NotionTagItem {...props} />);
 
-    const tagItem = document.querySelector('.test-classname');
+    const tagItem = screen.getByTestId('notion-tag-item');
 
     expect(tagItem).toHaveClass('notion-item-pink');
   });
@@ -47,7 +47,8 @@ describe('NotionTagItem 컴포넌트', () => {
 
   it('해당 태그의 포스트 수가 표시되지 않는다.', () => {
     render(<NotionTagItem {...defaultMockProps} />);
-    const tagItem = document.querySelector('.test-classname');
+
+    const tagItem = screen.getByTestId('notion-tag-item');
     const tagCountText = tagItem?.querySelector('span');
 
     expect(tagCountText).not.toBeInTheDocument();
@@ -59,10 +60,10 @@ describe('NotionTagItem 컴포넌트', () => {
       count: 10
     };
     render(<NotionTagItem {...props} />);
-    const tagItem = document.querySelector('.test-classname');
-    const tagCountText = tagItem?.querySelector('span');
 
-    expect(tagCountText?.textContent).toBe('(10)');
+    const tagCountText = screen.getByText('(10)');
+
+    expect(tagCountText).toBeInTheDocument();
   });
 
   it('링크 활성화 시 태그를 클릭하면 해당 태그의 포스트 리스트 페이지로 이동한다.', async () => {

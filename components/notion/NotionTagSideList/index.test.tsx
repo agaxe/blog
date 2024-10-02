@@ -37,10 +37,9 @@ describe('NotionTagSideList 컴포넌트', () => {
   it('태그에 해당하는 포스트 갯수가 표시된다.', () => {
     render(<NotionTagSideList data={mockProps.data} />);
 
-    const firstItem = screen.getAllByRole('listitem')[0];
-    const tagCnt = firstItem.querySelector('span') as HTMLSpanElement;
+    const tagCnt = screen.queryByText('(10)', { selector: 'span' });
 
-    expect(tagCnt.textContent).toBe('(10)');
+    expect(tagCnt).toBeInTheDocument();
   });
 
   it('태그 아이템을 클릭하면 해당 태그의 포스트 리스트 페이지로 이동한다.', async () => {
