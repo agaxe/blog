@@ -19,9 +19,7 @@ pages.forEach((pageItem) => {
     test('브라우저 넓이가 lg 이하인 경우 사이드 태그 리스트 hide', async ({
       page
     }) => {
-      const sideTagList = page.locator(
-        '[class*="styles__MainSection"] [class*="styles__Wrap"] > aside'
-      );
+      const sideTagList = page.getByTestId('side-tag-list');
       await expect(sideTagList).toBeVisible();
 
       await page.setViewportSize({ width: size.lg, height: 600 });

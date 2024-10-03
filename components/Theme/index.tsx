@@ -7,7 +7,7 @@ export const Theme = () => {
 
   return (
     <S.Theme>
-      <S.Button onClick={toggleTheme}>
+      <S.Button onClick={toggleTheme} data-testid='theme-btn'>
         {theme === 'dark' ? (
           <S.LightIcon name='sun' />
         ) : (

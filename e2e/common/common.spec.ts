@@ -8,7 +8,7 @@ test.describe('공통 테스트', () => {
   test('Y 축 스크롤 값이 헤더 높이보다 큰 경우, 헤더가 상단으로 사라진다.', async ({
     page
   }) => {
-    const header = page.locator('header');
+    const header = page.getByRole('banner');
     const headerSize = await header.boundingBox();
 
     if (!headerSize?.height) return;
@@ -26,7 +26,7 @@ test.describe('공통 테스트', () => {
   });
 
   test('헤더의 태그 링크 클릭 시 태그 페이지로 이동한다.', async ({ page }) => {
-    const headerNav = page.locator('header nav');
+    const headerNav = page.getByRole('banner').getByRole('navigation');
     const tagLink = headerNav.getByRole('link', { name: /tags/i });
 
     await tagLink.click();
@@ -51,8 +51,7 @@ test.describe('공통 테스트', () => {
       return [theme, themeStorage, themeBg];
     };
 
-    const headerNav = page.locator('header nav');
-    const themeBtn = headerNav.locator('[class*="styles__Theme"] > button');
+    const themeBtn = page.getByTestId('theme-btn');
 
     // 라이트 -> 다크
     await themeBtn.click();
@@ -74,7 +73,7 @@ test.describe('공통 테스트', () => {
   });
 
   test('검색 버튼 클릭 시 검색 모달이 생성된다.', async ({ page }) => {
-    const searchBtn = page.locator('nav [class*="styles__Search"] > button');
+    const searchBtn = page.getByTestId('search-btn');
 
     await searchBtn.click();
 

@@ -13,9 +13,9 @@ export const NotionPageList = ({
   listHeight
 }: NotionPageListProps) => {
   return (
-    <S.List height={listHeight}>
+    <S.List height={listHeight} data-testid='post-list'>
       {data.map((item) => (
-        <S.Item key={item.id}>
+        <S.Item key={item.id} data-testid='post-item'>
           <NotionPageItem data={item} />
         </S.Item>
       ))}

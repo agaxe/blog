@@ -14,7 +14,7 @@ export const Search = () => {
 
   return (
     <S.Search>
-      <S.Button onClick={() => setIsShowModal(true)}>
+      <S.Button onClick={() => setIsShowModal(true)} data-testid='search-btn'>
         <S.SearchIcon name='search' />
       </S.Button>
       {isShowModal && (

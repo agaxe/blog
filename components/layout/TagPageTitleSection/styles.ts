@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const wrap = styled.div`
+export const wrap = styled.section`
   height: var(--layout-page-header-h);
   display: flex;
   align-items: center;

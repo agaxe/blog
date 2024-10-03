@@ -14,7 +14,9 @@ export const NotionPageItem = ({ data }: NotionPageItem) => {
     <S.Wrap>
       <S.ItemLink href={`/${id}`} />
       <S.PageTitle>{title}</S.PageTitle>
-      <S.PageDate>{formatDate(createdAt)}</S.PageDate>
+      <S.PageDate data-testid='post-item-date'>
+        {formatDate(createdAt)}
+      </S.PageDate>
       <NotionTagList tags={tags} />
       {!isCompleted ? <S.CompletedBox data-testid='complete-box' /> : null}
     </S.Wrap>

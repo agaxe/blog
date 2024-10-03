@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Icon } from '@/components/common/Icon';
 import { device } from '@/styles/device';
 
-export const MainHeader = styled.div`
+export const IntroduceSection = styled.section`
   min-height: var(--layout-page-header-h);
   display: flex;
   align-items: center;

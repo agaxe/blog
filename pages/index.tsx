@@ -2,7 +2,7 @@ import React from 'react';
 import type { GetStaticProps } from 'next';
 import { SWRConfig } from 'swr';
 import { Seo } from '@/components/common/Seo';
-import { MainHeader } from '@/components/layout/MainHeader';
+import { MainTitleSection } from '@/components/layout/MainTitleSection';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PostListContent } from '@/components/layout/PostListContent';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
@@ -25,7 +25,7 @@ export default function Home({ items = [], fallback }: HomeProps) {
     <SWRConfig value={{ fallback }}>
       <PageLayout>
         <Seo />
-        <MainHeader />
+        <MainTitleSection />
         <>
           {items.length ? (
             <PostListContent data={items} />

@@ -1,20 +1,19 @@
 import React from 'react';
 import config from '@/config';
-import { Icon } from '@/components/common/Icon';
 import { Profile } from '@/components/common/Profile';
 import { convertPascalCase } from '@/utils/convertPascalCase';
 import * as S from './styles';
 
-export const MainHeader = () => {
+export const MainTitleSection = () => {
   return (
-    <S.MainHeader>
+    <S.IntroduceSection data-testid='introduce-section'>
       <Profile />
       <S.IntroduceWrap>
         <S.Title>{convertPascalCase(config.name)}</S.Title>
         <S.Description>{config.site.description}</S.Description>
         <S.LinkList>
           {config.social.map(({ name, url }) => (
-            <S.LinkItem key={name}>
+            <S.LinkItem key={name} data-testid={`${name}-link-item`}>
               <S.SnsLink href={url} target='_blank' rel='noreferrer'>
                 <S.SnsIcon name={name} />
               </S.SnsLink>
@@ -22,6 +21,6 @@ export const MainHeader = () => {
           ))}
         </S.LinkList>
       </S.IntroduceWrap>
-    </S.MainHeader>
+    </S.IntroduceSection>
   );
 };

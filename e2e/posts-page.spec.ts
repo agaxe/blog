@@ -4,9 +4,7 @@ test.describe('[포스트 리스트] 페이지', () => {
   test('포스트 리스트의 아이템은 최대 10개 존재한다.', async ({ page }) => {
     await page.goto('/pages/1');
 
-    const postItems = page.locator(
-      '[class*="styles__MainSection"] > [class*="styles__Wrap"] > ul:nth-child(2) > li'
-    );
+    const postItems = page.getByTestId('post-item');
 
     expect(await postItems.count()).toBeLessThanOrEqual(10);
   });
@@ -16,9 +14,7 @@ test.describe('[포스트 리스트] 페이지', () => {
   }) => {
     await page.goto('/pages/1');
 
-    const nextPageBtn = page.locator('[class*="styles__NextArrowLink"]');
-
-    if ((await nextPageBtn.count()) === 0) return;
+    const nextPageBtn = page.getByTestId('navigation-next-btn');
 
     await expect(nextPageBtn).toBeVisible();
   });
@@ -28,7 +24,7 @@ test.describe('[포스트 리스트] 페이지', () => {
   }) => {
     await page.goto('/pages/1');
 
-    const nextPageBtn = page.locator('[class*="styles__NextArrowLink"]');
+    const nextPageBtn = page.getByTestId('navigation-next-btn');
 
     await nextPageBtn.click();
 
@@ -42,9 +38,7 @@ test.describe('[포스트 리스트] 페이지', () => {
   }) => {
     await page.goto('/pages/2');
 
-    const prevPageBtn = page.locator('[class*="styles__PrevArrowLink"]');
-
-    if ((await prevPageBtn.count()) === 0) return;
+    const prevPageBtn = page.getByTestId('navigation-prev-btn');
 
     await expect(prevPageBtn).toBeVisible();
   });
@@ -54,7 +48,7 @@ test.describe('[포스트 리스트] 페이지', () => {
   }) => {
     await page.goto('/pages/2');
 
-    const prevPageBtn = page.locator('[class*="styles__PrevArrowLink"]');
+    const prevPageBtn = page.getByTestId('navigation-prev-btn');
 
     await prevPageBtn.click();
 

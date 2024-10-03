@@ -10,7 +10,7 @@ import { Loading } from '@/components/common/Loading';
 import { Seo } from '@/components/common/Seo';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PostListContent } from '@/components/layout/PostListContent';
-import { TagPageHeader } from '@/components/layout/TagPageHeader';
+import { TagPageTitleSection } from '@/components/layout/TagPageTitleSection';
 import { getPageItems } from '@/lib/notion/pages/getPageItems';
 import { getPathTagPages } from '@/lib/notion/tags/getPathTagPages';
 import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
@@ -50,7 +50,7 @@ export default function TagDetailPage({
       <Loading isShow={isFallback} />
       {!isFallback && (
         <PageLayout>
-          <TagPageHeader tagName={pascalTagName} />
+          <TagPageTitleSection tagName={pascalTagName} />
           <div>
             {items.length ? (
               <PostListContent data={items} />

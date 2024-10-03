@@ -21,6 +21,7 @@ export const Navigation = ({ className = '', options }: NavigationProps) => {
             <>
               {options?.pageNum !== 1 && (
                 <S.PrevArrowLink
+                  data-testid='navigation-prev-btn'
                   href={`${pagePath}/pages/${options?.pageNum - 1}`}
                 >
                   <S.ArrowIcon name='arrow-left' />
@@ -28,6 +29,7 @@ export const Navigation = ({ className = '', options }: NavigationProps) => {
               )}
               {options?.pageNum !== options?.pageLength && (
                 <S.NextArrowLink
+                  data-testid='navigation-next-btn'
                   href={`${pagePath}/pages/${String(options?.pageNum + 1)}`}
                 >
                   <S.ArrowIcon name='arrow-right' />

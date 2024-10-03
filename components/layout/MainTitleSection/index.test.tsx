@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { MainHeader } from '.';
+import { MainTitleSection } from '.';
 
-describe('MainHeader 컴포넌트', () => {
+describe('MainTitleSection 컴포넌트', () => {
   it('타이틀 영역에 타이틀 정보가 표시된다.', () => {
-    render(<MainHeader />);
+    render(<MainTitleSection />);
 
     const title = screen.getByRole('heading', { level: 3 });
 
@@ -11,7 +11,7 @@ describe('MainHeader 컴포넌트', () => {
   });
 
   it('설명글 영역에 설명글 정보가 표시된다.', () => {
-    render(<MainHeader />);
+    render(<MainTitleSection />);
 
     const description = screen.getByRole('paragraph');
 
@@ -21,7 +21,7 @@ describe('MainHeader 컴포넌트', () => {
   });
 
   it('깃허브, 메일 링크가 존재한다.', () => {
-    render(<MainHeader />);
+    render(<MainTitleSection />);
     const list = screen.getByRole('list');
     const items = screen.getAllByRole('listitem');
     const [githubLink, emailLink] = screen.getAllByRole('link');

@@ -3,7 +3,7 @@ import type { GetStaticProps, GetStaticPropsContext } from 'next';
 import { Seo } from '@/components/common/Seo';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { TagList } from '@/components/layout/TagList';
-import { TagPageHeader } from '@/components/layout/TagPageHeader';
+import { TagPageTitleSection } from '@/components/layout/TagPageTitleSection';
 import { getTagItems } from '@/lib/notion/tags/getTagItems';
 import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
 import type { TagsWithCnt } from '@/shared/types/TagsWithCnt';
@@ -18,7 +18,7 @@ export default function TagPage({ tags = [] }: PageProps) {
     <>
       <Seo title='Tags' />
       <PageLayout>
-        <TagPageHeader tagName={'Tags'} />
+        <TagPageTitleSection tagName={'Tags'} />
         <TagList tags={tags} />
       </PageLayout>
     </>

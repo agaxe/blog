@@ -24,7 +24,7 @@ export const PostListContent = ({ data }: PostListContentProps) => {
   const hasTags = tags && Object.entries(tags || {}).length > 0;
 
   return (
-    <S.Wrap>
+    <S.Wrap data-testid='post-list-content'>
       {hasData && (
         <>
           {hasTags && <NotionTagSideList data={tags} ref={tagSideListRef} />}

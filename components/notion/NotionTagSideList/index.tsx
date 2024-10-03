@@ -7,7 +7,7 @@ import * as S from './styles';
 export const NotionTagSideList = forwardRef(
   ({ data }: NotionTagSideListProps, ref?: ForwardedRef<HTMLUListElement>) => {
     return (
-      <S.Wrap>
+      <S.Wrap data-testid='side-tag-list'>
         <S.List ref={ref}>
           {Object.entries(data).map(([key, value]) => (
             <S.Item key={key}>

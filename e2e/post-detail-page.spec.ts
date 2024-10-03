@@ -42,6 +42,7 @@ test.describe('[포스트 상세] 페이지', () => {
       '.notion-property-multi_select > a:first-child'
     );
     const tagName = await tagLink.textContent();
+
     await tagLink.click();
 
     await expect(page).toHaveURL(
