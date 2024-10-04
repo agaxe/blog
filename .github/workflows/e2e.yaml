@@ -43,7 +43,7 @@ jobs:
             
     - name: Install Packages
       if: steps.dependencies-cache.outputs.cache-hit != 'true'
-      run: yarn install
+      run: yarn install --immutable --immutable-cache --check-cache
 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
