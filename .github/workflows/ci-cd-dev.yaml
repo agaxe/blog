@@ -1,11 +1,9 @@
 name: CI/CD Pipeline (dev)
 on:
   push:
-    branches:
-      - refactor
+    branches: [dev]
   pull_request: 
-    branches:
-      - refactor
+    branches: [dev]
 jobs:
   test:
     uses: ./.github/workflows/test.yaml

@@ -2,7 +2,7 @@
   "git": {
     "deploymentEnabled": {
       "main": false,
-      "refactor": false
+      "dev": false
     }
   }
 }
