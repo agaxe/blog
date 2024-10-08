@@ -4,7 +4,7 @@ import { NotionTagItemProps } from './interface';
 const sizes = {
   lg: css`
     font-size: 16px;
-    padding: 6px;
+    padding: 4px 6px;
     border-radius: 5px;
   `
 };
