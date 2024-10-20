@@ -11,7 +11,7 @@ export const notion = css`
   .notion-app {
     ul,
     li {
-      list-style: inherit;
+      list-style: revert;
     }
 
     li {
