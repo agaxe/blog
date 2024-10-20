@@ -38,6 +38,9 @@ const propsComponents: Partial<NotionComponents> = {
   propertyTextValue: () => {
     return null;
   },
+  propertyRelationValue: () => {
+    return null;
+  },
   propertySelectValue: (
     { schema, value, key, pageHeader, color },
     defaultFn: () => React.ReactNode
