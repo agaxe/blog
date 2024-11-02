@@ -51,6 +51,37 @@ const notionClient = {
       },
       role: 'reader'
     }
+  },
+  getPage: (pageId?: string) => {
+    return {
+      block: {
+        'a811a8e5-81fe-4ab3-bee6-a8bc90b87ee3': {
+          value: {
+            id: 'a811a8e5-81fe-4ab3-bee6-a8bc90b87ee3',
+            version: 141,
+            type: 'page',
+            properties: {
+              title: [['페이지 타이틀']]
+            },
+            content: [
+              '0d0cdc08-4d00-487d-97ac-25a3edcf1475',
+              '4927d476-8d17-4c94-99e6-d0e32fb510d2'
+            ],
+            created_time: 1728743491013,
+            last_edited_time: 1729418785912,
+            parent_id: 'bf5ce25b-434a-471d-bb7d-f4b7b29989b6',
+            parent_table: 'collection',
+            alive: true,
+            space_id: '06c03449-b433-4e74-b5f4-ba542d7f233e'
+          },
+          role: 'reader'
+        },
+        space: { '992dbdb3-7c86-49bb-9cae-6eaf5ed1e206': { role: 'none' } },
+        notion_user: {},
+        collection_query: {},
+        signed_urls: {}
+      }
+    };
   }
 };
 

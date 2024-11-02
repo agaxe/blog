@@ -8,12 +8,14 @@ export const notion = css`
     color: inherit;
   }
 
-  .notion-app {
+  .notion-page-content {
     ul,
     li {
       list-style: revert;
     }
+  }
 
+  .notion-app {
     li {
       span {
         word-break: break-word;

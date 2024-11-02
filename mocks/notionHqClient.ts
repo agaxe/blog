@@ -1,6 +1,11 @@
-import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
+import {
+  GetPagePropertyParameters,
+  QueryDatabaseParameters
+} from '@notionhq/client/build/src/api-endpoints';
 import mockNotionDB from '@/mocks/notionDB';
 import mockDBPageItems from '@/mocks/notionPageItems';
+import notionPageRelation from './notionPageRelation';
+import notionPageRollup from './notionPageRollup';
 
 class hqClient {
   databases = {
@@ -27,6 +32,20 @@ class hqClient {
     },
     retrieve: () => {
       return mockNotionDB;
+    }
+  };
+  pages = {
+    properties: {
+      retrieve: ({ page_id, property_id }: GetPagePropertyParameters) => {
+        switch (property_id) {
+          case 'tK%5D%3F':
+            return notionPageRelation;
+          case ']ksp':
+            return notionPageRollup;
+          default:
+            break;
+        }
+      }
     }
   };
 

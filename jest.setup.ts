@@ -23,3 +23,8 @@ jest.mock('@/lib/notion/config', () => {
 });
 
 jest.mock('next/router', () => jest.requireActual('next-router-mock'));
+
+jest.mock('notion-utils', () => ({
+  getPageTitle: jest.fn(),
+  parsePageId: jest.fn()
+}));
