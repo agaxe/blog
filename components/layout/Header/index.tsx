@@ -34,7 +34,6 @@ export const Header = ({ className = '' }: HeaderProps) => {
           </S.ButtonGroup>
         </S.Nav>
       </S.Inner>
-      <S.Bg />
     </S.Header>
   );
 };

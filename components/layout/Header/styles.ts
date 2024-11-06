@@ -16,16 +16,18 @@ export const Header = styled.header<{ isSticky: boolean }>`
   ${device('md')} {
     padding: 0 var(--layout-side-pd);
   }
-`;
 
-export const Bg = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(16px);
-  z-index: 1;
+  // bg style
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(16px);
+    z-index: 1;
+  }
 `;
 
 export const Inner = styled.div`
