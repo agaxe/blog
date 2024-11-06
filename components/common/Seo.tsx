@@ -21,6 +21,7 @@ export const Seo = ({
         {imgUrl && <meta name='image' content={imgUrl} />}
         <meta property='og:locale' content='ko_KR' />
         <meta property='og:title' content={title} />
+        <meta property='og:site_name' content={config.site.title} />
         <meta property='og:description' content={description} />
         <meta property='og:type' content='website' />
         <meta
