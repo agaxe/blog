@@ -60,11 +60,11 @@ export const ShowHideToggleBtn = styled.button`
   cursor: pointer;
 `;
 
-export const ShowHideToggleBtnIcon = styled(Icon)<{ isShowList: boolean }>`
+export const ShowHideToggleBtnIcon = styled(Icon)<{ $isShowList: boolean }>`
   width: 24px;
   height: 24px;
   color: inherit;
-  transform: rotate(${({ isShowList }) => (isShowList ? '180deg' : 0)});
+  transform: rotate(${({ $isShowList }) => ($isShowList ? '180deg' : 0)});
 `;
 
 export const ShowHideToggleBtnText = styled.p`

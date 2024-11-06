@@ -27,7 +27,7 @@ export const NotionPageSeries = ({ title, posts }: NotionPageSeriesProps) => {
         )}
       </S.ContentContainer>
       <S.ShowHideToggleBtn onClick={() => setIsShowList((prev) => !prev)}>
-        <S.ShowHideToggleBtnIcon name='chevron-down' isShowList={isShowList} />
+        <S.ShowHideToggleBtnIcon name='chevron-down' $isShowList={isShowList} />
         <S.ShowHideToggleBtnText>
           {`목록 ${isShowList ? '닫기' : '열기'}`}
         </S.ShowHideToggleBtnText>
