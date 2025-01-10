@@ -12,7 +12,8 @@
     "test": "jest",
     "e2e": "yarn playwright test",
     "test:all": "yarn jest && yarn e2e",
-    "export": "next export"
+    "export": "next export",
+    "analyze": "ANALYZE=true yarn build"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.2",
@@ -37,6 +38,7 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^15.1.4",
     "@playwright/test": "^1.47.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.5.0",
