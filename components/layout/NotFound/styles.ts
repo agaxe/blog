@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import styled from 'styled-components';
 import { Button } from '@/components/common/Button';

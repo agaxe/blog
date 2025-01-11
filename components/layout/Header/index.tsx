@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { Search } from '@/components/Search';
 import { Theme } from '@/components/Theme';
 import { useStickyHeader } from './hooks/useStickyHeader';
@@ -11,11 +13,11 @@ interface HeaderProps {
 }
 
 export const Header = ({ className = '' }: HeaderProps) => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const { isSticky } = useStickyHeader();
 
   return (
-    <S.Header className={className} isSticky={isSticky}>
+    <S.Header className={className} $isSticky={isSticky}>
       <S.Inner>
         <S.Logo>
           <Link href='/'>
@@ -24,7 +26,7 @@ export const Header = ({ className = '' }: HeaderProps) => {
         </S.Logo>
         <S.Nav>
           <S.NavList>
-            <S.NavItem isActive={pathname === '/tags'}>
+            <S.NavItem $isActive={pathname === '/tags'}>
               <Link href='/tags'>Tags</Link>
             </S.NavItem>
           </S.NavList>

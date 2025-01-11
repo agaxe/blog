@@ -1,7 +1,9 @@
+'use client';
+
 import styled, { css } from 'styled-components';
 import { device } from '@/styles/device';
 
-export const Header = styled.header<{ isSticky: boolean }>`
+export const Header = styled.header<{ $isSticky: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -10,8 +12,8 @@ export const Header = styled.header<{ isSticky: boolean }>`
   height: var(--layout-header-h);
   min-height: var(--layout-header-h);
   background: var(--color-bg-header);
-  margin-top: ${({ isSticky }) =>
-    isSticky ? 0 : `calc(var(--layout-header-h) * -1)`};
+  margin-top: ${({ $isSticky }) =>
+    $isSticky ? 0 : `calc(var(--layout-header-h) * -1)`};
   transition: margin-top 0.4s;
   ${device('md')} {
     padding: 0 var(--layout-side-pd);
@@ -60,11 +62,11 @@ export const Nav = styled.nav`
 
 export const NavList = styled.ul``;
 
-export const NavItem = styled.li<{ isActive: boolean }>`
+export const NavItem = styled.li<{ $isActive: boolean }>`
   position: relative;
   font-weight: 300;
-  ${({ isActive }) =>
-    isActive &&
+  ${({ $isActive }) =>
+    $isActive &&
     css`
       &:after {
         position: absolute;

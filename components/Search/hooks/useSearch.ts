@@ -1,11 +1,5 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react';
-import { useRouter } from 'next/router';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import useSWR from 'swr';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useRefCurrent } from '@/hooks/useRefCurrent';
@@ -19,7 +13,7 @@ const fetcher = async (url: string) => {
 };
 
 export const useSearch = () => {
-  const router = useRouter();
+  const pathname = usePathname();
   const debounce = useDebounce();
   const [inputValue, setInputValue] = useState('');
   const [isShowModal, setIsShowModal] = useState(false);
@@ -37,7 +31,7 @@ export const useSearch = () => {
 
   useEffect(() => {
     setIsShowModal(false);
-  }, [router]);
+  }, [pathname]);
 
   const handleChangeQuery = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
