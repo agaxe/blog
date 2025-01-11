@@ -9,7 +9,7 @@ const config = {
     description:
       '쉽게 얻은 것은 쉽게 잃지만 어렵게 얻은 것은 더 가치 있게 유지된다.',
     url: 'https://blog-agaxe.vercel.app',
-    imgUrl: ''
+    imgUrl: '/images/og_img.jpg'
   },
 
   social: [
