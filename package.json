@@ -33,7 +33,7 @@
     "react-inlinesvg": "^3.0.1",
     "react-notion-x": "6.15.8",
     "sharp": "^0.31.2",
-    "styled-components": "^5.3.6",
+    "styled-components": "^6.1.14",
     "swr": "^2.0.0",
     "typescript": "4.9.4"
   },
