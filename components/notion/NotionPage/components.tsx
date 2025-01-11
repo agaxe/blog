@@ -1,6 +1,6 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import type { NotionComponents } from 'react-notion-x';
 import { NotionPageSeries } from '@/components/notion/NotionPageSeries';
