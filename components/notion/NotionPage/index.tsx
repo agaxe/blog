@@ -1,7 +1,6 @@
 import React from 'react';
 import { NotionRenderer } from 'react-notion-x';
 import useSWR from 'swr';
-import { mapImageUrl } from '@/lib/notion/utils/mapImageUrl';
 import { SwrFallbackKeys } from '@/shared/enums/SwrFallbackKeys';
 import { PostSeries } from '@/shared/types/PostSeries';
 import getPropsComponents from './components';
@@ -20,7 +19,7 @@ export const NotionPage = ({ recordMap }: NotionPageProps) => {
       showCollectionViewDropdown={false}
       showTableOfContents={true}
       previewImages={!!recordMap.preview_images}
-      mapImageUrl={mapImageUrl}
+      // mapImageUrl={mapImageUrl}
       components={getPropsComponents({
         postSeries
       })}

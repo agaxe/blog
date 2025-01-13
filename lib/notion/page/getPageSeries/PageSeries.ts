@@ -56,7 +56,7 @@ class PageSeries {
 
   async getPageRelationId() {
     const relation = await notionHqClient.pages.properties.retrieve({
-      page_id: parsePageId(this.pageId),
+      page_id: parsePageId(this.pageId) ?? '',
       property_id: RELATION_PROP_KEY
     });
 
@@ -73,7 +73,7 @@ class PageSeries {
     if (!this._hasSeries) return;
 
     const pageRollup = await notionHqClient.pages.properties.retrieve({
-      page_id: parsePageId(this.pageId),
+      page_id: parsePageId(this.pageId) ?? '',
       property_id: ROLLUP_PROP_KEY
     });
 
