@@ -2,7 +2,8 @@
   "git": {
     "deploymentEnabled": {
       "main": false,
-      "dev": false
+      "dev": false,
+      "feat/app-router-mig": false
     }
   }
 }
