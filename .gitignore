@@ -45,3 +45,6 @@ sitemap*.xml
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+
+_pages/*
