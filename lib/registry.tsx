@@ -9,6 +9,8 @@ import { notion } from '@/styles/notion';
 import { reset } from '@/styles/reset';
 import { Theme } from '@/styles/theme';
 import { variable } from '@/styles/variable';
+import 'prismjs/themes/prism-tomorrow.css';
+import 'react-notion-x/src/styles.css';
 
 const GlobalStyle = createGlobalStyle`
   ${reset} 
