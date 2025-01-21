@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { device } from '@/styles/device';
 
@@ -14,8 +16,9 @@ export const Item = styled.li`
   }
 `;
 
-export const List = styled.ul<{ height: number }>`
-  min-height: ${({ height }) => height}px;
+export const List = styled.ul`
+  min-height: 100vh;
+
   ${Item}:first-child > div {
     padding-top: 0;
   }

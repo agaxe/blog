@@ -1,5 +1,5 @@
-import type { TagWithCntObj } from '@/lib/notion/tags/getTagsWithPostCnt';
+import type { TagWithCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
 
 export interface NotionTagSideListProps {
-  data: TagWithCntObj;
+  data: TagWithCnt;
 }

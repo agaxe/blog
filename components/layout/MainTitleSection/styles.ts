@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { Icon } from '@/components/common/Icon';
 import { device } from '@/styles/device';

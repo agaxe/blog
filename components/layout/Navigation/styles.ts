@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import { Icon } from '@/components/common/Icon';

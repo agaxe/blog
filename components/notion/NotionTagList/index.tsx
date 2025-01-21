@@ -1,7 +1,7 @@
 import React from 'react';
 import { MultiSelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import styled from 'styled-components';
 import { NotionTagItem } from '../NotionTagItem';
+import * as S from './styles';
 
 interface NotionTagListProps {
   tags: MultiSelectPropertyItemObjectResponse['multi_select'];
@@ -9,7 +9,7 @@ interface NotionTagListProps {
 
 export const NotionTagList = ({ tags }: NotionTagListProps) => {
   return (
-    <NotionTagListWrap>
+    <S.NotionTagListWrap>
       {tags.map((item) => (
         <li key={item.id}>
           <span>
@@ -17,15 +17,6 @@ export const NotionTagList = ({ tags }: NotionTagListProps) => {
           </span>
         </li>
       ))}
-    </NotionTagListWrap>
+    </S.NotionTagListWrap>
   );
 };
-
-const NotionTagListWrap = styled.ul`
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  width: fit-content;
-  position: relative;
-  z-index: 2;
-`;

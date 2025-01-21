@@ -5,15 +5,11 @@ import * as S from './styles';
 
 interface NotionPageListProps {
   data: ParseDatabaseItemsType[];
-  listHeight: number;
 }
 
-export const NotionPageList = ({
-  data = [],
-  listHeight
-}: NotionPageListProps) => {
+export const NotionPageList = ({ data = [] }: NotionPageListProps) => {
   return (
-    <S.List height={listHeight} data-testid='post-list'>
+    <S.List data-testid='post-list'>
       {data.map((item) => (
         <S.Item key={item.id} data-testid='post-item'>
           <NotionPageItem data={item} />

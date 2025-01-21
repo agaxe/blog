@@ -10,6 +10,7 @@ interface NotionPageItem {
 
 export const NotionPageItem = ({ data }: NotionPageItem) => {
   const { id, title, tags, createdAt, isCompleted } = data;
+
   return (
     <S.Wrap>
       <S.ItemLink href={`/${id}`} />
