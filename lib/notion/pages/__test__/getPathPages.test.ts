@@ -10,7 +10,7 @@ describe('getPathPages', () => {
 
     const result = await getPathPages();
 
-    expect(result).toEqual([{ params: { pageNum: '1' } }]);
+    expect(result).toEqual([{ pageNum: '1' }]);
   });
 
   it('최대 아이템 10개, 아이템 수 23개 -> 페이지 수는 3개', async () => {
@@ -23,9 +23,9 @@ describe('getPathPages', () => {
     const result = await getPathPages();
 
     expect(result).toEqual([
-      { params: { pageNum: '1' } },
-      { params: { pageNum: '2' } },
-      { params: { pageNum: '3' } }
+      { pageNum: '1' },
+      { pageNum: '2' },
+      { pageNum: '3' }
     ]);
   });
 });
