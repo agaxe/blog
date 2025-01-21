@@ -8,9 +8,7 @@ export const getPathPages = async () => {
     const items = parseDatabaseItems(data);
     const pageLength = getPaginationLength(items);
 
-    return [...Array(pageLength)].map((v, i) => ({
-      params: { pageNum: String(i + 1) }
-    }));
+    return [...Array(pageLength)].map((v, i) => ({ pageNum: String(i + 1) }));
   } catch (error) {
     console.error('Error: getPathPages');
     throw error;
