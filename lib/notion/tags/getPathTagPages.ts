@@ -5,10 +5,8 @@ import { getPaginationLength } from '@/utils/getPaginationLength';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
 
 export type PathTagPages = {
-  params: {
-    tagName: string;
-    pageNum: string;
-  };
+  tagName: string;
+  pageNum: string;
 }[];
 
 const gatParamsTagPages = async (tag: string) => {
@@ -20,7 +18,8 @@ const gatParamsTagPages = async (tag: string) => {
   const pageLength = getPaginationLength(items);
 
   return [...Array(pageLength)].map((_, idx) => ({
-    params: { tagName: convertBlankToHyphen(tagName), pageNum: String(idx + 1) }
+    tagName: convertBlankToHyphen(tagName),
+    pageNum: String(idx + 1)
   }));
 };
 
