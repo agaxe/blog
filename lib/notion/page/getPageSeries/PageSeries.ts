@@ -25,7 +25,7 @@ class PageSeries {
   async getSeriesTitle() {
     const relationId = await this.getPageRelationId();
 
-    if (!this._hasSeries || !relationId) return;
+    if (!this._hasSeries || !relationId) return null;
 
     const seriesPage = await notionClient.getPage(relationId);
     return getPageTitle(seriesPage);
@@ -34,7 +34,7 @@ class PageSeries {
   async getSeriesInPages() {
     const pageRollupResults = await this.getPageRollupResults();
 
-    if (!pageRollupResults) return;
+    if (!pageRollupResults) return null;
 
     const seriesInPages = await Promise.all(
       pageRollupResults.map(async (prop) => {

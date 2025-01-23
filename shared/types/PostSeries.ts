@@ -1,4 +1,4 @@
 export interface PostSeries {
-  title: string;
-  posts: { id: string; title: string }[];
+  title: string | null;
+  posts: { id: string; title: PostSeries['title'] }[] | null;
 }

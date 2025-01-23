@@ -7,9 +7,7 @@ export const getPathPage = async () => {
     const items = parseDatabaseItems(data);
 
     return items.map(({ id: pageId }) => ({
-      params: {
-        pageId
-      }
+      pageId
     }));
   } catch (error) {
     console.error('Error: getPathPage');

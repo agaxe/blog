@@ -1,11 +1,16 @@
+'use client';
+
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 import { NotionPageSeriesProps } from './interface';
 import * as S from './styles';
 
 export const NotionPageSeries = ({ title, posts }: NotionPageSeriesProps) => {
-  const { query } = useRouter();
+  const params = useParams<{ pageId: string }>();
+
   const [isShowList, setIsShowList] = useState(false);
+
+  if (!posts) return null;
 
   return (
     <S.Wrap>
@@ -16,7 +21,7 @@ export const NotionPageSeries = ({ title, posts }: NotionPageSeriesProps) => {
             {posts.length > 0 &&
               posts.map((v: any, i: number) => (
                 <S.Item key={v.id}>
-                  <S.Link href={`/${v.id}`} $isActive={v.id === query?.pageId}>
+                  <S.Link href={`/${v.id}`} $isActive={v.id === params?.pageId}>
                     <S.PostName>
                       {i + 1}. {v.title}
                     </S.PostName>

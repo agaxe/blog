@@ -1,14 +1,11 @@
+'use client';
+
 import React from 'react';
 import { NotionRenderer } from 'react-notion-x';
-import useSWR from 'swr';
-import { SwrFallbackKeys } from '@/shared/enums/SwrFallbackKeys';
-import { PostSeries } from '@/shared/types/PostSeries';
 import getPropsComponents from './components';
 import { NotionPageProps } from './interface';
 
-export const NotionPage = ({ recordMap }: NotionPageProps) => {
-  const { data: postSeries } = useSWR<PostSeries>(SwrFallbackKeys.POST_SERIES);
-
+export const NotionPage = ({ recordMap, postSeries }: NotionPageProps) => {
   return (
     <NotionRenderer
       recordMap={recordMap}

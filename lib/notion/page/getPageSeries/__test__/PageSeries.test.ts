@@ -52,7 +52,7 @@ describe('getPageSeries/PageSeries', () => {
       expect(seriesTitle).toBe('페이지 타이틀');
     });
 
-    it('포스트 시리즈가 존재하지 않으면 undefined 반환', async () => {
+    it('포스트 시리즈가 존재하지 않으면 null 반환', async () => {
       const pageSeries = new TestPageSeries();
 
       pageSeries.hasSeries = false;
@@ -61,10 +61,10 @@ describe('getPageSeries/PageSeries', () => {
         .mockResolvedValueOnce('3583beab-06bf-4cea-baac-9546b81926ee');
       const seriesTitle = await pageSeries.getSeriesTitle();
 
-      expect(seriesTitle).toBeUndefined();
+      expect(seriesTitle).toBeNull();
     });
 
-    it('포스트 시리즈 페이지 id 가 존재하지 않으면 undefined 반환', async () => {
+    it('포스트 시리즈 페이지 id 가 존재하지 않으면 null 반환', async () => {
       const pageSeries = new TestPageSeries();
 
       pageSeries.hasSeries = true;
@@ -73,7 +73,7 @@ describe('getPageSeries/PageSeries', () => {
         .mockResolvedValueOnce(undefined);
       const seriesTitle = await pageSeries.getSeriesTitle();
 
-      expect(seriesTitle).toBeUndefined();
+      expect(seriesTitle).toBeNull();
     });
 
     it('포스트 시리즈 페이지 id 를 통해 정보를 조회하지 못한 경우 에러 반환', async () => {
@@ -144,13 +144,13 @@ describe('getPageSeries/PageSeries', () => {
       );
     });
 
-    it('포스트 시리즈의 하위 페이지가 존재하지 않으면 undefined 반환', async () => {
+    it('포스트 시리즈의 하위 페이지가 존재하지 않으면 null 반환', async () => {
       const pageSeries = new TestPageSeries();
 
       pageSeries.hasSeries = false;
       const seriesInPages = await pageSeries.getSeriesInPages();
 
-      expect(seriesInPages).toBeUndefined();
+      expect(seriesInPages).toBeNull();
     });
   });
 
