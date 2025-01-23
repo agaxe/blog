@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PostListContent } from '@/components/layout/PostListContent';
 import { TagPageTitleSection } from '@/components/layout/TagPageTitleSection';
@@ -9,6 +10,21 @@ import { convertPascalCase } from '@/utils/convertPascalCase';
 import { getPaginationItems } from '@/utils/getPaginationItems';
 import { getPaginationLength } from '@/utils/getPaginationLength';
 import { parseDatabaseItems } from '@/utils/parseDatabaseItems';
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ tagName: string }>;
+}): Promise<Metadata> {
+  const resolveParams = await params;
+  const tagName = decodeURI(resolveParams.tagName);
+  const pascalTagName = convertHyphenToBlank(convertPascalCase(tagName));
+  const postItems = await getNotionPageItems({ tagName });
+
+  return {
+    title: `${pascalTagName} (${postItems.length})`
+  };
+}
 
 interface PageProps {
   params: Promise<{ tagName: string; pageNum: string }>;

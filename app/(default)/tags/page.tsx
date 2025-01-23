@@ -1,3 +1,4 @@
+import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { TagList } from '@/components/layout/TagList';
 import { TagPageTitleSection } from '@/components/layout/TagPageTitleSection';
@@ -6,6 +7,10 @@ import { getTagsWithPostCnt } from '@/lib/notion/tags/getTagsWithPostCnt';
 import { ISR_REVALIDATE_TIME } from '@/shared/variable';
 
 export const revalidate = ISR_REVALIDATE_TIME;
+
+export const metadata: Metadata = {
+  title: 'Tags'
+};
 
 export default async function TagPage() {
   const tags = (await getTags()) ?? [];
