@@ -5,6 +5,11 @@ import mockNotionPageRelation from '@/mocks/notionPageRelation';
 import mockNotionPageRollup from '@/mocks/notionPageRollup';
 import PageSeries from '../PageSeries';
 
+jest.mock('notion-utils', () => ({
+  getPageTitle: jest.fn(),
+  parsePageId: jest.fn((id: string) => id)
+}));
+
 jest.mock('@/lib/notion/config', () => ({
   notionClient: { getPage: jest.fn() },
   notionHqClient: {
@@ -18,7 +23,7 @@ jest.mock('@/lib/notion/config', () => ({
 
 class TestPageSeries extends PageSeries {
   constructor() {
-    super('TEST_PAGE_ID');
+    super('a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6');
   }
   get hasSeries() {
     return this._hasSeries;
