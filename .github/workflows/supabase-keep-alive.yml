@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: '0 0 */3 * *'
   workflow_dispatch:
+
+permissions:
+  actions: write
+
 jobs:
   ping_supabase:
     runs-on: ubuntu-latest
@@ -14,3 +18,7 @@ jobs:
           curl -i --fail -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/keep-alive?select=*&limit=1" \
           -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
           -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
+      - name: Keepalive Workflow
+        uses: gautamkrishnar/keepalive-workflow@v2
+        with:
+          use_api: true
