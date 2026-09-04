@@ -39,7 +39,7 @@ async function createPreviewImage(
   { cacheKey }: { cacheKey: string }
 ): Promise<PreviewImage | null> {
   try {
-    const { body } = await got(url, { responseType: 'buffer' });
+    const { body } = await got(url, { responseType: 'buffer', timeout: { request: 10000 } });
     const result = await lqip(body);
     //console.log('lqip', { ...result.metadata, url, cacheKey });
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-import Image from 'next/legacy/image';
 import Link from 'next/link';
 import type { NotionComponents } from 'react-notion-x';
 import { NotionPageSeries } from '@/components/notion/NotionPageSeries';
@@ -17,7 +16,12 @@ const getPropsComponents = ({
 }: Args): Partial<NotionComponents> => {
   return {
     nextLink: Link,
-    nextImage: Image,
+    nextImage: ({ src, alt, width, height, layout, ...rest }: any) => {
+      return (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={src} alt={alt} width={width} height={height} {...rest} />
+      );
+    },
     Code: dynamic(() =>
       import('react-notion-x/build/third-party/code').then(async (m) => {
         await Promise.all([
