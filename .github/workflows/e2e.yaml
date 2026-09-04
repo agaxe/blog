@@ -6,7 +6,7 @@ on:
       node-version:
         type: number
         required: false
-        default: 20
+        default: 24
       env:
         type: string # dev | prod
         required: true

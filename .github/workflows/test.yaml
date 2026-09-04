@@ -6,7 +6,7 @@ on:
       node-version:
         required: false
         type: number
-        default: 20
+        default: 24
 jobs:
   test:
     runs-on: ubuntu-latest
